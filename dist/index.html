@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f6f1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="12월 도쿄·요코하마 일정, 예약 체크리스트와 구글맵 길찾기">
+  <title>도쿄 · 요코하마 여행</title>
+  <style>
+    :root{color-scheme:light;--paper:#f7f6f1;--card:#fffefa;--ink:#152e2a;--muted:#506560;--line:#d9e1d8;--green:#174d40;--light:#e6efe6;--orange:#963c24;--peach:#fae9dd;--radius:20px}
+    *{box-sizing:border-box}html{scroll-padding-top:86px}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;word-break:keep-all}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:var(--green);text-underline-offset:3px}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #a74f31;outline-offset:3px}h1,h2,h3,p{margin:0}h2{font-size:27px;line-height:1.23;letter-spacing:-.055em}h3{font-size:17px;line-height:1.4;letter-spacing:-.025em}ul,ol{padding:0;margin:0;list-style:none}[hidden]{display:none!important}
+    .shell{width:min(1060px,calc(100% - 48px));margin:auto}.top{position:sticky;top:0;z-index:5;background:#f7f6f1f5;border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}.top-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:65px}.brand{font-weight:800;letter-spacing:-.055em;color:var(--ink);text-decoration:none;white-space:nowrap}.nav{display:flex;align-items:center;gap:17px;font-size:13px;font-weight:750}.nav a{color:var(--muted);white-space:nowrap;text-decoration:none;padding:12px 0}.nav a:hover{text-decoration:underline}.outline,.link,.tab{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:43px;border-radius:10px;font-weight:750;text-decoration:none;cursor:pointer}.outline{border:1px solid #b6c7bc;background:var(--card);color:var(--green);padding:0 12px}.outline:hover,.link:hover{background:#d6e7d9}.top .outline{min-height:36px;font-size:12px;white-space:nowrap}
+    main{padding:25px 0 48px}.hero{isolation:isolate;position:relative;overflow:hidden;display:grid;grid-template-columns:1.45fr 1fr;gap:20px;align-items:end;min-height:276px;padding:42px;border-radius:26px;background:#123e34;color:#f3f7ed}.hero:before{content:'';position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 82% 10%,#2e5b4b 0,transparent 58%)}.hero .dates{color:#d6e7d8;letter-spacing:.09em;font-size:13px;font-weight:750}.hero h1{margin:13px 0 8px;font-size:clamp(42px,6.8vw,85px);line-height:.99;letter-spacing:-.1em}.hero .sub{color:#dce9dc;margin-top:15px;font-size:14px}.rail{display:grid;gap:14px;align-self:center;margin-left:8px;padding:12px 0 12px 24px;border-left:2px solid #86b59b}.rail li{position:relative;display:flex;align-items:center;gap:11px;font-size:15px;font-weight:740}.rail li:before{content:'';position:absolute;left:-30px;width:10px;height:10px;border-radius:50%;background:#e5efe1;border:2px solid #184538}.rail li:first-child:before{background:#e9aa83}.rail small{font-size:11px;letter-spacing:.04em;color:#d6e7d8;white-space:nowrap}
+    .main-grid{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(270px,1fr);gap:24px;align-items:start;margin-top:27px}.stack{display:grid;gap:24px}.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;min-width:0}.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px}.note{font-size:13px;color:var(--muted);margin-top:5px}.badge{display:inline-block;vertical-align:middle;white-space:nowrap;font-size:11px;font-weight:800;padding:2px 8px;border-radius:20px;background:#edf0ea;color:#455b51}.badge.urgent{color:var(--orange);background:var(--peach)}.badge.done{color:#205a46;background:var(--light)}.badge.check{color:#765119;background:#f7eed7}.tasks>li+li,.reservations>li+li,.transit>li+li{border-top:1px solid var(--line)}.task{display:grid;grid-template-columns:23px minmax(0,1fr);gap:11px;padding:13px 0}.task input{margin:4px 0 0;width:19px;height:19px;accent-color:var(--green);cursor:pointer}.task label{font-weight:800;cursor:pointer}.task:has(input:checked) label{text-decoration:line-through;color:var(--muted)}.task p{font-size:13px;color:var(--muted);margin:3px 0 0}.task .badge{margin-left:6px}.task .links{margin-top:7px}.links{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:9px}.link{font-size:12px;padding:0 11px;color:var(--green);background:var(--light)}.link.alt{background:transparent;border:1px solid var(--line)}.link.alt:hover{background:var(--light)}
+    .tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:3px 0 15px}.tab{min-width:0;min-height:50px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;line-height:1.1;flex-direction:column;padding:5px}.tab span{font-size:10px}.tab[aria-selected=true]{background:var(--green);color:white;border-color:var(--green)}.day-heading{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:5px}.timeline{margin-top:12px}.event{display:grid;grid-template-columns:55px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid var(--line)}.time{font-size:12px;font-weight:800;color:var(--green);padding-top:3px;font-variant-numeric:tabular-nums}.event p,.reservations p,.transit p{font-size:13px;color:var(--muted);margin-top:4px}.reservations li,.transit li{padding:12px 0}.reservations .badge{margin-bottom:3px}.reservations h3,.transit h3{font-size:15px}.reservations li:last-child,.transit li:last-child{padding-bottom:0}.callout{margin:2px 0 11px;padding:11px 13px;border-radius:11px;background:var(--light);font-size:13px;color:#214b3d}.callout p+p{margin-top:4px}.small{font-size:12px;color:var(--muted)}.foot{margin-top:23px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.text-link{display:inline-block;padding:5px 0}.status-live{min-height:1.4em}
+    @media(max-width:760px){.main-grid{grid-template-columns:1fr;gap:18px}.stack{gap:18px}.shell{width:calc(100% - 30px)}main{padding-top:15px}.hero{padding:25px;min-height:215px}.hero h1{font-size:clamp(35px,8.2vw,58px)}.panel{padding:19px}.top-inner{min-height:60px}.nav{gap:12px}.hero .sub{font-size:12px}}
+    @media(max-width:460px){.hero{grid-template-columns:1fr;gap:16px;padding:22px}.hero h1{font-size:46px}.hero .dates{font-size:11px}.rail{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;border-left:0;border-top:1px solid #86b59b;padding:8px 0 0;margin:0}.rail li{display:block;font-size:12px}.rail li:before{display:none}.rail small{display:block;font-size:9px}.top-inner{gap:8px}.brand{font-size:13px}.nav{gap:9px;font-size:11px}.top .outline{padding:0 8px;font-size:11px}.panel{padding:16px}.event{grid-template-columns:49px minmax(0,1fr);gap:8px}}
+    @media(max-width:350px){.brand{display:none}.top-inner{justify-content:space-between}.hero h1{font-size:39px}}
+    @media print{.top,.tabs,.links,#share-status{display:none!important}.shell{width:100%}.hero{min-height:0;padding:16px;color:#142b25;background:white;border:1px solid var(--line)}.hero:before,.rail{display:none}.hero .dates,.hero .sub{color:#142b25}.hero h1{font-size:35px}.main-grid{display:block}.panel{margin-top:12px;break-inside:avoid}.day[hidden]{display:block!important}.day+.day{margin-top:20px}}
+    :root{--paper:#f4efe2;--card:#fff9ec;--ink:#242c32;--muted:#546066;--line:#bfc1ad;--green:#205448;--light:#deead4;--peach:#f4dfc7;--radius:0px;--pixel:'Courier New','Apple SD Gothic Neo',monospace}
+    body{background-image:radial-gradient(#dcd7c7 1px,transparent 1px);background-size:12px 12px}.top{background:#f4efe2f8;border-bottom:2px solid var(--ink)}.brand{font-family:var(--pixel);font-size:15px}.top .outline,.outline,.link,.tab,.callout,.badge{border-radius:0}.hero{display:block;min-height:0;padding:20px 23px 22px;border:2px solid var(--ink);border-radius:0;background:#fff9ec;color:var(--ink);box-shadow:5px 5px 0 #273932}.hero:before{display:none}.hero-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:17px}.hero .dates{color:var(--green);font:700 13px/1.3 var(--pixel);letter-spacing:.04em}.hero h1{margin:7px 0 0;font-size:clamp(36px,6vw,64px);line-height:1.07;letter-spacing:-.085em}.hero .sub{color:var(--muted);margin:0 0 3px;text-align:right}.hero h1 br{display:none}
+    .map-frame{position:relative;border:2px solid #283731;background:#a9dce0;overflow:hidden;aspect-ratio:640/278}.map-art{display:block;width:100%;height:100%;image-rendering:pixelated}.map-pin{position:absolute;font-family:var(--pixel);font-size:11px;line-height:1.1;padding:3px 5px;border:1px solid #273932;background:#fff7df;color:#263931;white-space:nowrap;pointer-events:none}.map-pin.incheon{left:9%;top:28%}.map-pin.narita{left:78%;top:30%}.map-pin.tokyo{left:60%;top:47%}.map-pin.kirin{left:58%;top:68%;background:#ffe6b8}.map-pin.yoko{left:46%;top:82%}.map-caption{display:flex;justify-content:space-between;gap:10px;margin:9px 0;color:var(--muted);font-size:12px}.map-caption strong{color:var(--green)}.map-caption span:last-child{white-space:nowrap}.actor{position:absolute;left:0;top:0;transform:translate(-50%,-62%);display:grid;place-items:center;min-width:44px;min-height:49px;padding:0 1px;border:0;background:transparent;cursor:pointer;z-index:1}.actor canvas,.portrait{image-rendering:pixelated}.actor canvas{width:44px;height:44px;filter:drop-shadow(2px 2px 0 #25383266)}.actor span{background:#fff9ec;color:#22362d;border:1px solid #263c33;font:800 10px/1.2 system-ui;padding:1px 3px;white-space:nowrap}.actor:hover span{background:#fbdd9f}.actor:focus-visible{z-index:2;outline-offset:0}.stage-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.stage-buttons button,.wardrobe button,.outfits button{min-height:43px;border:1px solid #a5b2a0;background:#f3f1e3;color:var(--ink);cursor:pointer;font-size:13px;font-weight:800}.stage-buttons button[aria-pressed=true],.outfits button[aria-pressed=true]{background:var(--green);color:#fff;border-color:var(--green)}.stage-buttons button:hover,.wardrobe button:hover,.outfits button:hover{border-color:var(--green);box-shadow:inset 0 -3px #263c3330}.wardrobe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:12px}.wardrobe button{display:flex;justify-content:center;align-items:center;gap:6px;background:var(--card);font-size:12px}.wardrobe canvas{width:32px;height:32px}.wardrobe small{font-weight:500;color:var(--muted)}.panel{border:2px solid #40514a;box-shadow:4px 4px 0 #d4cebc}.tab{font-family:var(--pixel)}.link{border-bottom:2px solid #8da493}.link.alt{border-bottom:2px solid #c1c8b8}
+    dialog{width:min(430px,calc(100% - 30px));max-height:calc(100% - 30px);padding:20px;border:2px solid var(--ink);background:var(--card);color:var(--ink);box-shadow:5px 5px 0 #273932;overflow:auto}dialog::backdrop{background:#172a27a0}.profile-head{display:flex;align-items:center;gap:12px;margin-bottom:13px}.profile-head .portrait{width:64px;height:64px;background:#e7ead5;border:1px solid #8b9f88}.profile-head .outline{margin-left:auto}.outfits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:8px 0 16px}.profile-form{display:grid;gap:9px}.profile-form label{display:grid;font-weight:750;font-size:13px;gap:3px}.profile-form input:not([type=checkbox]){font:inherit;padding:8px;border:1px solid #92a490;border-radius:0;background:#fffdf7;color:var(--ink);width:100%}.profile-form label.inline{display:flex;align-items:center;gap:7px}.profile-form input[type=checkbox]{width:18px;height:18px;accent-color:var(--green);margin:0}.profile-form button{justify-self:start}.profile-form p[role=status]{min-height:1.4em}
+    @media(max-width:760px){.hero{padding:15px}.hero-head{margin-bottom:13px}.map-pin{font-size:10px}.hero h1{font-size:clamp(33px,7vw,54px)}}
+    @media(max-width:500px){.hero-head{display:block}.hero .sub{text-align:left;margin-top:6px}.map-frame{aspect-ratio:1.9}.map-pin{font-size:9px;padding:2px 3px}.map-pin.incheon{left:5%;top:21%}.map-pin.narita{left:78%;top:26%}.map-pin.tokyo{left:58%;top:47%}.map-pin.kirin{left:65%;top:65%}.map-pin.yoko{left:41%;top:84%}.actor canvas{width:36px;height:36px}.actor{min-width:40px;min-height:40px}.wardrobe small{display:none}.stage-buttons button{font-size:11px}.map-caption{font-size:11px}}
+    @media print{.map-frame,.map-caption,.stage-buttons,.wardrobe,dialog{display:none!important}.hero .sub{text-align:left}.hero-head{display:block;margin:0}}
+    .shell{max-width:840px}
+    .top .outline,.nav a{min-height:44px;display:inline-flex;align-items:center}
+    .nav a{padding:0 5px}
+    .main-grid{display:grid;grid-template-columns:1fr;gap:13px;margin-top:22px}
+    .panel{padding:0}
+    .panel summary{display:flex;align-items:center;gap:12px;min-height:64px;padding:12px 17px;list-style:none;cursor:pointer}
+    .panel summary::-webkit-details-marker{display:none}
+    .panel summary:focus-visible{outline:3px solid #a74f31;outline-offset:2px}
+    .panel summary h2{font-size:23px;flex:1}
+    .panel summary:after{content:'+';width:30px;text-align:center;background:var(--light);color:var(--green);font:800 23px/30px var(--pixel)}
+    .panel[open] summary:after{content:'−'}
+    .panel-body{border-top:1px solid var(--line);padding:12px 17px 18px}
+    .panel-body>.note{margin:0 0 10px}
+    .map-frame{aspect-ratio:2.15;min-height:230px}
+    .map-caption{align-items:center;margin:9px 0 0}
+    .map-caption a{min-height:44px;display:inline-flex;align-items:center;padding:0 2px;white-space:nowrap}
+    .map-pin{z-index:1}
+    .map-pin.ueno{left:77%;top:58%}
+    .map-pin.hara{left:62%;top:55%}
+    .map-pin.shibuya{left:54%;top:71%}
+    .actor{min-width:46px;min-height:56px;transform:translate(-50%,-68%);z-index:2}
+    .actor canvas{width:44px;height:44px;animation:hop 1.25s steps(3,end) infinite;animation-delay:var(--hop-delay,0s);pointer-events:none}
+    .actor:focus-visible{z-index:3}
+    .actor span{pointer-events:none}
+    @keyframes hop{0%,68%,100%{transform:translateY(0)} 33%{transform:translateY(-7px)}}
+    @media(prefers-reduced-motion:reduce){.actor canvas{animation:none}}
+    .outfits button{display:grid;justify-items:center;gap:3px;padding:5px;min-height:62px;border:1px solid #a5b2a0;background:#f3f1e3;color:var(--ink);font:800 14px var(--pixel);cursor:pointer}
+    .outfits button[aria-pressed=true]{background:var(--green);color:#fff;border-color:var(--green)}
+    .outfits canvas{width:33px;height:33px}
+    .profile-form input:not([type=checkbox]){font-size:16px;min-height:44px;min-width:0}
+    .profile-form label.inline{min-height:44px}
+    .profile-form input[type=checkbox]{width:22px;height:22px}
+    .profile-dates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .profile-dates input{display:block}
+    .day-tools{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:7px;margin:4px 0}
+    @media(max-width:500px){
+      .panel summary{min-height:62px;padding:11px 13px}
+      .panel summary h2{font-size:21px}
+      .panel-body{padding:11px 13px 15px}
+      .map-frame{aspect-ratio:1.45}
+      .map-caption{font-size:12px;align-items:flex-start}
+      .map-caption strong{padding:9px 0}
+      .nav{gap:3px}
+      .brand{font-size:12px}
+      .actor canvas{width:40px;height:40px}
+      .map-pin.yoko{left:43%;top:87%}
+      .map-pin.tokyo{left:61%;top:38%}
+      .map-pin.ueno{left:80%;top:66%}
+      .map-pin.hara{left:53%;top:56%}
+      .map-pin.shibuya{left:50%;top:79%}
+    }
+    @media print{.panel summary:after,.day-tools{display:none}.panel-body{border:0}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="shell top-inner">
+    <a href="#home" class="brand">도쿄 · 요코하마</a>
+    <nav class="nav" aria-label="빠른 이동"><a href="#todo">할 일</a><a href="#itinerary">일정</a><a href="#bookings">예약</a><a href="#transport">교통</a></nav>
+    <button class="outline" id="share" type="button">공유</button>
+  </div></header>
+  <main class="shell" id="home">
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-head"><div><p class="dates">2026.12.16 WED — 12.20 SUN</p><h1 id="title">도쿄 · 요코하마</h1></div><p class="sub">여행이름이 무엇인가요?</p></div>
+      <div class="map-frame" id="trip-map" aria-label="인천 출발, 도쿄 합류, 요코하마 이동을 보여주는 픽셀 지도">
+        <canvas class="map-art" id="map-art" width="320" height="139" aria-hidden="true"></canvas>
+        <span class="map-pin incheon" data-pin="icn">인천</span><span class="map-pin narita" data-pin="nrt">나리타</span><span class="map-pin tokyo" data-pin="tabata">도쿄 · 다바타</span><span class="map-pin kirin" data-pin="kirin">기린</span><span class="map-pin yoko" data-pin="yoko">요코하마</span><span class="map-pin ueno" data-pin="ueno">우에노</span><span class="map-pin hara" data-pin="harajuku">하라주쿠</span><span class="map-pin shibuya" data-pin="shibuya">시부야</span>
+      </div>
+      <p class="map-caption"><strong id="map-caption" aria-live="polite"></strong><a href="#itinerary">날짜 선택 ↓</a></p>
+    </section>
+    <div class="main-grid">
+      <details class="panel" id="todo">
+        <summary><h2>남은 할 일</h2><span class="badge done" id="progress" aria-live="polite"></span></summary>
+        <div class="panel-body"><p class="note">체크는 이 브라우저에 저장돼요.</p><ol class="tasks" id="task-list"></ol></div>
+      </details>
+      <details class="panel" id="itinerary">
+        <summary><h2>날짜별 일정</h2></summary>
+        <div class="panel-body"><p class="note">현지 시간 기준 · 날짜를 고르면 픽셀 지도도 바뀌어요.</p><div class="tabs" id="tabs" role="tablist" aria-label="여행 날짜"></div><div class="day-tools"><a class="link alt" id="replay-map" href="#trip-map">픽셀 지도 ↑</a><a class="link alt" id="google-area" target="_blank" rel="noopener noreferrer">Google 지도 ↗</a></div><div id="days"></div></div>
+      </details>
+      <details class="panel" id="bookings">
+        <summary><h2>예약</h2></summary>
+        <div class="panel-body"><p class="note">항공과 숙소 현황 · 편명, 터미널과 체크인 정보는 확정 후 추가</p><ul class="reservations" id="booking-list"></ul></div>
+      </details>
+      <details class="panel" id="transport">
+        <summary><h2>교통</h2></summary>
+        <div class="panel-body"><p class="note">이번 동선 기준 · 항공권 확정 후 공항편 결정</p><div class="callout"><p><strong>3명 각자 Suica 또는 PASMO 1장</strong></p><p>JR·지하철·게이큐 일반열차는 충전 잔액으로 개찰구를 통과해요. 나리타 스카이라이너는 별도 특급권·지정석이 필요해요.</p></div><ul class="transit" id="transport-list"></ul></div>
+      </details>
+    </div>
+    <footer class="foot small"><p>일정 초안 · 2026.11.14 기준</p><p id="share-status" class="status-live" aria-live="polite"></p></footer>
+  </main>
+  <dialog id="profile" aria-labelledby="profile-name">
+    <div class="profile-head"><canvas id="profile-portrait" class="portrait" width="24" height="24" aria-hidden="true"></canvas><div><h2 id="profile-name"></h2><p class="small" id="profile-trip"></p></div><button id="profile-close" class="outline" type="button" aria-label="캐릭터 닫기">닫기</button></div>
+    <h3>의상</h3><div class="outfits" id="outfits" aria-label="의상 선택"></div>
+    <h3>내 여권 메모</h3>
+    <form class="profile-form" id="profile-form" autocomplete="off">
+      <p class="small">영문명·만료일·대조 상태는 이 브라우저에 저장돼요. 여권번호와 생년월일은 이 탭을 닫거나 새로고침하면 지워져요.</p>
+      <label>여권 영문 이름 <input id="passport-name" type="text" maxlength="100" placeholder="여권에 적힌 그대로" spellcheck="false" autocomplete="off"></label>
+      <label>여권번호 <input id="passport-number" type="password" maxlength="20" spellcheck="false" autocomplete="off" autocapitalize="characters"></label>
+      <div class="profile-dates">
+        <label>생년월일 <input id="passport-birth" type="date" autocomplete="off"></label>
+        <label>여권 만료일 <input id="passport-expiry" type="date" autocomplete="off"></label>
+      </div>
+      <label class="inline"><input id="passport-checked" type="checkbox"> 항공권 영문명과 대조 완료</label>
+      <button type="submit" class="outline">저장</button><p id="profile-status" class="small" role="status"></p>
+    </form>
+  </dialog>
+  <script>
+    const urls = {
+      kirin: 'https://kirinfactory.revn.jp/reservations/calendar?label_id=5', kirinInfo: 'https://www.kirin.co.jp/experience/factory/yokohama/event/is20.html',
+      market: 'https://www.yokohama-akarenga.jp/christmas/', airbnb: 'https://www.airbnb.co.kr/rooms/1479488019081534033',
+      shizuku: 'https://shizuku-hotel.jp/uenoekimae/', suica: 'https://www.jreast.co.jp/kr/welcomesuica/welcomesuica.html',
+      metro: 'https://www.tokyometro.jp/en/ticket/travel/index.html', wide: 'https://www.jreast.co.jp/en/multi/pass/tokyowidepass.html',
+      skyliner: 'https://www.keisei.co.jp/keisei/tetudou/skyliner/us/', keikyu: 'https://www.keikyu.co.jp/ride/kakueki/KK31.html',
+      vjw: 'https://www.vjw.digital.go.jp/'
+    };
+    const places = {
+      nrt: '成田国際空港 Japan', ueno: '上野駅 JR Tokyo', capsule: 'Smart Stay SHIZUKU 上野駅前 Tokyo',
+      tabata: '田端駅 北口 Tokyo', nippori: '日暮里駅 Tokyo', nishi: '西日暮里駅 Tokyo', shinagawa: '品川駅 Tokyo',
+      namamugi: '生麦駅 横浜', kirin: 'キリンビール 横浜工場 1-17-1 生麦', yokohama: '横浜駅 JR',
+      chinatown: '横浜中華街 善隣門', yamashita: '山下公園 横浜', redbrick: '横浜赤レンガ倉庫',
+      sakuragicho: '桜木町駅 横浜', asakusa: '浅草寺 東京', shibuya: '渋谷スクランブル交差点',
+      meiji: '明治神宮 東京', omote: '表参道駅 東京', kuramae: '蔵前駅 東京'
+    };
+    function directions(destination, origin, travelmode = 'transit') {
+      const params = new URLSearchParams({ api: '1', destination: places[destination], travelmode });
+      if (origin) params.set('origin', places[origin]);
+      return `https://www.google.com/maps/dir/?${params}`;
+    }
+    const map = (destination, origin, mode) => ['길찾기 ↗', directions(destination, origin, mode)];
+    const taskList = [
+      ['return', '12/20 귀국편 3자리 맞추기', '최우선', '유선·필규 왕복의 귀국편과 인혜의 남은 편도가 같은 편명인지 확인. 오후~저녁 선호. 한쪽만 결제하기 전에 두 예약 모두 좌석과 수하물 조건 확인.'],
+      ['kirin', '12/18 기린맥주공장 3명 예약', '최우선', '11/14 확인 시 11:00 성인 전용 회차 22석, 대안 11:20 일반 회차 30석. 잔여석은 변동돼요. 성인 ¥1,000 × 3, 약 90분, 일본어 안내, 온라인 사전 결제.', [['기린 예약 ↗', urls.kirin], ['투어 안내 ↗', urls.kirinInfo]]],
+      ['outbound', '유선·필규 12/16 수 출국편 예약', '예약', '수요일 인천 출발 기준. 나리타 도착 시각과 공항→우에노 막차를 함께 확인.'],
+      ['inhye', '인혜 편도 방향·편명 확인', '확인', '기존 대화에는 12/17 일본행 발권 완료로 기록돼 있어요. e티켓을 확인한 뒤 남은 편도와 12/20 합류편을 확정.'],
+      ['capsule', '우에노 캡슐 두 번째 자리 확인', '확인', '12/16~17 남성 1인 ¥3,580 현장 결제 확정 기록. 유선·필규 중 예약 명의와 추가 1자리, 체크인 마감 확인.', [['숙소 안내 ↗', urls.shizuku]]],
+      ['house', '에어비앤비 체크인·짐 보관 확인', '확인', '12/17~20 3인 3박 결제 완료. 정확한 주소·체크인 시간·숙소 출입 안내와 입실 전/퇴실 후 짐 보관 가능 여부 확인.', [['숙소 페이지 ↗', urls.airbnb]]],
+      ['market', '요코하마 크리스마스 마켓 결정', '선택', '12/18은 특별일 일반 입장 ¥1,000. 셋 다 들어가기로 하면 3장 예매. 바깥 야경 산책도 가능.', [['입장권 안내 ↗', urls.market]]],
+      ['tokyo', '토요일 도쿄 일정·식당 정하기', '계획', '하라주쿠·오모테산도·시부야를 후보로 뒀어요. 꼭 가고 싶은 식당이나 시간 지정 시설을 정한 뒤 필요한 곳만 예약.'],
+      ['documents', '각자 여권과 입국 준비 확인', '출발 전', '여권 유효기간과 e티켓 영문명 대조. 여권번호와 사진은 각자 보관. 필요하면 Visit Japan Web 사전 등록.', [['Visit Japan Web ↗', urls.vjw]]],
+      ['airport', '공항 이동·데이터 준비', '출발 전', '항공사 터미널이 확정되면 나리타행 또는 하네다행 동선 결정. 각자 IC카드, eSIM/로밍, 항공·숙소 원본 오프라인 저장.']
+    ];
+    const dayList = [
+      { id:'16', date:'12/16', weekday:'수', title:'필규·유선 먼저 출발', status:'항공편 미정', note:'수요일 인천 출발. 도착 공항과 터미널은 발권 후 확정.', events:[
+        ['저녁','나리타 도착 → 우에노','도착 터미널과 수하물 수령 예상 시간으로 마지막 열차 확인. 스카이라이너 우에노행 후보.', [map('capsule','nrt'), ['공항철도 ↗', urls.skyliner]]],
+        ['밤','스마트 스테이 시즈쿠 우에노','12/16~17 남성 캡슐 1자리 확정 기록. 추가 1자리와 늦은 체크인은 확인 필요.', [map('capsule'), ['숙소 안내 ↗', urls.shizuku]]]
+      ]},
+      { id:'17', date:'12/17', weekday:'목', title:'도쿄 합류 · 체크인', status:'일정 초안', note:'합류 시간은 인혜 도착편과 에어비앤비 입실 안내에 맞춰 조정.', events:[
+        ['오전','필규·유선 우에노 → 다바타','캡슐에서 체크아웃. 에어비앤비 입실 전 짐 보관 또는 역 코인락커 확인.', [map('tabata','ueno')]],
+        ['오후','인혜 합류 · 다바타 숙소','12/17 일본행 e티켓의 도착 시간 확인. 숙소 위치는 다바타·니시닛포리 인근. 정확한 주소와 입실 시간은 예약 상세 확인.', [map('tabata','nrt'), ['숙소 페이지 ↗', urls.airbnb]]],
+        ['저녁','아사쿠사 또는 다바타 근처 저녁','이동이 일찍 끝나면 센소지 주변. 늦어지면 숙소 근처에서 저녁.', [map('asakusa','tabata')]]
+      ]},
+      { id:'18', date:'12/18', weekday:'금', title:'요코하마 당일치기', status:'기린 시간 미정', note:'11:00 견학을 기준으로 짠 초안. 오후 회차만 잡히면 차이나타운·야마시타공원을 먼저.', events:[
+        ['09:20','다바타 → 나마무기','11:00 투어 기준 출발 목표. JR로 시나가와, 게이큐로 환승. 나마무기 정차 보통열차를 확인하고 역에서 공장까지 도보 약 10분. 10:40까지 공장 도착 목표.', [map('kirin','tabata'), ['나마무기역 → 공장 ↗',directions('kirin','namamugi','walking')]]],
+        ['11:00','기린맥주공장 견학','11:00~12:30 성인 전용 회차 후보. 11/14 기준 22석, 3명 미예약. 11:20 일반 회차도 가능했어요. 예약 확정 후 접수 시간 확인.', [map('kirin'), ['공식 예약 ↗', urls.kirin]]],
+        ['13:30','차이나타운 점심','나마무기 → 게이큐 요코하마역, 미나토미라이선 모토마치·주카가이역 방면. 투어 시간에 따라 점심 이동.', [map('chinatown','kirin')]],
+        ['15:00','야마시타공원','항구 산책 후 아카렌가 쪽으로 도보 이동. 날씨가 안 좋으면 실내 카페로 조정.', [map('yamashita','chinatown','walking')]],
+        ['16:30','아카렌가 · 크리스마스 마켓','12/18은 특별일 일반 입장 ¥1,000. 입장 선택 시 3장 예매. 22:00 종료 안내.', [map('redbrick','yamashita','walking'), ['입장권 ↗', urls.market]]],
+        ['저녁','사쿠라기초 → 다바타','JR 게이힌도호쿠·네기시선 북쪽 방향 후보. 시간대별 환승은 구글맵으로 확인.', [map('tabata','sakuragicho')]]
+      ]},
+      { id:'19', date:'12/19', weekday:'토', title:'도쿄 하루', status:'후보 일정', note:'하라주쿠에서 시작해 시부야에서 끝나는 동선.', events:[
+        ['10:30','메이지진구 · 하라주쿠','다바타에서 JR 야마노테선으로 이동.', [map('meiji','tabata')]],
+        ['13:00','오모테산도 점심 · 카페','식당 후보를 정한 뒤 인기 시간대 예약 여부 확인.', [map('omote','meiji','walking')]],
+        ['16:00','시부야 · 저녁','전망대처럼 시간 지정 시설은 선택 후 예매. 저녁 후 JR로 다바타 복귀.', [map('shibuya','omote','walking'), ['숙소 방면 ↗',directions('tabata','shibuya')]]]
+      ]},
+      { id:'20', date:'12/20', weekday:'일', title:'체크아웃 · 3명 귀국', status:'항공편 미정', note:'귀국편 확정 후 체크아웃, 짐 보관, 공항 출발 시각을 확정.', events:[
+        ['오전','체크아웃 · 짐 정리','여유가 있고 짐을 맡길 수 있으면 우에노 근처에서 점심.', [map('ueno','tabata')]],
+        ['오후','닛포리 → 나리타','나리타편 기준. JR로 닛포리, 스카이라이너 또는 일반열차. 항공사 터미널과 체크인 마감에 맞춰 출발.', [map('nrt','tabata'), ['스카이라이너 ↗',urls.skyliner]]],
+        ['오후~밤','3명 같은 항공편으로 귀국','유선·필규 왕복 및 인혜 편도의 편명 일치 확인. 출발 시각과 터미널 입력 대기.', [map('nrt')]]
+      ]}
+    ];
+    const bookings = [
+      ['예약 필요','urgent','유선 · 필규｜왕복','출국 12/16 수 인천 출발. 귀국 12/20 오후~저녁, 인혜와 동일편.'],
+      ['기존 기록 확인','check','인혜｜12/17 일본행','기존 대화 기준 발권 완료. 편명·도착 공항·터미널·시간은 e티켓에서 확인.'],
+      ['예약 필요','urgent','인혜｜남은 편도','12/20 귀국편으로 우선 정리. 기존 e티켓의 방향 확인 후 두 사람과 같은 편명으로 예약.'],
+      ['결제 완료','done','에어비앤비｜12/17~20','3명 3박. 다바타·니시닛포리 인근. 정확한 주소와 입·퇴실 시간은 Airbnb 예약 상세 기준.', [['숙소 페이지 ↗',urls.airbnb],['다바타역 ↗',directions('tabata')],['니시닛포리역 ↗',directions('nishi')]]],
+      ['1자리 확정 기록','check','시즈쿠 우에노｜12/16~17','남성 캡슐 1인 ¥3,580 현장 결제. 이용자 명의·두 번째 자리 확인 필요.', [map('capsule'),['숙소 안내 ↗',urls.shizuku]]],
+      ['각자 확인','check','여권｜유선 · 필규 · 인혜','각자 유효기간과 항공권 영문명을 대조. 여권번호·사진, 예약번호, 숙소 출입코드는 원본에서 확인.']
+    ];
+    const transport = [
+      ['공항: 나리타 ↔ 닛포리','속도 우선은 게이세이 스카이라이너, 비용 우선은 출발 시간에 맞는 게이세이 일반열차. 닛포리에서 JR로 다바타 방면. 우에노 전날 숙박이면 게이세이우에노까지.', [['게이세이 공식 ↗',urls.skyliner], ['나리타 → 닛포리 ↗',directions('nippori','nrt')]]],
+      ['도쿄: JR 야마노테선','다바타에서 우에노·닛포리 방향과 이케부쿠로·신주쿠 방향을 구분. 구글맵에서 노선, 진행 방향, 플랫폼, 출구를 순서대로 확인.', [['Suica 공식 ↗',urls.suica]]],
+      ['요코하마: JR → 게이큐','다바타 → 시나가와에서 게이큐 환승. 나마무기는 보통열차 정차역이라 앱이 안내하는 환승역과 열차 종별을 확인. 공장 후 미나토미라이선으로 차이나타운 이동 가능.', [['나마무기역 안내 ↗',urls.keikyu],['다바타 → 나마무기 ↗',directions('namamugi','tabata')]]],
+      ['패스: 지금은 구매 보류','Tokyo Subway Ticket 24/48/72시간 ¥1,000/¥1,500/¥2,000은 도쿄메트로·도에이 지하철 전용. JR·게이큐 중심인 이번 초안은 IC카드가 간단해요. 토요일에 지하철만 여러 번 탈 경우 24시간권과 실제 운임 합계를 비교. JR 도쿄 와이드 패스는 현재 일정에는 우선순위가 낮아요.', [['지하철권 공식 ↗',urls.metro],['JR 패스 공식 ↗',urls.wide]]]
+    ];
+    function el(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text) node.textContent = text;
+      return node;
+    }
+    function addLinks(container, links = []) {
+      if (!links.length) return;
+      const row = el('div', 'links');
+      for (const [index, [label, url]] of links.entries()) {
+        const anchor = el('a', index ? 'link alt' : 'link', label);
+        anchor.href = url;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+        row.append(anchor);
+      }
+      container.append(row);
+    }
+    const storageKey = 'tokyo-yokohama-dec26-checklist-v1';
+    let checked = new Set();
+    try { checked = new Set(JSON.parse(localStorage.getItem(storageKey) || '[]')); } catch {}
+    const taskNodes = document.getElementById('task-list');
+    function updateProgress() {
+      const done = taskList.filter(([id]) => checked.has(id)).length;
+      document.getElementById('progress').textContent = `${done} / ${taskList.length} 완료`;
+    }
+    for (const [id,title,status,description,links] of taskList) {
+      const row = el('li','task');
+      const box = el('input');
+      box.type = 'checkbox';
+      box.id = `task-${id}`;
+      box.checked = checked.has(id);
+      box.addEventListener('change', () => {
+        if (box.checked) checked.add(id); else checked.delete(id);
+        try { localStorage.setItem(storageKey, JSON.stringify([...checked])); } catch {}
+        updateProgress();
+      });
+      const details = el('div');
+      const label = el('label','',title);
+      label.htmlFor = box.id;
+      details.append(label,el('span',status === '최우선' ? 'badge urgent' : 'badge',status),el('p','',description));
+      addLinks(details,links);
+      row.append(box,details);
+      taskNodes.append(row);
+    }
+    updateProgress();
+    const tabs = document.getElementById('tabs');
+    const days = document.getElementById('days');
+    let selectedDay;
+    for (const day of dayList) {
+      const button = el('button','tab',day.date);
+      button.type = 'button';
+      button.id = `tab-${day.id}`;
+      button.setAttribute('role','tab');
+      button.setAttribute('aria-controls',`day-${day.id}`);
+      button.append(el('span','',day.weekday));
+      button.addEventListener('click',() => selectDay(day.id));
+      button.addEventListener('keydown',event => {
+        const current = dayList.indexOf(day);
+        const last = dayList.length - 1;
+        const positions = {ArrowLeft:(current + last) % dayList.length,ArrowRight:(current + 1) % dayList.length,Home:0,End:last};
+        if (!Object.hasOwn(positions,event.key)) return;
+        event.preventDefault();
+        const next = dayList[positions[event.key]].id;
+        selectDay(next);
+        document.getElementById(`tab-${next}`).focus();
+      });
+      tabs.append(button);
+      const section = el('div','day');
+      section.id = `day-${day.id}`;
+      section.setAttribute('role','tabpanel');
+      section.setAttribute('aria-labelledby',button.id);
+      const heading = el('div','day-heading');
+      heading.append(el('h3','',day.title),el('span','badge check',day.status));
+      section.append(heading,el('p','note',day.note));
+      const timeline = el('ol','timeline');
+      for (const [time,title,description,links] of day.events) {
+        const event = el('li','event');
+        const detail = el('div');
+        detail.append(el('h3','',title),el('p','',description));
+        addLinks(detail,links);
+        event.append(el('span','time',time),detail);
+        timeline.append(event);
+      }
+      section.append(timeline);
+      days.append(section);
+    }
+    function selectDay(id) {
+      selectedDay = id;
+      for (const day of dayList) {
+        const selected = day.id === id;
+        const button = document.getElementById(`tab-${day.id}`);
+        button.setAttribute('aria-selected',String(selected));
+        button.tabIndex = selected ? 0 : -1;
+        document.getElementById(`day-${day.id}`).hidden = !selected;
+      }
+      days.dispatchEvent(new Event('daychange'));
+    }
+    for (const link of document.querySelectorAll('a[href^="#"]')) {
+      const panel = document.getElementById(link.hash.slice(1));
+      if (panel?.tagName === 'DETAILS') link.addEventListener('click', () => { panel.open = true; });
+    }
+    const linkedPanel = document.getElementById(location.hash.slice(1));
+    if (linkedPanel?.tagName === 'DETAILS') linkedPanel.open = true;
+    const bookingList = document.getElementById('booking-list');
+    for (const [status,tone,title,description,links] of bookings) {
+      const row = el('li');
+      row.append(el('span',`badge ${tone}`,status),el('h3','',title),el('p','',description));
+      addLinks(row,links);
+      bookingList.append(row);
+    }
+    const transportList = document.getElementById('transport-list');
+    for (const [title,description,links] of transport) {
+      const row = el('li');
+      row.append(el('h3','',title),el('p','',description));
+      addLinks(row,links);
+      transportList.append(row);
+    }
+    const shareStatus = document.getElementById('share-status');
+    document.getElementById('share').addEventListener('click', async () => {
+      const url = location.origin + location.pathname;
+      if (location.protocol === 'file:') {
+        shareStatus.textContent = '받은 HTML 파일을 그대로 전달하면 같은 일정을 볼 수 있어요.';
+        shareStatus.scrollIntoView({block:'nearest'});
+        return;
+      }
+      try {
+        if (navigator.share) { await navigator.share({title:document.title,url}); return; }
+        await navigator.clipboard.writeText(url);
+        shareStatus.textContent = '링크를 복사했어요. 초대받은 계정으로 열 수 있어요.';
+      } catch (error) {
+        if (error.name === 'AbortError') return;
+        shareStatus.textContent = '주소창에서 링크를 복사해 주세요. 초대받은 계정으로 열 수 있어요.';
+      }
+      shareStatus.scrollIntoView({block:'nearest'});
+    });
+  </script>
+  <script>
+    const travelers = [
+      {id:'pilgyu',name:'필규',color:'#c74c12',backdrop:'#a83914',mark:'H',hair:'#292830',style:'fringe',trip:'12/16 수 인천 출발 · 왕복 예약 필요'},
+      {id:'inhye',name:'인혜',color:'#2352b6',backdrop:'#1b428d',mark:'S',hair:'#33272b',style:'long',trip:'12/17 목 도쿄 합류 · 편도 정보 확인'},
+      {id:'yuseon',name:'유선',color:'#2352b6',backdrop:'#1b428d',mark:'S',hair:'#29282b',style:'short',trip:'12/16 수 인천 출발 · 왕복 예약 필요'}
+    ];
+    const ink='#292936', skin='#efb38b', shade='#c78269';
+    const outfits = {base:'A',sprout:'B',suit:'C'};
+    const travelerKey = 'tokyo-yokohama-dec26-traveler-v1';
+    const readLocal = key => { try { return JSON.parse(localStorage.getItem(key)) || {}; } catch { return {}; } };
+    const saveLocal = (key,data) => { try { localStorage.setItem(key,JSON.stringify(data)); return true; } catch { return false; } };
+    const localTravelers = readLocal(travelerKey);
+    const passportSession = new Map();
+    const dress = person => localTravelers[person.id]?.outfit || 'base';
+    function sprite(canvas, person, outfit, step=0) {
+      const g = canvas.getContext('2d');
+      if (!g) return;
+      const r = (color,x,y,w,h) => { g.fillStyle=color; g.fillRect(x,y,w,h); };
+      g.clearRect(0,0,24,24);
+      if (outfit==='sprout') {
+        r('#22473a',11,0,2,5); r('#2e673b',6,0,5,2); r('#64a04c',7,1,5,2);
+        r('#2e673b',13,0,5,2); r('#80b655',12,1,5,2);
+        r('#284b36',6,5,12,15); r('#284b36',5,7,14,11); r('#5b984d',6,7,12,12);
+        r('#a9cb70',8,6,8,12); r('#a9cb70',7,8,10,8); r(ink,8,7,8,7);
+        r(skin,9,8,6,5); r(ink,10,9,1,2); r(ink,13,9,1,2); r(shade,11,12,2,1);
+        r('#466e39',8,18,3,3+step); r('#466e39',13,18,3,4-step);
+        r(ink,8,21+step,3,1); r(ink,13,22-step,3,1); return;
+      }
+      const tall=person.style==='short';
+      const hairY=tall?2:3;
+      const pants=outfit==='suit'?'#242a3c':person.style==='long'?'#25374a':'#364b5b';
+      r(ink,8,18,3,5-step); r(ink,13,18,3,4+step);
+      r(pants,9,18,2,4-step); r(pants,13,18,2,3+step);
+      r(outfit==='suit'?'#152127':'#f0ead7',7,22-step,4,1); r(outfit==='suit'?'#152127':'#f0ead7',13,21+step,4,1);
+      if (person.style==='long') { r(person.hair,6,5,12,11); r('#211f2b',6,10,2,7); r('#211f2b',16,10,2,7); }
+      r(ink,8,13,8,6); r(ink,7,14,10,4); r(ink,6,14,2,4); r(ink,16,14,2,4);
+      const jersey=outfit==='suit'?'#283145':person.color;
+      r(jersey,8,13,8,5); r(jersey,7,14,2,2); r(jersey,15,14,2,2);
+      r(skin,6,16-step,2,2); r(skin,16,16+step,2,2);
+      if(outfit==='suit') {
+        r('#e8e5d8',10,13,4,3); r('#a24c45',11,14,2,3); r('#43506b',8,14,2,3); r('#43506b',14,14,2,3);
+      } else {
+        const stripe='#fff5df';
+        r(stripe,7,14,2,1); r(stripe,15,14,2,1); r(stripe,10,14,1,4);
+        if(person.mark==='H'){r(stripe,12,14,1,3);r(stripe,14,14,1,3);r(stripe,13,15,1,1);}
+        else {r(stripe,12,14,3,1);r(stripe,12,15,2,1);r(stripe,13,16,2,1);}
+      }
+      r(ink,7,hairY+1,10,9); r(ink,8,hairY,8,2); r(person.hair,8,hairY+1,8,5);
+      r('#504049',9,hairY+1,5,1); r(skin,8,hairY+4,8,5); r(skin,9,hairY+9,6,1);
+      r(person.hair,8,hairY+3,7,2);
+      if(person.style==='fringe'){r(person.hair,9,hairY+5,2,1);r(person.hair,13,hairY+5,2,1);}
+      if(person.style==='long'){r(person.hair,8,hairY+4,1,4);r(person.hair,15,hairY+4,1,4);}
+      r(ink,10,hairY+6,1,1); r(ink,14,hairY+6,1,1); r(shade,11,hairY+8,2,1);
+    }
+    const mapFrame = document.getElementById('trip-map');
+    const mapCanvas = document.getElementById('map-art');
+    const profile = document.getElementById('profile');
+    const portrait = document.getElementById('profile-portrait');
+    const nameField = document.getElementById('passport-name');
+    const numberField = document.getElementById('passport-number');
+    const birthField = document.getElementById('passport-birth');
+    const expiryField = document.getElementById('passport-expiry');
+    const checkedField = document.getElementById('passport-checked');
+    const profileStatus = document.getElementById('profile-status');
+    let selectedTraveler;
+    function outfitBackground(person, outfit) {
+      return outfit === 'base' ? person.backdrop : outfit === 'sprout' ? '#476d3b' : '#344057';
+    }
+    function showOutfit(canvas, person, outfit) {
+      canvas.style.backgroundColor = outfitBackground(person, outfit);
+      sprite(canvas, person, outfit);
+    }
+    function fillOutfits(person) {
+      const row = document.getElementById('outfits');
+      row.replaceChildren();
+      for (const [id,label] of Object.entries(outfits)) {
+        const button=el('button');
+        button.type='button';
+        const example=el('canvas','portrait');
+        example.width=24;
+        example.height=24;
+        example.setAttribute('aria-hidden','true');
+        showOutfit(example,person,id);
+        button.append(example,el('span','',label));
+        button.setAttribute('aria-pressed',String(dress(person)===id));
+        button.addEventListener('click',() => {
+          localTravelers[person.id] = {...localTravelers[person.id],outfit:id};
+          saveLocal(travelerKey,localTravelers);
+          for(const item of row.children) item.setAttribute('aria-pressed',String(item===button));
+          showOutfit(portrait,person,id);
+          redrawActor(actors.find(item=>item.person===person));
+        });
+        row.append(button);
+      }
+    }
+    function openProfile(person) {
+      selectedTraveler=person;
+      const data=localTravelers[person.id] || {};
+      const session=passportSession.get(person.id);
+      document.getElementById('profile-name').textContent=person.name;
+      document.getElementById('profile-trip').textContent=person.trip;
+      nameField.value=data.englishName || '';
+      numberField.value=session?.number || '';
+      birthField.value=session?.birth || '';
+      expiryField.value=data.expiry || '';
+      checkedField.checked=Boolean(data.checked);
+      profileStatus.textContent='';
+      showOutfit(portrait,person,dress(person));
+      fillOutfits(person);
+      profile.showModal();
+    }
+    document.getElementById('profile-close').addEventListener('click',()=>profile.close());
+    profile.addEventListener('close',()=>{
+      numberField.value='';
+      birthField.value='';
+    });
+    document.getElementById('profile-form').addEventListener('submit',event=>{
+      event.preventDefault();
+      const id=selectedTraveler.id;
+      passportSession.set(id,{number:numberField.value.trim(),birth:birthField.value});
+      localTravelers[id]={...localTravelers[id],englishName:nameField.value.trim(),expiry:expiryField.value,checked:checkedField.checked};
+      profileStatus.textContent=saveLocal(travelerKey,localTravelers)?'저장했어요. 여권번호와 생년월일은 이 탭에만 있어요.':'이 탭에서만 임시로 기억해요.';
+    });
+    const actors = travelers.map((person,index)=>{
+      const button=el('button','actor');
+      button.type='button';
+      button.setAttribute('aria-label',`${person.name} 캐릭터와 여권 메모 열기`);
+      const canvas=el('canvas'); canvas.width=24; canvas.height=24; canvas.setAttribute('aria-hidden','true');
+      button.style.setProperty('--hop-delay',`${index * -0.28}s`);
+      const name=el('span','',person.name);
+      button.append(canvas,name);
+      button.addEventListener('click',()=>openProfile(person));
+      mapFrame.append(button);
+      return {person,button,canvas,name};
+    });
+    function redrawActor(actor) {
+      const outfit=dress(actor.person);
+      sprite(actor.canvas,actor.person,outfit);
+      actor.name.style.backgroundColor=outfitBackground(actor.person,outfit);
+      actor.name.style.color='#fff9ec';
+    }
+    actors.forEach(redrawActor);
+    const korea=[[0,14],[39,14],[39,20],[52,20],[52,29],[64,29],[64,38],[56,38],[56,45],[66,45],[66,56],[59,56],[59,69],[48,69],[48,79],[30,79],[30,90],[15,90],[15,82],[0,82]];
+    const japan=[[320,5],[303,5],[303,18],[291,18],[291,27],[278,27],[278,36],[272,36],[272,48],[261,48],[261,61],[248,61],[248,72],[236,72],[236,79],[223,79],[223,85],[204,85],[204,98],[193,98],[193,108],[175,108],[175,116],[157,116],[157,128],[146,128],[146,139],[190,139],[190,131],[207,131],[207,123],[224,123],[224,114],[239,114],[239,109],[249,109],[249,99],[242,99],[242,91],[251,91],[251,86],[261,86],[261,98],[270,98],[270,103],[283,103],[283,91],[291,91],[291,76],[302,76],[302,66],[311,66],[311,54],[320,54]];
+    const points={icn:[41,52],nrt:[261,53],tabata:[226,78],kirin:[208,101],yoko:[188,113],ueno:[236,88],harajuku:[207,89],shibuya:[202,96]};
+    const everyone=travelers.map(person=>person.id);
+    const stages={
+      '16':{text:'12/16 · 필규와 유선 먼저 출발',route:['icn','nrt','ueno'],flight:0,active:['pilgyu','yuseon'],waiting:'icn',area:places.capsule},
+      '17':{text:'12/17 · 인혜 도쿄 합류',route:['icn','nrt','tabata'],flight:0,active:['inhye'],waiting:'tabata',area:places.tabata},
+      '18':{text:'12/18 · 다바타 → 기린맥주공장 → 요코하마',route:['tabata','kirin','yoko'],active:everyone,area:places.kirin},
+      '19':{text:'12/19 · 다바타 → 하라주쿠 → 시부야',route:['tabata','harajuku','shibuya'],active:everyone,area:places.shibuya},
+      '20':{text:'12/20 · 셋이 함께 귀국',route:['tabata','nrt','icn'],flight:1,active:everyone,area:places.nrt}
+    };
+    const g=mapCanvas.getContext('2d');
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+    const mapPins=[...document.querySelectorAll('[data-pin]')];
+    const areaLink=document.getElementById('google-area');
+    let stage, start, frame=0;
+    function drawWorld(current,progress) {
+      if(!g) return;
+      const rect=(color,x,y,w,h)=>{g.fillStyle=color;g.fillRect(x,y,w,h);};
+      const polygon=(shape,color)=>{g.beginPath();shape.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.fillStyle=color;g.fill();g.strokeStyle='#568a70';g.lineWidth=1;g.stroke();};
+      rect('#a7d9da',0,0,320,139);
+      for(let i=0;i<85;i++){const x=(i*47)%320,y=(i*29)%139;rect(i%3?'#8fc9cc':'#c4e7df',x,y,3+i%5,1);}
+      polygon(korea,'#91b974');polygon(japan,'#91b974');
+      polygon([[20,98],[26,98],[26,103],[20,103]],'#91b974');polygon([[120,128],[130,128],[130,134],[120,134]],'#91b974');
+      const trees=[[12,28],[23,30],[47,35],[12,65],[30,71],[275,49],[296,46],[281,69],[209,103],[171,124],[232,94],[277,82],[308,33],[233,117],[56,61]];
+      for(const [x,y] of trees){rect('#547d4d',x+1,y,2,5);rect('#547d4d',x,y+2,4,2);rect('#c9c982',x+1,y,1,2);}
+      const coords=current.route.map(key=>points[key]);
+      g.strokeStyle=current.flight===undefined?'#5b523b':'#3d766b';g.lineWidth=2;g.setLineDash([3,3]);g.beginPath();g.moveTo(...coords[0]);
+      for(const [index,point] of coords.slice(1).entries()) {
+        if(index===current.flight) g.quadraticCurveTo(151,4,...point);
+        else g.lineTo(...point);
+      }
+      g.stroke();g.setLineDash([]);
+      for(const id of current.route){const [x,y]=points[id];rect('#29483d',x-3,y-3,7,7);rect(id==='kirin'?'#efae5c':'#fef0c7',x-2,y-2,5,5);}
+      const {x,y,segment}=pathPoint(current,progress);
+      if(segment===current.flight && progress<1 && !reduced.matches){
+        rect('#466b69',x-7,y-2,12,3);rect('#fff4db',x-7,y-3,11,2);rect('#fff4db',x+3,y-2,4,2);
+        rect('#fff4db',x-2,y-7,2,8);rect('#f0b260',x-7,y-4,2,3);
+      }
+    }
+    function pathPoint(current,progress) {
+      const split=current.flight===0?.72:current.flight===1?.28:.52;
+      const segment=progress<split?0:1;
+      const a=points[current.route[segment]];
+      const b=points[current.route[segment+1]];
+      const t=segment===0?progress/split:(progress-split)/(1-split);
+      if(segment!==current.flight) return {x:a[0]+(b[0]-a[0])*t,y:a[1]+(b[1]-a[1])*t,segment};
+      const u=1-t;
+      return {x:u*u*a[0]+2*u*t*151+t*t*b[0],y:u*u*a[1]+2*u*t*4+t*t*b[1],segment};
+    }
+    function paint(timestamp) {
+      if(start===undefined) start=timestamp;
+      const elapsed=timestamp-start;
+      const current=stages[stage];
+      const progress=reduced.matches?1:Math.min(1,elapsed/4800);
+      drawWorld(current,progress);
+      const position=pathPoint(current,progress);
+      const spacing=46;
+      const mapWidth=mapFrame.clientWidth || 320;
+      actors.forEach((actor,index)=>{
+        const active=current.active.includes(actor.person.id);
+        const waiting=active?null:points[current.waiting];
+        const x=waiting?waiting[0]:position.x;
+        const y=waiting?waiting[1]:position.y;
+        const center=Math.max(70,Math.min(mapWidth-70,x*mapWidth/320));
+        actor.button.style.left=`${(center+(index-1)*spacing)*100/mapWidth}%`;
+        actor.button.style.top=`${(y-3)/1.39}%`;
+        sprite(actor.canvas,actor.person,dress(actor.person),reduced.matches?0:Math.floor(elapsed/235+index)%2);
+      });
+      if(!reduced.matches && progress<1) frame=requestAnimationFrame(paint);
+    }
+    function showDayOnMap(id) {
+      stage=id;
+      const current=stages[id];
+      cancelAnimationFrame(frame);
+      start=undefined;
+      mapPins.forEach(pin=>{pin.hidden=!current.route.includes(pin.dataset.pin);});
+      document.getElementById('map-caption').textContent=current.text;
+      areaLink.href=`https://www.google.com/maps/search/?${new URLSearchParams({api:'1',query:current.area})}`;
+      frame=requestAnimationFrame(paint);
+    }
+    days.addEventListener('daychange',()=>showDayOnMap(selectedDay));
+    document.getElementById('replay-map').addEventListener('click',()=>showDayOnMap(selectedDay));
+    reduced.addEventListener('change',()=>showDayOnMap(selectedDay));
+    if(typeof ResizeObserver!=='undefined') new ResizeObserver(()=>{
+      if(frame) cancelAnimationFrame(frame);
+      frame=requestAnimationFrame(paint);
+    }).observe(mapFrame);
+    selectDay('16');
+  </script>
+</body>
+</html>
