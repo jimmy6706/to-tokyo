@@ -60,6 +60,26 @@
     .profile-dates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
     .profile-dates input{display:block}
     .day-tools{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:7px;margin:4px 0}
+    .map-shortcuts{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:0 10px}
+    .tab span{white-space:nowrap}
+    .tab .day-count{font-size:13px}
+    .detailed-timeline .event{display:block;padding:14px;border:1px solid var(--line);background:#fffcf2}
+    .event-meta{display:flex;align-items:center;flex-wrap:wrap;gap:5px 9px;margin-bottom:5px}
+    .event-meta .time{padding:0}
+    .event-meta .stay{color:var(--green);background:var(--light)}
+    .movement{margin:0 0 0 12px;padding:12px 0 12px 12px;border-left:2px dashed #8fa79a;color:var(--muted);font-size:13px}
+    .movement strong{display:block;color:var(--green)}
+    .movement .links{margin-top:6px}
+    .detailed-timeline .link,.harbor-tools .link{min-height:44px}
+    .harbor-tools{margin:9px 0}
+    #share-status{overflow-wrap:anywhere;min-width:0}
+    @media(max-width:375px){
+      .tabs{gap:3px}
+      .tab{padding-inline:2px}
+      .tab span{font-size:9px}
+      .detailed-timeline .event{padding:10px}
+      .movement{margin-left:8px;padding-left:9px}
+    }
     @media(max-width:500px){
       .panel summary{min-height:62px;padding:11px 13px}
       .panel summary h2{font-size:21px}
@@ -92,7 +112,7 @@
         <canvas class="map-art" id="map-art" width="320" height="139" aria-hidden="true"></canvas>
         <span class="map-pin incheon" data-pin="icn">인천</span><span class="map-pin narita" data-pin="nrt">나리타</span><span class="map-pin tokyo" data-pin="tabata">도쿄 · 다바타</span><span class="map-pin kirin" data-pin="kirin">기린</span><span class="map-pin yoko" data-pin="yoko">요코하마</span><span class="map-pin ueno" data-pin="ueno">우에노</span><span class="map-pin hara" data-pin="harajuku">하라주쿠</span><span class="map-pin shibuya" data-pin="shibuya">시부야</span>
       </div>
-      <p class="map-caption"><strong id="map-caption" aria-live="polite"></strong><a href="#itinerary">날짜 선택 ↓</a></p>
+      <p class="map-caption"><strong id="map-caption" aria-live="polite"></strong><span class="map-shortcuts"><a href="#itinerary">날짜 선택 ↓</a><a href="#itinerary-18">12/18 금요일 ↓</a></span></p>
     </section>
     <div class="main-grid">
       <details class="panel" id="todo">
@@ -100,7 +120,7 @@
         <div class="panel-body"><p class="note">체크는 이 브라우저에 저장돼요.</p><ol class="tasks" id="task-list"></ol></div>
       </details>
       <details class="panel" id="itinerary">
-        <summary><h2>날짜별 일정</h2></summary>
+        <summary id="itinerary-18"><h2>날짜별 일정</h2></summary>
         <div class="panel-body"><p class="note">현지 시간 기준 · 날짜를 고르면 픽셀 지도도 바뀌어요.</p><div class="tabs" id="tabs" role="tablist" aria-label="여행 날짜"></div><div class="day-tools"><a class="link alt" id="replay-map" href="#trip-map">픽셀 지도 ↑</a><a class="link alt" id="google-area" target="_blank" rel="noopener noreferrer">Google 지도 ↗</a></div><div id="days"></div></div>
       </details>
       <details class="panel" id="bookings">
@@ -134,6 +154,7 @@
     const urls = {
       kirin: 'https://kirinfactory.revn.jp/reservations/calendar?label_id=5', kirinInfo: 'https://www.kirin.co.jp/experience/factory/yokohama/event/is20.html',
       market: 'https://www.yokohama-akarenga.jp/christmas/', airbnb: 'https://www.airbnb.co.kr/rooms/1479488019081534033',
+      araiya: 'https://www.araiya.co.jp/shop-menu/bankokubashi.html', yorunoyo: 'https://yorunoyo.yokohama/',
       shizuku: 'https://shizuku-hotel.jp/uenoekimae/', suica: 'https://www.jreast.co.jp/kr/welcomesuica/welcomesuica.html',
       metro: 'https://www.tokyometro.jp/en/ticket/travel/index.html', wide: 'https://www.jreast.co.jp/en/multi/pass/tokyowidepass.html',
       skyliner: 'https://www.keisei.co.jp/keisei/tetudou/skyliner/us/', keikyu: 'https://www.keikyu.co.jp/ride/kakueki/KK31.html',
@@ -145,17 +166,25 @@
       namamugi: '生麦駅 横浜', kirin: 'キリンビール 横浜工場 1-17-1 生麦', yokohama: '横浜駅 JR',
       chinatown: '横浜中華街 善隣門', yamashita: '山下公園 横浜', redbrick: '横浜赤レンガ倉庫',
       sakuragicho: '桜木町駅 横浜', asakusa: '浅草寺 東京', shibuya: '渋谷スクランブル交差点',
-      meiji: '明治神宮 東京', omote: '表参道駅 東京', kuramae: '蔵前駅 東京'
+      meiji: '明治神宮 東京', omote: '表参道駅 東京', kuramae: '蔵前駅 東京',
+      shinkoyasu: '新子安駅 JR 横浜', kannai: '関内駅 JR 横浜',
+      araiya: '荒井屋 万國橋店 横浜', bankoku: '万国橋 横浜',
+      redbrick2: '横浜赤レンガ倉庫 2号館', zonohana: '象の鼻パーク 横浜',
+      osanbashi: '横浜港大さん橋国際客船ターミナル 屋上広場',
+      choyomon: '横浜中華街 朝陽門', chinatownArea: '横浜中華街 横浜', ishikawacho: '石川町駅 JR 横浜'
     };
-    function directions(destination, origin, travelmode = 'transit') {
+    function directions(destination, origin, travelmode = 'transit', waypoints = []) {
       const params = new URLSearchParams({ api: '1', destination: places[destination], travelmode });
       if (origin) params.set('origin', places[origin]);
+      if (waypoints.length) params.set('waypoints', waypoints.map(point => places[point]).join('|'));
       return `https://www.google.com/maps/dir/?${params}`;
     }
     const map = (destination, origin, mode) => ['길찾기 ↗', directions(destination, origin, mode)];
+    const mapLeg = (destination, origin, mode, waypoints) => ['Google 지도 길찾기 ↗', directions(destination, origin, mode, waypoints)];
+    const kirinPlan = '성인 전용 10:20 회차 우선, 대안은 10:40 일반 회차예요.';
     const taskList = [
       ['return', '12/20 귀국편 3자리 맞추기', '최우선', '유선·필규 왕복의 귀국편과 인혜의 남은 편도가 같은 편명인지 확인. 오후~저녁 선호. 한쪽만 결제하기 전에 두 예약 모두 좌석과 수하물 조건 확인.'],
-      ['kirin', '12/18 기린맥주공장 3명 예약', '최우선', '11/14 확인 시 11:00 성인 전용 회차 22석, 대안 11:20 일반 회차 30석. 잔여석은 변동돼요. 성인 ¥1,000 × 3, 약 90분, 일본어 안내, 온라인 사전 결제.', [['기린 예약 ↗', urls.kirin], ['투어 안내 ↗', urls.kirinInfo]]],
+      ['kirin', '12/18 기린맥주공장 3명 예약', '최우선', `${kirinPlan} 회차와 잔여석은 공식 예약 달력에서 확인. 성인 ¥1,000 × 3, 약 90분, 일본어 안내, 온라인 사전 결제.`, [['기린 예약 ↗', urls.kirin], ['투어 안내 ↗', urls.kirinInfo]]],
       ['outbound', '유선·필규 12/16 수 출국편 예약', '예약', '수요일 인천 출발 기준. 나리타 도착 시각과 공항→우에노 막차를 함께 확인.'],
       ['inhye', '인혜 편도 방향·편명 확인', '확인', '기존 대화에는 12/17 일본행 발권 완료로 기록돼 있어요. e티켓을 확인한 뒤 남은 편도와 12/20 합류편을 확정.'],
       ['capsule', '우에노 캡슐 두 번째 자리 확인', '확인', '12/16~17 남성 1인 ¥3,580 현장 결제 확정 기록. 유선·필규 중 예약 명의와 추가 1자리, 체크인 마감 확인.', [['숙소 안내 ↗', urls.shizuku]]],
@@ -175,14 +204,79 @@
         ['오후','인혜 합류 · 다바타 숙소','12/17 일본행 e티켓의 도착 시간 확인. 숙소 위치는 다바타·니시닛포리 인근. 정확한 주소와 입실 시간은 예약 상세 확인.', [map('tabata','nrt'), ['숙소 페이지 ↗', urls.airbnb]]],
         ['저녁','아사쿠사 또는 다바타 근처 저녁','이동이 일찍 끝나면 센소지 주변. 늦어지면 숙소 근처에서 저녁.', [map('asakusa','tabata')]]
       ]},
-      { id:'18', date:'12/18', weekday:'금', title:'요코하마 당일치기', status:'기린 시간 미정', note:'11:00 견학을 기준으로 짠 초안. 오후 회차만 잡히면 차이나타운·야마시타공원을 먼저.', events:[
-        ['09:20','다바타 → 나마무기','11:00 투어 기준 출발 목표. JR로 시나가와, 게이큐로 환승. 나마무기 정차 보통열차를 확인하고 역에서 공장까지 도보 약 10분. 10:40까지 공장 도착 목표.', [map('kirin','tabata'), ['나마무기역 → 공장 ↗',directions('kirin','namamugi','walking')]]],
-        ['11:00','기린맥주공장 견학','11:00~12:30 성인 전용 회차 후보. 11/14 기준 22석, 3명 미예약. 11:20 일반 회차도 가능했어요. 예약 확정 후 접수 시간 확인.', [map('kirin'), ['공식 예약 ↗', urls.kirin]]],
-        ['13:30','차이나타운 점심','나마무기 → 게이큐 요코하마역, 미나토미라이선 모토마치·주카가이역 방면. 투어 시간에 따라 점심 이동.', [map('chinatown','kirin')]],
-        ['15:00','야마시타공원','항구 산책 후 아카렌가 쪽으로 도보 이동. 날씨가 안 좋으면 실내 카페로 조정.', [map('yamashita','chinatown','walking')]],
-        ['16:30','아카렌가 · 크리스마스 마켓','12/18은 특별일 일반 입장 ¥1,000. 입장 선택 시 3장 예매. 22:00 종료 안내.', [map('redbrick','yamashita','walking'), ['입장권 ↗', urls.market]]],
-        ['저녁','사쿠라기초 → 다바타','JR 게이힌도호쿠·네기시선 북쪽 방향 후보. 시간대별 환승은 구글맵으로 확인.', [map('tabata','sakuragicho')]]
-      ]},
+      {
+        id: '18', date: '12/18', weekday: '금',
+        title: '요코하마 당일치기', status: '예정표',
+        note: '점심 대기로 늦어지면 조노하나 공원은 지나가며 보고, 오산바시 17:30 조명쇼에 맞춰 야마시타공원 산책 시간을 조정해요.',
+        routeLink: ['항구 도보 코스 전체 보기 ↗', directions('chinatownArea', 'araiya', 'walking', ['redbrick2', 'osanbashi', 'yamashita'])],
+        events: [
+          ['09:00 출발', '다바타역 근처 숙소', '숙소에서 나와 JR 다바타역(田端駅)에서 출발해요.'],
+          ['10:00 도착 목표 · 10:20–11:50 견학', '기린 맥주 요코하마 공장',
+            `3명 견학·시음. ${kirinPlan} 회차와 잔여석은 예약 달력에서 확인하세요.`,
+            [['기린 공식 예약 ↗', urls.kirin]],
+            { status: '예약 필요', stay: '견학 약 90분', movement: {
+              time: 'JR + 도보 약 1시간',
+              route: '다바타역 → JR 게이힌도호쿠선 신코야스역 → 공장까지 도보 약 20분',
+              links: [
+                mapLeg('kirin', 'tabata', 'transit'),
+                ['다바타역 → 신코야스역 JR ↗', directions('shinkoyasu', 'tabata')],
+                ['신코야스역 → 공장 도보 ↗', directions('kirin', 'shinkoyasu', 'walking')]
+              ]
+            } }],
+          ['12:40–13:00 도착 목표', '아라이야 만국교점',
+            '개화규나베 세트(開化牛鍋膳) 점심. 대기 약 0~30분은 후기 기반 추정이며, 점심 주문 마감은 14:00이에요.',
+            [['아라이야 공식 메뉴 ↗', urls.araiya]],
+            { status: '현장 주문', movement: {
+              time: 'JR + 도보 약 45~60분',
+              route: '공장 → 신코야스역 → JR 간나이역 → 식당까지 도보 약 7분',
+              links: [
+                mapLeg('araiya', 'kirin', 'transit'),
+                ['공장 → 신코야스역 도보 ↗', directions('shinkoyasu', 'kirin', 'walking')],
+                ['신코야스역 → 간나이역 JR ↗', directions('kannai', 'shinkoyasu')],
+                ['간나이역 → 식당 도보 ↗', directions('araiya', 'kannai', 'walking')]
+              ]
+            } }],
+          ['14:20 전후', '만국교', '만국교를 건너 신코 쪽을 산책해요.', [], { movement: {
+            time: '도보 약 5분', route: '아라이야 → 만국교',
+            links: [mapLeg('bankoku', 'araiya', 'walking')]
+          } }],
+          ['15:20–16:05', '아카렌가 창고 2호관 · 크리스마스 마켓',
+            '창고와 마켓을 둘러보고 16:00 점등을 봐요.', [['크리스마스 마켓 공식 안내 ↗', urls.market]],
+            { stay: '체류 약 45분', movement: {
+              time: '도보 약 10분', route: '만국교 → 아카렌가 창고 2호관',
+              links: [mapLeg('redbrick2', 'bankoku', 'walking')]
+            } }],
+          ['16:15 전후', '조노하나 공원', '공원을 지나 해안가를 따라 걸어요.', [], { movement: {
+            time: '도보 약 10분', route: '아카렌가 → 조노하나 공원',
+            links: [mapLeg('zonohana', 'redbrick2', 'walking')]
+          } }],
+          ['16:30 전후–17:15', '오산바시 여객터미널',
+            '무료 야외 데크에서 16:31 일몰과 17:00 요루노요 조명쇼를 봐요. 늦으면 17:30 회차를 선택해요.',
+            [['요루노요 공식 안내 ↗', urls.yorunoyo]],
+            { stay: '체류 약 45분', movement: {
+              time: '도보 약 10~15분', route: '조노하나 공원 → 오산바시 야외 데크',
+              links: [mapLeg('osanbashi', 'zonohana', 'walking')]
+            } }],
+          ['17:30–18:15', '야마시타공원', '요루노요 Y 큐브를 구경해요.', [['요루노요 공식 안내 ↗', urls.yorunoyo]],
+            { stay: '체류 약 45분', movement: {
+              time: '도보 약 15분', route: '오산바시 → 야마시타공원',
+              links: [mapLeg('yamashita', 'osanbashi', 'walking')]
+            } }],
+          ['18:30 산책 · 19:00 저녁', '요코하마 차이나타운', '조요몬을 지나 차이나타운을 산책하고 저녁을 먹어요.', [],
+            { status: '식당 미정', movement: {
+              time: '도보 약 10분', route: '야마시타공원 → 조요몬 → 차이나타운',
+              links: [mapLeg('chinatownArea', 'yamashita', 'walking', ['choyomon'])]
+            } }],
+          ['20:30 전후', 'JR 이시카와초역', 'JR을 타고 다바타역으로 돌아가요.', [], { movement: {
+            time: '도보 약 10분', route: '차이나타운 → 이시카와초역',
+            links: [mapLeg('ishikawacho', 'chinatownArea', 'walking')]
+          } }],
+          ['21:30 전후 도착 목표', '다바타역 · 숙소 복귀', '다바타역에서 각자 숙소로 돌아가요.', [], { movement: {
+            time: 'JR 약 1시간', route: '이시카와초역 → 다바타역',
+            links: [mapLeg('tabata', 'ishikawacho', 'transit')]
+          } }]
+        ]
+      },
       { id:'19', date:'12/19', weekday:'토', title:'도쿄 하루', status:'후보 일정', note:'하라주쿠에서 시작해 시부야에서 끝나는 동선.', events:[
         ['10:30','메이지진구 · 하라주쿠','다바타에서 JR 야마노테선으로 이동.', [map('meiji','tabata')]],
         ['13:00','오모테산도 점심 · 카페','식당 후보를 정한 뒤 인기 시간대 예약 여부 확인.', [map('omote','meiji','walking')]],
@@ -205,7 +299,7 @@
     const transport = [
       ['공항: 나리타 ↔ 닛포리','속도 우선은 게이세이 스카이라이너, 비용 우선은 출발 시간에 맞는 게이세이 일반열차. 닛포리에서 JR로 다바타 방면. 우에노 전날 숙박이면 게이세이우에노까지.', [['게이세이 공식 ↗',urls.skyliner], ['나리타 → 닛포리 ↗',directions('nippori','nrt')]]],
       ['도쿄: JR 야마노테선','다바타에서 우에노·닛포리 방향과 이케부쿠로·신주쿠 방향을 구분. 구글맵에서 노선, 진행 방향, 플랫폼, 출구를 순서대로 확인.', [['Suica 공식 ↗',urls.suica]]],
-      ['요코하마: JR → 게이큐','다바타 → 시나가와에서 게이큐 환승. 나마무기는 보통열차 정차역이라 앱이 안내하는 환승역과 열차 종별을 확인. 공장 후 미나토미라이선으로 차이나타운 이동 가능.', [['나마무기역 안내 ↗',urls.keikyu],['다바타 → 나마무기 ↗',directions('namamugi','tabata')]]],
+      ['요코하마: JR 게이힌도호쿠·네기시선','다바타 → 신코야스에서 내려 공장까지 도보 약 20분. 견학 후 신코야스로 돌아와 JR 간나이역으로 이동해요. 저녁에는 이시카와초역에서 다바타로 복귀해요.', [['다바타 → 신코야스 ↗',directions('shinkoyasu','tabata')],['신코야스역 → 공장 도보 ↗',directions('kirin','shinkoyasu','walking')]]],
       ['패스: 지금은 구매 보류','Tokyo Subway Ticket 24/48/72시간 ¥1,000/¥1,500/¥2,000은 도쿄메트로·도에이 지하철 전용. JR·게이큐 중심인 이번 초안은 IC카드가 간단해요. 토요일에 지하철만 여러 번 탈 경우 24시간권과 실제 운임 합계를 비교. JR 도쿄 와이드 패스는 현재 일정에는 우선순위가 낮아요.', [['지하철권 공식 ↗',urls.metro],['JR 패스 공식 ↗',urls.wide]]]
     ];
     function el(tag, className, text) {
@@ -257,13 +351,13 @@
     const tabs = document.getElementById('tabs');
     const days = document.getElementById('days');
     let selectedDay;
-    for (const day of dayList) {
-      const button = el('button','tab',day.date);
+    for (const [index, day] of dayList.entries()) {
+      const button = el('button','tab');
       button.type = 'button';
       button.id = `tab-${day.id}`;
       button.setAttribute('role','tab');
       button.setAttribute('aria-controls',`day-${day.id}`);
-      button.append(el('span','',day.weekday));
+      button.append(el('span','day-count',`${index + 1}일차`),el('span','',`${day.date.replace('/', '.')}(${day.weekday})`));
       button.addEventListener('click',() => selectDay(day.id));
       button.addEventListener('keydown',event => {
         const current = dayList.indexOf(day);
@@ -283,13 +377,33 @@
       const heading = el('div','day-heading');
       heading.append(el('h3','',day.title),el('span','badge check',day.status));
       section.append(heading,el('p','note',day.note));
-      const timeline = el('ol','timeline');
-      for (const [time,title,description,links] of day.events) {
+      if (day.routeLink) {
+        const tools = el('div','harbor-tools');
+        addLinks(tools,[day.routeLink]);
+        section.append(tools);
+      }
+      const timeline = el('ol',day.routeLink ? 'timeline detailed-timeline' : 'timeline');
+      for (const [time,title,description,links,{ status, stay, movement } = {}] of day.events) {
+        if (movement) {
+          const leg = el('li','movement');
+          leg.append(el('strong','',`이동 · ${movement.time}`),el('p','',movement.route));
+          addLinks(leg,movement.links);
+          timeline.append(leg);
+        }
         const event = el('li','event');
         const detail = el('div');
         detail.append(el('h3','',title),el('p','',description));
         addLinks(detail,links);
-        event.append(el('span','time',time),detail);
+        const eventTime = el('span','time',time);
+        if (day.routeLink) {
+          const meta = el('div','event-meta');
+          meta.append(eventTime);
+          if (status) meta.append(el('span',status === '예약 필요' ? 'badge urgent' : 'badge check',status));
+          if (stay) meta.append(el('span','badge stay',stay));
+          event.append(meta,detail);
+        } else {
+          event.append(eventTime,detail);
+        }
         timeline.append(event);
       }
       section.append(timeline);
@@ -306,12 +420,29 @@
       }
       days.dispatchEvent(new Event('daychange'));
     }
+    const fridayHash = '#itinerary-18';
+    const itinerary = document.getElementById('itinerary');
+    function openFriday() {
+      itinerary.open = true;
+      if (selectedDay !== '18') selectDay('18');
+    }
+    function openLinkedPanel() {
+      if (location.hash === fridayHash) {
+        openFriday();
+        return;
+      }
+      const panel = document.getElementById(location.hash.slice(1));
+      if (panel?.tagName === 'DETAILS') panel.open = true;
+    }
     for (const link of document.querySelectorAll('a[href^="#"]')) {
+      if (link.hash === fridayHash) {
+        link.addEventListener('click', openFriday);
+        continue;
+      }
       const panel = document.getElementById(link.hash.slice(1));
       if (panel?.tagName === 'DETAILS') link.addEventListener('click', () => { panel.open = true; });
     }
-    const linkedPanel = document.getElementById(location.hash.slice(1));
-    if (linkedPanel?.tagName === 'DETAILS') linkedPanel.open = true;
+    window.addEventListener('hashchange',openLinkedPanel);
     const bookingList = document.getElementById('booking-list');
     for (const [status,tone,title,description,links] of bookings) {
       const row = el('li');
@@ -328,7 +459,7 @@
     }
     const shareStatus = document.getElementById('share-status');
     document.getElementById('share').addEventListener('click', async () => {
-      const url = location.origin + location.pathname;
+      const url = location.origin + location.pathname + (selectedDay === '18' ? fridayHash : '');
       if (location.protocol === 'file:') {
         shareStatus.textContent = '받은 HTML 파일을 그대로 전달하면 같은 일정을 볼 수 있어요.';
         shareStatus.scrollIntoView({block:'nearest'});
@@ -337,10 +468,10 @@
       try {
         if (navigator.share) { await navigator.share({title:document.title,url}); return; }
         await navigator.clipboard.writeText(url);
-        shareStatus.textContent = '링크를 복사했어요. 초대받은 계정으로 열 수 있어요.';
+        shareStatus.textContent = '링크를 복사했어요.';
       } catch (error) {
         if (error.name === 'AbortError') return;
-        shareStatus.textContent = '주소창에서 링크를 복사해 주세요. 초대받은 계정으로 열 수 있어요.';
+        shareStatus.textContent = `이 주소를 복사해 주세요. ${url}`;
       }
       shareStatus.scrollIntoView({block:'nearest'});
     });
@@ -576,6 +707,7 @@
       frame=requestAnimationFrame(paint);
     }).observe(mapFrame);
     selectDay('16');
+    openLinkedPanel();
   </script>
 </body>
 </html>
