@@ -21,7 +21,7 @@
     :root{--paper:#f4efe2;--card:#fff9ec;--ink:#242c32;--muted:#546066;--line:#bfc1ad;--green:#205448;--light:#deead4;--peach:#f4dfc7;--radius:0px;--pixel:'Courier New','Apple SD Gothic Neo',monospace}
     body{background-image:radial-gradient(#dcd7c7 1px,transparent 1px);background-size:12px 12px}.top{background:#f4efe2f8;border-bottom:2px solid var(--ink)}.brand{font-family:var(--pixel);font-size:15px}.top .outline,.outline,.link,.tab,.callout,.badge{border-radius:0}.hero{display:block;min-height:0;padding:20px 23px 22px;border:2px solid var(--ink);border-radius:0;background:#fff9ec;color:var(--ink);box-shadow:5px 5px 0 #273932}.hero:before{display:none}.hero-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:17px}.hero .dates{color:var(--green);font:700 13px/1.3 var(--pixel);letter-spacing:.04em}.hero h1{margin:7px 0 0;font-size:clamp(36px,6vw,64px);line-height:1.07;letter-spacing:-.085em}.hero .sub{color:var(--muted);margin:0 0 3px;text-align:right}.hero h1 br{display:none}
     .map-frame{position:relative;border:2px solid #283731;background:#a9dce0;overflow:hidden;aspect-ratio:640/278}.map-art{display:block;width:100%;height:100%;image-rendering:pixelated}.map-pin{position:absolute;font-family:var(--pixel);font-size:11px;line-height:1.1;padding:3px 5px;border:1px solid #273932;background:#fff7df;color:#263931;white-space:nowrap;pointer-events:none}.map-pin.incheon{left:9%;top:28%}.map-pin.narita{left:78%;top:30%}.map-pin.tokyo{left:60%;top:47%}.map-pin.kirin{left:58%;top:68%;background:#ffe6b8}.map-pin.yoko{left:46%;top:82%}.map-caption{display:flex;justify-content:space-between;gap:10px;margin:9px 0;color:var(--muted);font-size:12px}.map-caption strong{color:var(--green)}.map-caption span:last-child{white-space:nowrap}.actor{position:absolute;left:0;top:0;transform:translate(-50%,-62%);display:grid;place-items:center;min-width:44px;min-height:49px;padding:0 1px;border:0;background:transparent;cursor:pointer;z-index:1}.actor canvas,.portrait{image-rendering:pixelated}.actor canvas{width:44px;height:44px;filter:drop-shadow(2px 2px 0 #25383266)}.actor span{background:#fff9ec;color:#22362d;border:1px solid #263c33;font:800 10px/1.2 system-ui;padding:1px 3px;white-space:nowrap}.actor:hover span{background:#fbdd9f}.actor:focus-visible{z-index:2;outline-offset:0}.stage-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.stage-buttons button,.wardrobe button,.outfits button{min-height:43px;border:1px solid #a5b2a0;background:#f3f1e3;color:var(--ink);cursor:pointer;font-size:13px;font-weight:800}.stage-buttons button[aria-pressed=true],.outfits button[aria-pressed=true]{background:var(--green);color:#fff;border-color:var(--green)}.stage-buttons button:hover,.wardrobe button:hover,.outfits button:hover{border-color:var(--green);box-shadow:inset 0 -3px #263c3330}.wardrobe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:12px}.wardrobe button{display:flex;justify-content:center;align-items:center;gap:6px;background:var(--card);font-size:12px}.wardrobe canvas{width:32px;height:32px}.wardrobe small{font-weight:500;color:var(--muted)}.panel{border:2px solid #40514a;box-shadow:4px 4px 0 #d4cebc}.tab{font-family:var(--pixel)}.link{border-bottom:2px solid #8da493}.link.alt{border-bottom:2px solid #c1c8b8}
-    dialog{width:min(430px,calc(100% - 30px));max-height:calc(100% - 30px);padding:20px;border:2px solid var(--ink);background:var(--card);color:var(--ink);box-shadow:5px 5px 0 #273932;overflow:auto}dialog::backdrop{background:#172a27a0}.profile-head{display:flex;align-items:center;gap:12px;margin-bottom:13px}.profile-head .portrait{width:64px;height:64px;background:#e7ead5;border:1px solid #8b9f88}.profile-head .outline{margin-left:auto}.outfits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:8px 0 16px}.profile-form{display:grid;gap:9px}.profile-form label{display:grid;font-weight:750;font-size:13px;gap:3px}.profile-form input:not([type=checkbox]){font:inherit;padding:8px;border:1px solid #92a490;border-radius:0;background:#fffdf7;color:var(--ink);width:100%}.profile-form label.inline{display:flex;align-items:center;gap:7px}.profile-form input[type=checkbox]{width:18px;height:18px;accent-color:var(--green);margin:0}.profile-form button{justify-self:start}.profile-form p[role=status]{min-height:1.4em}
+    dialog{width:min(430px,calc(100% - 30px));max-height:calc(100% - 30px);padding:20px;border:2px solid var(--ink);background:var(--card);color:var(--ink);box-shadow:5px 5px 0 #273932;overflow:auto}dialog::backdrop{background:#172a27a0}.profile-head{display:flex;align-items:center;gap:12px;margin-bottom:13px}.profile-head .portrait{width:64px;height:64px;background:#e7ead5;border:1px solid #8b9f88}.profile-head .outline{margin-left:auto}.outfits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:8px 0 16px}
     @media(max-width:760px){.hero{padding:15px}.hero-head{margin-bottom:13px}.map-pin{font-size:10px}.hero h1{font-size:clamp(33px,7vw,54px)}}
     @media(max-width:500px){.hero-head{display:block}.hero .sub{text-align:left;margin-top:6px}.map-frame{aspect-ratio:1.9}.map-pin{font-size:9px;padding:2px 3px}.map-pin.incheon{left:5%;top:21%}.map-pin.narita{left:78%;top:26%}.map-pin.tokyo{left:58%;top:47%}.map-pin.kirin{left:65%;top:65%}.map-pin.yoko{left:41%;top:84%}.actor canvas{width:36px;height:36px}.actor{min-width:40px;min-height:40px}.wardrobe small{display:none}.stage-buttons button{font-size:11px}.map-caption{font-size:11px}}
     @media print{.map-frame,.map-caption,.stage-buttons,.wardrobe,dialog{display:none!important}.hero .sub{text-align:left}.hero-head{display:block;margin:0}}
@@ -54,41 +54,67 @@
     .outfits button{display:grid;justify-items:center;gap:3px;padding:5px;min-height:62px;border:1px solid #a5b2a0;background:#f3f1e3;color:var(--ink);font:800 14px var(--pixel);cursor:pointer}
     .outfits button[aria-pressed=true]{background:var(--green);color:#fff;border-color:var(--green)}
     .outfits canvas{width:33px;height:33px}
-    .profile-form input:not([type=checkbox]){font-size:16px;min-height:44px;min-width:0}
-    .profile-form label.inline{min-height:44px}
-    .profile-form input[type=checkbox]{width:22px;height:22px}
-    .profile-dates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-    .profile-dates input{display:block}
     .day-tools{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:7px;margin:4px 0}
-    .map-shortcuts{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:0 10px}
     .tab span{white-space:nowrap}
-    .tab .day-count{font-size:13px}
-    .timeline{display:grid;gap:9px;margin-top:14px}
+    .trip-summary{display:grid;margin-top:8px;border-top:1px solid var(--line)}
+    .trip-summary li+li{border-top:1px solid var(--line)}
+    .trip-summary a{display:grid;grid-template-columns:85px minmax(0,1fr);gap:8px;align-items:center;min-height:44px;padding:6px 2px;color:var(--ink);text-decoration:none;font-size:12px}
+    .trip-summary a:hover strong{text-decoration:underline}
+    .trip-summary strong{color:var(--green)}
+    .trip-summary span{color:var(--muted)}
+    #itinerary summary{position:relative}
+    .day-jump{position:absolute;top:0;left:0;width:1px;height:1px}
+    .map-pin.gimpo{left:11%;top:45%}
+    .map-pin.haneda{left:70%;top:73%}
+    .map-pin.asakusa{left:79%;top:48%}
+    .map-pin.ginza{left:68%;top:70%}
+    .map-pin.tower{left:73%;top:85%}
+    .map-pin.shinjuku{left:52%;top:50%}
+    .tab .tab-name{white-space:normal;font-family:system-ui,sans-serif;font-size:11px;line-height:1.2}
+    .tab .tab-date{font-size:12px}
+    .tab{min-height:58px;justify-content:flex-start;padding-top:9px}
+    .timeline{display:grid;gap:8px;margin-top:14px;padding-left:17px;background:linear-gradient(var(--line),var(--line)) 5px 10px/2px calc(100% - 20px) no-repeat}
+    .event-group{padding:5px 0;color:var(--green);font-size:14px;font-weight:800}
+    .event-group:not(:first-child){margin-top:9px}
     .event{
       --event-accent:#45674c;--event-icon:#e9efde;
-      display:grid;grid-template-columns:36px minmax(0,1fr);gap:11px;
+      position:relative;display:grid;grid-template-columns:36px minmax(0,1fr);gap:10px;
       padding:12px;border:1px solid var(--line);border-left:4px solid var(--event-accent);
-      background:#fffcf2;
+      background:#fffdf5;box-shadow:0 2px 0 #dbd7c8;
     }
-    .event--movement{--event-accent:#315b71;--event-icon:#dce9ee;background:#edf3f4;border-color:#bdcdd1;border-left-color:var(--event-accent)}
-    .event[data-type=meal]{--event-accent:#8c482d;--event-icon:#f7e5d4}
-    .event[data-type=show]{--event-accent:#674b73;--event-icon:#efe6f3}
+    .event::before{content:'';position:absolute;left:-20px;top:21px;width:9px;height:9px;border:2px solid var(--card);background:var(--event-accent)}
+    .event--movement{--event-accent:#536762;--event-icon:transparent;grid-template-columns:23px minmax(0,1fr);gap:5px;margin-left:15px;padding:4px 0 4px 5px;background:transparent;border:0;box-shadow:none}
+    .event--movement::before{left:-26px;top:14px;width:25px;height:1px;border:0;background:var(--line)}
+    .event[data-type=meal]{--event-accent:#8c482d;--event-icon:#f7e5d4;background:#fffaee}
+    .event[data-type=show]{--event-accent:#674b73;--event-icon:#efe6f3;background:#fffafd}
     .event-icon{display:grid;place-items:center;height:36px;background:var(--event-icon);font-size:19px;line-height:1}
+    .event--movement .event-icon{height:23px;font-size:15px}
     .event-meta{display:flex;align-items:center;flex-wrap:wrap;gap:2px 8px;margin-bottom:3px;font-size:12px}
     .event-time{color:var(--ink);font-weight:850;font-variant-numeric:tabular-nums}
     .event-type{color:var(--event-accent);font-weight:800}
     .event-duration{color:var(--event-accent);font-weight:750}
     .event h4{margin:0;font-size:16px;line-height:1.4;letter-spacing:-.025em}
-    .event .link,.harbor-tools .link{min-height:44px}
+    .event--movement h4{font-size:13px;color:var(--muted)}
+    .event--movement p{font-size:12px;margin-top:2px}
+    .event--movement .links{margin-top:3px}
+    .event--movement .link{background:transparent;border:1px solid var(--line)}
+    .event--movement .link:hover{background:var(--light)}
+    .event .link{min-height:44px}
+    .event-spots{margin-top:8px}
+    .event-spots li{padding:7px 0;border-top:1px solid var(--line)}
+    .event-spots li:last-child{padding-bottom:0}
+    .event-spots .links{margin-top:4px}
     .link-icon{font-size:14px;line-height:1}
-    .harbor-tools{margin:9px 0}
     #share-status{overflow-wrap:anywhere;min-width:0}
     @media(max-width:375px){
       .tabs{gap:3px}
       .tab{padding-inline:2px}
-      .tab span{font-size:9px}
+      .tab .tab-date{font-size:10px}
+      .tab .tab-name{font-size:10px}
       .event{grid-template-columns:30px minmax(0,1fr);gap:8px;padding:10px}
       .event-icon{height:30px;font-size:17px}
+      .event--movement{grid-template-columns:20px minmax(0,1fr);gap:5px;padding:4px 0 4px 4px}
+      .trip-summary a{grid-template-columns:64px minmax(0,1fr)}
     }
     @media(max-width:500px){
       .panel summary{min-height:62px;padding:11px 13px}
@@ -117,12 +143,13 @@
   </div></header>
   <main class="shell" id="home">
     <section class="hero" aria-labelledby="title">
-      <div class="hero-head"><div><p class="dates">2026.12.16 WED — 12.20 SUN</p><h1 id="title">도쿄 · 요코하마</h1></div><p class="sub">여행이름이 무엇인가요?</p></div>
-      <div class="map-frame" id="trip-map" aria-label="인천 출발, 도쿄 합류, 요코하마 이동을 보여주는 픽셀 지도">
+      <div class="hero-head"><div><p class="dates">2026.12.16 WED — 12.20 SUN</p><h1 id="title">도쿄 · 요코하마</h1></div></div>
+      <div class="map-frame" id="trip-map" aria-label="날짜별 동선을 보여주는 픽셀 지도">
         <canvas class="map-art" id="map-art" width="320" height="139" aria-hidden="true"></canvas>
-        <span class="map-pin incheon" data-pin="icn">인천</span><span class="map-pin narita" data-pin="nrt">나리타</span><span class="map-pin tokyo" data-pin="tabata">도쿄 · 다바타</span><span class="map-pin kirin" data-pin="kirin">기린</span><span class="map-pin yoko" data-pin="yoko">요코하마</span><span class="map-pin ueno" data-pin="ueno">우에노</span><span class="map-pin hara" data-pin="harajuku">하라주쿠</span><span class="map-pin shibuya" data-pin="shibuya">시부야</span>
+        <span class="map-pin incheon" data-pin="icn">인천</span><span class="map-pin gimpo" data-pin="gmp">김포</span><span class="map-pin narita" data-pin="nrt">나리타</span><span class="map-pin haneda" data-pin="hnd">하네다</span><span class="map-pin tokyo" data-pin="tabata">도쿄</span><span class="map-pin kirin" data-pin="kirin">기린</span><span class="map-pin yoko" data-pin="yoko">요코하마</span><span class="map-pin ueno" data-pin="ueno">우에노</span><span class="map-pin hara" data-pin="harajuku">하라주쿠</span><span class="map-pin shibuya" data-pin="shibuya">시부야</span><span class="map-pin asakusa" data-pin="asakusa">아사쿠사</span><span class="map-pin ginza" data-pin="ginza">긴자</span><span class="map-pin tower" data-pin="tower">도쿄타워</span><span class="map-pin shinjuku" data-pin="shinjuku">신주쿠</span>
       </div>
-      <p class="map-caption"><strong id="map-caption" aria-live="polite"></strong><span class="map-shortcuts"><a href="#itinerary">날짜 선택 ↓</a><a href="#itinerary-18">12/18 금요일 ↓</a></span></p>
+      <p class="map-caption"><strong id="map-caption" aria-live="polite"></strong><a href="#itinerary">날짜 선택 ↓</a></p>
+      <ol class="trip-summary" id="trip-summary" aria-label="여행 일정 요약"></ol>
     </section>
     <div class="main-grid">
       <details class="panel" id="todo">
@@ -130,204 +157,327 @@
         <div class="panel-body"><p class="note">체크는 이 브라우저에 저장돼요.</p><ol class="tasks" id="task-list"></ol></div>
       </details>
       <details class="panel" id="itinerary">
-        <summary id="itinerary-18"><h2>날짜별 일정</h2></summary>
+        <summary><h2>날짜별 일정</h2></summary>
         <div class="panel-body"><p class="note">현지 시간 기준 · 날짜를 고르면 픽셀 지도도 바뀌어요.</p><div class="tabs" id="tabs" role="tablist" aria-label="여행 날짜"></div><div class="day-tools"><a class="link alt" id="replay-map" href="#trip-map">픽셀 지도 ↑</a><a class="link alt" id="google-area" target="_blank" rel="noopener noreferrer">Google 지도 ↗</a></div><div id="days"></div></div>
       </details>
       <details class="panel" id="bookings">
         <summary><h2>예약</h2></summary>
-        <div class="panel-body"><p class="note">항공과 숙소 현황 · 편명, 터미널과 체크인 정보는 확정 후 추가</p><ul class="reservations" id="booking-list"></ul></div>
+        <div class="panel-body"><p class="note">항공편 · 숙소 · 기린 견학 예약</p><ul class="reservations" id="booking-list"></ul></div>
       </details>
       <details class="panel" id="transport">
         <summary><h2>교통</h2></summary>
-        <div class="panel-body"><p class="note">이번 동선 기준 · 항공권 확정 후 공항편 결정</p><div class="callout"><p><strong>3명 각자 Suica 또는 PASMO 1장</strong></p><p>JR·지하철·게이큐 일반열차는 충전 잔액으로 개찰구를 통과해요. 나리타 스카이라이너는 별도 특급권·지정석이 필요해요.</p></div><ul class="transit" id="transport-list"></ul></div>
+        <div class="panel-body"><div class="callout"><p><strong>세 사람 모두 Suica 준비 완료</strong></p><p>JR·지하철·게이큐 일반열차는 충전 잔액으로 개찰구를 통과해요. 스카이라이너는 별도 지정석 특급권이 필요해요.</p></div><ul class="transit" id="transport-list"></ul></div>
       </details>
     </div>
-    <footer class="foot small"><p>일정 초안 · 2026.11.14 기준</p><p id="share-status" class="status-live" aria-live="polite"></p></footer>
+    <footer class="foot small"><p>일정 업데이트 · 2026.11.18</p><p id="share-status" class="status-live" aria-live="polite"></p></footer>
   </main>
   <dialog id="profile" aria-labelledby="profile-name">
     <div class="profile-head"><canvas id="profile-portrait" class="portrait" width="24" height="24" aria-hidden="true"></canvas><div><h2 id="profile-name"></h2><p class="small" id="profile-trip"></p></div><button id="profile-close" class="outline" type="button" aria-label="캐릭터 닫기">닫기</button></div>
-    <h3>의상</h3><div class="outfits" id="outfits" aria-label="의상 선택"></div>
-    <h3>내 여권 메모</h3>
-    <form class="profile-form" id="profile-form" autocomplete="off">
-      <p class="small">영문명·만료일·대조 상태는 이 브라우저에 저장돼요. 여권번호와 생년월일은 이 탭을 닫거나 새로고침하면 지워져요.</p>
-      <label>여권 영문 이름 <input id="passport-name" type="text" maxlength="100" placeholder="여권에 적힌 그대로" spellcheck="false" autocomplete="off"></label>
-      <label>여권번호 <input id="passport-number" type="password" maxlength="20" spellcheck="false" autocomplete="off" autocapitalize="characters"></label>
-      <div class="profile-dates">
-        <label>생년월일 <input id="passport-birth" type="date" autocomplete="off"></label>
-        <label>여권 만료일 <input id="passport-expiry" type="date" autocomplete="off"></label>
-      </div>
-      <label class="inline"><input id="passport-checked" type="checkbox"> 항공권 영문명과 대조 완료</label>
-      <button type="submit" class="outline">저장</button><p id="profile-status" class="small" role="status"></p>
-    </form>
+    <h3>캐릭터</h3><div class="outfits" id="outfits" aria-label="캐릭터 선택"></div>
   </dialog>
   <script>
     const urls = {
-      kirin: 'https://kirinfactory.revn.jp/reservations/calendar?label_id=5', kirinInfo: 'https://www.kirin.co.jp/experience/factory/yokohama/event/is20.html',
-      market: 'https://www.yokohama-akarenga.jp/christmas/', airbnb: 'https://www.airbnb.co.kr/rooms/1479488019081534033',
-      araiya: 'https://www.araiya.co.jp/shop-menu/bankokubashi.html', yorunoyo: 'https://yorunoyo.yokohama/',
-      shizuku: 'https://shizuku-hotel.jp/uenoekimae/', suica: 'https://www.jreast.co.jp/kr/welcomesuica/welcomesuica.html',
-      metro: 'https://www.tokyometro.jp/en/ticket/travel/index.html', wide: 'https://www.jreast.co.jp/en/multi/pass/tokyowidepass.html',
-      skyliner: 'https://www.keisei.co.jp/keisei/tetudou/skyliner/us/', keikyu: 'https://www.keikyu.co.jp/ride/kakueki/KK31.html',
-      vjw: 'https://www.vjw.digital.go.jp/'
+      kirin: 'https://www.kirin.co.jp/experience/factory/yokohama/event/is20.html',
+      market: 'https://www.yokohama-akarenga.jp/christmas/',
+      araiya: 'https://www.araiya.co.jp/shop-menu/bankokubashi.html',
+      yorunoyo: 'https://yorunoyo.yokohama/en/contents/highlight/',
+      shizuku: 'https://shizuku-hotel.jp/uenoekimae/faq.html',
+      tabata: 'https://www.jreast.co.jp/estation/stations/972.html',
+      suica: 'https://www.jreast.co.jp/kr/welcomesuica/welcomesuica.html',
+      skyliner: 'https://www.keisei.co.jp/keisei/tetudou/skyliner/us/',
+      skylinerTimes: 'https://www.keisei.co.jp/keisei/tetudou/skyliner/us/traffic/skyliner_1126.php',
+      airSeoul: 'https://flyairseoul.com/CW/ja/noticeContent.do?pageNo=1&seq=11221',
+      naritaAirSeoul: 'https://www.narita-airport.jp/en/flight/airline-search/asv/',
+      koreanAir: 'https://www.koreanair.com/contents/booking/flight-info?hl=ko',
+      hagoita: 'https://www.city.taito.lg.jp/event/kanko/toshinoichi.html',
+      imperial: 'https://www.kunaicho.go.jp/visit/higashigyoen/index.html',
+      azabudai: 'https://www.mori.co.jp/press/release/261022_3/',
+      roppongi: 'https://www.mori.co.jp/press/release/261022_2/',
+      tsujihan: 'https://www.tsujihan-jp.com/blank',
+      starbucks: 'https://store.starbucks.co.jp/detail-2003/',
+      moheji: 'https://shibuya-scramble-square.com/shops_restaurants/shop_77.html',
+      nightLight: 'https://tokyoprojectionmappingproject.jp/en/'
     };
     const places = {
-      nrt: '成田国際空港 Japan', ueno: '上野駅 JR Tokyo', capsule: 'Smart Stay SHIZUKU 上野駅前 Tokyo',
-      tabata: '田端駅 北口 Tokyo', nippori: '日暮里駅 Tokyo', nishi: '西日暮里駅 Tokyo', shinagawa: '品川駅 Tokyo',
-      namamugi: '生麦駅 横浜', kirin: 'キリンビール 横浜工場 1-17-1 生麦', yokohama: '横浜駅 JR',
-      chinatown: '横浜中華街 善隣門', yamashita: '山下公園 横浜', redbrick: '横浜赤レンガ倉庫',
-      sakuragicho: '桜木町駅 横浜', asakusa: '浅草寺 東京', shibuya: '渋谷スクランブル交差点',
-      meiji: '明治神宮 東京', omote: '表参道駅 東京', kuramae: '蔵前駅 東京',
-      shinkoyasu: '新子安駅 JR 横浜', kannai: '関内駅 JR 横浜',
-      araiya: '荒井屋 万國橋店 横浜', bankoku: '万国橋 横浜',
-      redbrick2: '横浜赤レンガ倉庫 2号館', zonohana: '象の鼻パーク 横浜',
-      osanbashi: '横浜港大さん橋国際客船ターミナル 屋上広場',
-      choyomon: '横浜中華街 朝陽門', chinatownArea: '横浜中華街 横浜', ishikawacho: '石川町駅 JR 横浜'
+      icn: '인천국제공항 제2여객터미널', gmp: '김포국제공항 국제선 청사',
+      nrt: 'Narita Airport Terminal 1 成田空港 第1ターミナル', nrtStation: '京成 成田空港駅 第1ターミナル',
+      nrtSouth: '成田空港 第1ターミナル 南ウイング 4F 出発ロビー',
+      hnd: '羽田空港 第3ターミナル', ueno: 'JR 上野駅', keiseiUeno: '京成上野駅',
+      capsule: 'Smart Stay SHIZUKU 上野駅前 東京都台東区上野2-13-11',
+      tabataSouth: 'JR 田端駅 南口', tabataNorth: 'JR 田端駅 北口', nippori: '日暮里駅 京成線 スカイライナー',
+      kirin: 'キリンビール 横浜工場 1-17-1 生麦', shinkoyasu: 'JR 新子安駅 横浜', kannai: 'JR 関内駅 横浜',
+      araiya: '荒井屋 万國橋店 横浜市中区海岸通4-23', bankoku: '万国橋 横浜',
+      redbrick: '横浜赤レンガ倉庫 2号館', zonohana: '象の鼻パーク 横浜',
+      osanbashi: '横浜港大さん橋国際客船ターミナル 屋上広場', yamashita: '山下公園 横浜',
+      choyomon: '横浜中華街 朝陽門', chinatown: '横浜中華街 横浜', ishikawacho: 'JR 石川町駅 横浜',
+      asakusa: '浅草寺 東京都台東区浅草2-3-1', nakamise: '浅草 仲見世商店街',
+      kibi: '浅草きびだんご あづま 仲見世', manju: '浅草九重 揚げまんじゅう 仲見世',
+      suehirocho: '東京メトロ 末広町駅 銀座線', radio: '秋葉原ラジオ会館 千代田区外神田1-15-16',
+      imperial: '皇居外苑 二重橋 正門石橋', shinMaru: '新丸ビル 7階 テラス 丸の内ハウス',
+      imakatsu: 'イマカツ 銀座店 東京都中央区銀座4-13-18',
+      ishii: '麺屋いしヰ 銀座店 東京都中央区銀座2-14-17',
+      muji: '無印良品 銀座 中央区銀座3-3-5', apple: 'Apple 銀座 東京都中央区銀座3-5-12',
+      hermes: '銀座メゾンエルメス 中央区銀座5-4-1', ginzaTsutaya: '銀座 蔦屋書店 GINZA SIX 6F',
+      west: '銀座ウエスト 銀座本店 東京都中央区銀座7-3-6', sony: 'Ginza Sony Park 東京都中央区銀座5-3-1',
+      kamiyacho: '神谷町駅 5番出口 日比谷線', azabudai: '麻布台ヒルズ 中央広場', roppongi: '六本木ヒルズ 大屋根プラザ',
+      tsujihan: '日本橋海鮮丼 つじ半 アークヒルズ店 アーク森ビル3F',
+      tower: '東京タワー 港区芝公園4-2-8', hamamatsucho: 'JR 浜松町駅',
+      starbucks: 'スターバックス コーヒー SHIBUYA TSUTAYA 2F店 渋谷区宇田川町21-6 QFRONT',
+      hachiko: '忠犬ハチ公像 渋谷駅', crossing: '渋谷スクランブル交差点',
+      daikanyama: '代官山 蔦屋書店 DAIKANYAMA T-SITE', miyashita: '宮下公園 MIYASHITA PARK 屋上',
+      moheji: '月島もんじゃ もへじ 渋谷スクランブルスクエア 12F',
+      catStreet: 'キャットストリート 渋谷 旧渋谷川遊歩道路', omote: '表参道 神宮前交差点',
+      hay: 'HAY TOKYO GYRE B1F 表参道', takeshita: '竹下通り 原宿', harajuku: 'JR 原宿駅',
+      shinjuku: 'JR 新宿駅 西口', tocho: '東京都庁第一本庁舎 南展望室', tochoPlaza: '東京都庁 都民広場',
+      omoide: '新宿西口 思い出横丁', godzilla: 'ゴジラヘッド 新宿 歌舞伎町 ホテルグレイスリー新宿',
+      goldenGai: '新宿ゴールデン街'
     };
-    function directions(destination, origin, travelmode = 'transit', waypoints = []) {
-      const params = new URLSearchParams({ api: '1', destination: places[destination], travelmode });
-      if (origin) params.set('origin', places[origin]);
-      if (waypoints.length) params.set('waypoints', waypoints.map(point => places[point]).join('|'));
-      return `https://www.google.com/maps/dir/?${params}`;
+    function mapUrl(place) {
+      return 'https://www.google.com/maps/search/?' + new URLSearchParams({api:'1', query:places[place]});
     }
-    const map = (destination, origin, mode, waypoints) => ['길찾기', directions(destination, origin, mode, waypoints)];
+    function directions(destination, origin, travelmode = 'transit') {
+      return 'https://www.google.com/maps/dir/?' + new URLSearchParams({
+        api:'1', origin:places[origin], destination:places[destination], travelmode
+      });
+    }
+    const map = (place, label = '지도') => [label, mapUrl(place)];
+    const route = (origin, destination, travelmode, label = '길찾기') => [label, directions(destination, origin, travelmode)];
     const movementTypes = {
-      flight: ['✈️', '항공편'], train: ['🚆', '철도'], trainWalk: ['🚆', '철도 + 도보'],
-      metro: ['🚇', 'JR + 지하철'], walk: ['🚶', '도보']
+      train: ['🚆', '철도'], trainWalk: ['🚆', '철도 + 도보'],
+      metro: ['🚇', '지하철'], walk: ['🚶', '도보']
     };
     const activityTypes = {
-      airport: ['🛫', '공항'], lodging: ['🛏️', '숙소'], tour: ['🍺', '견학·시음'],
-      lunch: ['🍲', '점심', 'meal'], dinner: ['🍜', '저녁', 'meal'], walk: ['🌿', '산책'],
-      shop: ['🛍️', '쇼핑'], show: ['✨', '조명쇼'], visit: ['⛩️', '관광']
+      flight: ['✈️', '항공편'], airport: ['🛫', '공항'], lodging: ['🛏️', '숙소'],
+      tour: ['🍺', '견학·시음'], lunch: ['🍴', '점심', 'meal'], dinner: ['🍽️', '저녁', 'meal'],
+      snack: ['🍡', '간식', 'meal'], cafe: ['☕', '카페', 'meal'], walk: ['🌿', '산책'],
+      market: ['🎄', '크리스마스 마켓'], shop: ['🛍️', '쇼핑'], show: ['✨', '야경·조명'],
+      visit: ['📍', '관광']
     };
-    const kirinPlan = '성인 전용 10:20 회차 우선, 대안은 10:40 일반 회차예요.';
+    function stop(time, activity, place, title, description, options = {}) {
+      const {links = [], ...details} = options;
+      return {time, activity, title, description, ...details, links: [map(place, details.mapLabel), ...links]};
+    }
+    function move(origin, destination, mode, duration, title, description, options = {}) {
+      const {links = [], ...details} = options;
+      return {
+        mode, duration, title, description, ...details,
+        links:[route(origin, destination, mode === 'walk' ? 'walking' : 'transit'), ...links]
+      };
+    }
+    const estimates = {status:'유동'};
+    const airbnbAccess = '에어비앤비 · JR 다바타역 남쪽 출구에서 도보 약 7분';
+    const luggageAccess = '캐리어가 있으면 엘리베이터가 있는 북쪽 출구를 이용해요.';
+    const stayName = '스마트 스테이 시즈쿠 우에노역 앞';
+    const flights = {
+      rs267: {who:'필규·유선', airline:'에어서울', code:'RS267', time:'16:40–19:00',
+        schedule:'16:40 인천 T2 → 19:00 나리타 T1', origin:'icn', destination:'nrt', arrival:'나리타 T1 지도', source:urls.airSeoul},
+      ke2105: {who:'인혜', airline:'대한항공', code:'KE2105', time:'19:30–21:35',
+        schedule:'19:30 김포 국제선 → 21:35 하네다 T3', origin:'gmp', destination:'hnd', arrival:'하네다 T3 지도', source:urls.koreanAir},
+      rs248: {who:'필규·유선·인혜', airline:'에어서울', code:'RS248', time:'11:25–14:05',
+        schedule:'11:25 나리타 T1 → 14:05 인천 T2', origin:'nrtSouth', destination:'icn', arrival:'인천 T2 지도', source:urls.airSeoul}
+    };
+    function flightCard(flight) {
+      return stop(flight.time, 'flight', flight.origin, flight.airline + ' ' + flight.code + ' · ' + flight.who,
+        flight.schedule, {status:'예약 완료', mapLabel:'출발 터미널 지도', links:[map(flight.destination, flight.arrival)]});
+    }
+    const returnTrain = '스카이라이너 13호 · 닛포리 07:45 출발 → 나리타 T1 08:25 도착';
     const taskList = [
-      ['return', '12/20 귀국편 3자리 맞추기', '최우선', '유선·필규 왕복의 귀국편과 인혜의 남은 편도가 같은 편명인지 확인. 오후~저녁 선호. 한쪽만 결제하기 전에 두 예약 모두 좌석과 수하물 조건 확인.'],
-      ['kirin', '12/18 기린맥주공장 3명 예약', '최우선', `${kirinPlan} 회차와 잔여석은 공식 예약 달력에서 확인. 성인 ¥1,000 × 3, 약 90분, 일본어 안내, 온라인 사전 결제.`, [['기린 예약 ↗', urls.kirin], ['투어 안내 ↗', urls.kirinInfo]]],
-      ['outbound', '유선·필규 12/16 수 출국편 예약', '예약', '수요일 인천 출발 기준. 나리타 도착 시각과 공항→우에노 막차를 함께 확인.'],
-      ['inhye', '인혜 편도 방향·편명 확인', '확인', '기존 대화에는 12/17 일본행 발권 완료로 기록돼 있어요. e티켓을 확인한 뒤 남은 편도와 12/20 합류편을 확정.'],
-      ['capsule', '우에노 캡슐 두 번째 자리 확인', '확인', '12/16~17 남성 1인 ¥3,580 현장 결제 확정 기록. 유선·필규 중 예약 명의와 추가 1자리, 체크인 마감 확인.', [['숙소 안내 ↗', urls.shizuku]]],
-      ['house', '에어비앤비 체크인·짐 보관 확인', '확인', '12/17~20 3인 3박 결제 완료. 정확한 주소·체크인 시간·숙소 출입 안내와 입실 전/퇴실 후 짐 보관 가능 여부 확인.', [['숙소 페이지 ↗', urls.airbnb]]],
-      ['market', '요코하마 크리스마스 마켓 결정', '선택', '12/18은 특별일 일반 입장 ¥1,000. 셋 다 들어가기로 하면 3장 예매. 바깥 야경 산책도 가능.', [['입장권 안내 ↗', urls.market]]],
-      ['tokyo', '토요일 도쿄 일정·식당 정하기', '계획', '하라주쿠·오모테산도·시부야를 후보로 뒀어요. 꼭 가고 싶은 식당이나 시간 지정 시설을 정한 뒤 필요한 곳만 예약.'],
-      ['documents', '각자 여권과 입국 준비 확인', '출발 전', '여권 유효기간과 e티켓 영문명 대조. 여권번호와 사진은 각자 보관. 필요하면 Visit Japan Web 사전 등록.', [['Visit Japan Web ↗', urls.vjw]]],
-      ['airport', '공항 이동·데이터 준비', '출발 전', '항공사 터미널이 확정되면 나리타행 또는 하네다행 동선 결정. 각자 IC카드, eSIM/로밍, 항공·숙소 원본 오프라인 저장.']
+      ['yoko-dinner','요코하마 저녁식당 정하기','미정','12/17(목) 차이나타운에서 저녁. 세 명이 함께 갈 식당을 정해요.'],
+      ['airbnb-store','에어비앤비 근처 마트·편의점 찾아보기','미정','장 볼 곳과 늦게까지 여는 곳을 확인해요.'],
+      ['saturday-option','토요일 오전 선택 일정 정하기','유동','스타벅스 뒤 미야시타파크 전 다이칸야마 츠타야 T-SITE 또는 토요일에 못 간 곳 한 군데. 미야시타파크는 점심 전에 들러요.', [map('daikanyama','T-SITE 지도')]],
+      ['shopping-time','쇼핑 장소와 시간 정하기','미정','금요일 긴자 또는 토요일 시부야·오모테산도. 사고 싶은 품목과 매장을 정해요.']
     ];
     const dayList = [
-      { id:'16', date:'12/16', weekday:'수', title:'필규·유선 먼저 출발', status:'항공편 미정', note:'수요일 인천 출발. 나리타 도착을 가정한 동선이며 도착 공항과 터미널은 발권 후 확정.', events:[
-        { mode:'flight', duration:'비행시간 미정', title:'인천 → 도쿄', description:'필규·유선 먼저 출발해요.' },
-        { time:'저녁', activity:'airport', title:'나리타공항 도착', description:'입국과 짐 수령 후 우에노행 막차를 확인해요.' },
-        { mode:'trainWalk', duration:'스카이라이너 탑승 약 40~45분', title:'나리타공항 → 게이세이우에노 → 숙소', links:[map('capsule','nrt'), ['공항철도 ↗', urls.skyliner]] },
-        { time:'밤', activity:'lodging', title:'스마트 스테이 시즈쿠 우에노', description:'캡슐 1자리 확정 기록. 추가 1자리와 늦은 체크인 시간을 확인해요.', links:[map('capsule'), ['숙소 안내 ↗', urls.shizuku]] }
+      {id:'16', date:'12/16', weekday:'수', title:'일본 도착', area:'capsule', note:'공개 운항 시간표 기준. 세 사람 모두 우에노에서 숙박해요.', events:[
+        {group:'필규·유선'},
+        flightCard(flights.rs267),
+        move('nrt','keiseiUeno','train','스카이라이너 약 45분','나리타 T1 → 게이세이우에노역',
+          '입국과 짐 수령을 마치고 탑승해요. 스카이라이너는 지정석 특급권이 필요해요.', {status:'유동', links:[['공식 시간표', urls.skylinerTimes]]}),
+        move('keiseiUeno','capsule','walk','약 3~5분','게이세이우에노역 → 시즈쿠'),
+        stop('밤','lodging','capsule',stayName,'필규·유선 체크인.', {status:'유동'}),
+        {group:'인혜'},
+        flightCard(flights.ke2105),
+        move('hnd','capsule','trainWalk','약 45~60분','하네다 T3 → 우에노 → 시즈쿠',
+          '게이큐에서 시나가와역 JR로 환승해요. 입국과 짐 수령 뒤 출발하고, 늦으면 막차를 확인해요.', estimates),
+        stop('밤','lodging','capsule',stayName,'인혜 체크인. 예약한 도착 시각보다 1시간 이상 늦어지면 프런트에 연락해요.',
+          {status:'유동', links:[['호텔 안내',urls.shizuku]]})
       ]},
-      { id:'17', date:'12/17', weekday:'목', title:'도쿄 합류 · 체크인', status:'일정 초안', note:'합류 시간은 인혜 도착편과 에어비앤비 입실 안내에 맞춰 조정.', events:[
-        { time:'오전', activity:'lodging', title:'시즈쿠 우에노 체크아웃', description:'필규·유선 체크아웃 후 다바타로 출발해요.' },
-        { mode:'train', duration:'약 10분', title:'우에노역 → 다바타역', description:'JR 야마노테선 또는 게이힌도호쿠선으로 이동해요.', links:[map('tabata','ueno')] },
-        { time:'오후', mode:'train', duration:'약 45~60분', title:'인혜 · 나리타공항 → 다바타역', description:'나리타 도착 기준. 스카이라이너로 닛포리에 간 뒤 JR로 갈아타요. 도착 공항과 시간은 e티켓에서 확인해요.', links:[map('tabata','nrt')] },
-        { time:'오후', activity:'lodging', title:'다바타 숙소 · 세 사람 합류', description:'입실 전 짐 보관이나 역 코인락커를 확인해요. 정확한 주소와 체크인 시간은 예약 상세에서 확인해요.', links:[['숙소 페이지 ↗', urls.airbnb]] },
-        { mode:'metro', duration:'약 25~35분', title:'다바타 → 아사쿠사 (선택)', description:'우에노에서 도쿄메트로 긴자선으로 환승해요.', links:[map('asakusa','tabata')] },
-        { time:'저녁', activity:'dinner', title:'아사쿠사 또는 다바타 근처 저녁', description:'일찍 합류하면 센소지 주변, 늦어지면 숙소 근처에서 먹어요.' }
+      {id:'17', date:'12/17', weekday:'목', title:'요코하마', area:'kirin',
+        note:'기린 견학에 맞춰 우에노에서 08:50 전후 출발. 저녁에 우에노로 돌아와 캐리어를 찾고 에어비앤비에 체크인해요.', events:[
+        stop('08:30 전후 · 10:00까지','lodging','capsule',stayName + ' 체크아웃',
+          '프런트에 캐리어를 맡기고 합류해요. 체크아웃 당일 보관 가능. 밤에 찾을 수 있는 시각을 맡길 때 확인해요.',
+          {status:'유동', links:[['짐 보관 안내', urls.shizuku]]}),
+        move('capsule','kirin','trainWalk','약 55~65분','시즈쿠 → 우에노역 → 신코야스역 → 기린',
+          '08:50 전후 출발. JR 게이힌도호쿠선으로 신코야스역까지 간 뒤 공장까지 약 20분 걸어요.',
+          {links:[route('ueno','shinkoyasu','transit','JR 구간'),route('shinkoyasu','kirin','walking','역 → 공장')] }),
+        stop('10:00 도착 목표 · 10:20–11:50','tour','kirin','기린 맥주 요코하마 공장',
+          'KIRIN ICHIBAN 맛 체험 견학·시음. 유선이 12/17(목) 10:20 회차 3명 예약 완료.',
+          {status:'예약 완료', links:[['견학 안내', urls.kirin]]}),
+        move('kirin','araiya','trainWalk','약 45~60분','기린 → 신코야스역 → 간나이역 → 아라이야',
+          'JR 간나이역에서 식당까지 약 7분 걸어요.', {links:[
+            route('kirin','shinkoyasu','walking','공장 → 역'), route('shinkoyasu','kannai','transit','JR 구간'),
+            route('kannai','araiya','walking','역 → 아라이야')
+          ]}),
+        stop('12:40–13:00 도착 목표','lunch','araiya','아라이야 만국교점',
+          '개화규나베 세트는 현장에서 확인해요. 공식 메뉴의 소고기 전골 정식(牛鍋御膳)도 후보. 점심 주문 마감 14:00.',
+          {status:'유동', links:[['공식 메뉴', urls.araiya]]}),
+        move('araiya','bankoku','walk','약 5분','아라이야 → 만국교'),
+        stop('14:20 전후','walk','bankoku','만국교','다리에서 항구를 바라보고 신코 쪽으로 걸어요.', estimates),
+        move('bankoku','redbrick','walk','약 10분','만국교 → 아카렌가'),
+        stop('15:20–16:05','market','redbrick','아카렌가 창고 2호관',
+          '크리스마스 마켓 11:00~22:00 · 목요일 일반 입장 ¥500. 16:00 점등을 봐요.',
+          {status:'유동', links:[['마켓 안내', urls.market]]}),
+        move('redbrick','zonohana','walk','약 10분','아카렌가 → 조노하나 공원'),
+        stop('16:15 전후','walk','zonohana','조노하나 공원','해안 산책. 점심이 늦어지면 지나가며 봐요.', estimates),
+        move('zonohana','osanbashi','walk','약 10~15분','조노하나 공원 → 오산바시'),
+        stop('16:30 전후–17:15','show','osanbashi','오산바시 야외 데크',
+          '항구 일몰과 17:00 요루노요 조명쇼. 늦어지면 17:30 회차.',
+          {status:'유동', links:[['공연 시간', urls.yorunoyo]]}),
+        move('osanbashi','yamashita','walk','약 15분','오산바시 → 야마시타공원'),
+        stop('17:30–18:15','show','yamashita','야마시타공원','해안을 걸으며 요루노요 Y 큐브를 구경해요.', estimates),
+        move('yamashita','choyomon','walk','약 10분','야마시타공원 → 차이나타운 동문'),
+        stop('18:30 산책 · 19:00 저녁','dinner','chinatown','요코하마 차이나타운 저녁',
+          '조요몬을 지나 산책한 뒤 저녁을 먹어요.', {status:'식당 미정', links:[map('choyomon','조요몬 지도')]}),
+        move('chinatown','ishikawacho','walk','약 10분','차이나타운 → 이시카와초역'),
+        move('ishikawacho','capsule','trainWalk','약 1시간','요코하마 → 우에노 시즈쿠',
+          '20:30 전후 이시카와초역 출발. JR 네기시선·게이힌도호쿠선으로 우에노까지 이동해요.', estimates),
+        stop('21:30 전후','lodging','capsule','시즈쿠에서 캐리어 픽업','아침에 확인한 시각에 맞춰 프런트에서 찾아요.', estimates),
+        move('capsule','tabataNorth','trainWalk','역까지 약 20~25분','시즈쿠 → 다바타역',
+          '우에노역에서 JR로 이동해요. ' + luggageAccess),
+        stop('밤 · 16:00부터 체크인','lodging','tabataSouth','에어비앤비 체크인',airbnbAccess + '. ' + luggageAccess,
+          {status:'유동', mapLabel:'남쪽 출구 지도', links:[map('tabataNorth','북쪽 출구 지도')]})
       ]},
-      {
-        id: '18', date: '12/18', weekday: '금',
-        title: '요코하마 당일치기', status: '예정표',
-        note: '오산바시 17:00 조명쇼가 목표예요. 점심 대기가 길면 조노하나 공원은 지나가며 보고, 늦으면 17:30 회차를 봐요.',
-        routeLink: ['항구 도보 코스', directions('chinatownArea', 'araiya', 'walking', ['redbrick2', 'osanbashi', 'yamashita'])],
-        events: [
-          {
-            time:'09:00 출발', mode:'trainWalk', duration:'약 1시간', title:'다바타역 → 신코야스역 → 기린 맥주공장',
-            description:'JR 게이힌도호쿠선으로 신코야스역까지 간 뒤 공장까지 약 20분 걸어요.',
-            links:[
-              map('kirin', 'tabata'),
-              ['다바타역 → 신코야스역 JR', directions('shinkoyasu', 'tabata')],
-              ['신코야스역 → 공장 도보', directions('kirin', 'shinkoyasu', 'walking')]
-            ]
-          },
-          {
-            time:'10:00 도착 목표 · 10:20–11:50', activity:'tour', duration:'약 90분', title:'기린 맥주 요코하마 공장',
-            description:`3명 견학·시음. ${kirinPlan} 회차와 잔여석은 예약 달력에서 확인하세요.`,
-            status:'예약 필요', links:[['기린 공식 예약 ↗', urls.kirin]]
-          },
-          {
-            mode:'trainWalk', duration:'약 45~60분', title:'기린 맥주공장 → 신코야스역 → 간나이역 → 아라이야',
-            description:'신코야스역에서 JR을 타고 간나이역에 내려 식당까지 약 7분 걸어요.',
-            links:[
-              map('araiya', 'kirin'),
-              ['공장 → 신코야스역 도보', directions('shinkoyasu', 'kirin', 'walking')],
-              ['신코야스역 → 간나이역 JR', directions('kannai', 'shinkoyasu')],
-              ['간나이역 → 식당 도보', directions('araiya', 'kannai', 'walking')]
-            ]
-          },
-          {
-            time:'12:40–13:00 도착 목표', activity:'lunch', title:'아라이야 만국교점 점심',
-            description:'개화규나베 세트(開化牛鍋膳)를 현장에서 주문해요. 대기는 후기 기준 약 0~30분, 점심 주문 마감은 14:00이에요.',
-            links:[['아라이야 공식 메뉴 ↗', urls.araiya]]
-          },
-          { mode:'walk', duration:'약 5분', title:'아라이야 → 만국교', links:[map('bankoku', 'araiya', 'walking')] },
-          { time:'14:20 전후', activity:'walk', title:'만국교', description:'다리를 건너 신코 쪽을 산책해요.' },
-          { mode:'walk', duration:'약 10분', title:'만국교 → 아카렌가 창고 2호관', links:[map('redbrick2', 'bankoku', 'walking')] },
-          {
-            time:'15:20–16:05', activity:'shop', duration:'약 45분', title:'아카렌가 창고 2호관 · 크리스마스 마켓',
-            description:'창고와 마켓을 둘러보고 16:00 점등을 봐요.', links:[['크리스마스 마켓 공식 안내 ↗', urls.market]]
-          },
-          { mode:'walk', duration:'약 10분', title:'아카렌가 → 조노하나 공원', links:[map('zonohana', 'redbrick2', 'walking')] },
-          { time:'16:15 전후', activity:'walk', title:'조노하나 공원', description:'공원을 지나 해안가를 따라 걸어요.' },
-          { mode:'walk', duration:'약 10~15분', title:'조노하나 공원 → 오산바시 야외 데크', links:[map('osanbashi', 'zonohana', 'walking')] },
-          {
-            time:'16:30 전후–17:15', activity:'show', duration:'약 45분', title:'오산바시 여객터미널',
-            description:'무료 야외 데크에서 16:31 일몰과 17:00 요루노요 조명쇼를 봐요. 늦으면 17:30 회차를 선택해요.',
-            links:[['요루노요 공식 안내 ↗', urls.yorunoyo]]
-          },
-          { mode:'walk', duration:'약 15분', title:'오산바시 → 야마시타공원', links:[map('yamashita', 'osanbashi', 'walking')] },
-          {
-            time:'17:30–18:15', activity:'show', duration:'약 45분', title:'야마시타공원',
-            description:'요루노요 Y 큐브를 구경해요.', links:[['요루노요 공식 안내 ↗', urls.yorunoyo]]
-          },
-          { mode:'walk', duration:'약 10분', title:'야마시타공원 → 조요몬 → 차이나타운', links:[map('chinatownArea', 'yamashita', 'walking', ['choyomon'])] },
-          {
-            time:'18:30 산책 · 19:00 저녁', activity:'dinner', title:'요코하마 차이나타운 저녁',
-            description:'조요몬을 지나 차이나타운을 둘러본 뒤 저녁을 먹어요.', status:'식당 미정'
-          },
-          { mode:'walk', duration:'약 10분', title:'차이나타운 → 이시카와초역', links:[map('ishikawacho', 'chinatownArea', 'walking')] },
-          {
-            time:'20:30 전후 출발', mode:'train', duration:'약 1시간', title:'이시카와초역 → 다바타역',
-            description:'JR 네기시선·게이힌도호쿠선으로 돌아가요.', links:[map('tabata', 'ishikawacho')]
-          },
-          { time:'21:30 전후 도착 목표', activity:'lodging', title:'다바타 숙소 복귀' }
-        ]
-      },
-      { id:'19', date:'12/19', weekday:'토', title:'도쿄 하루', status:'후보 일정', note:'하라주쿠에서 시작해 시부야에서 끝나는 동선.', events:[
-        { mode:'trainWalk', duration:'약 30~40분', title:'다바타역 → 하라주쿠역 → 메이지진구', description:'JR 야마노테선 이케부쿠로·신주쿠 방면을 타요.', links:[map('meiji','tabata')] },
-        { time:'10:30', activity:'visit', title:'메이지진구 · 하라주쿠', description:'신사 경내와 하라주쿠를 둘러봐요.' },
-        { mode:'walk', duration:'약 20~30분', title:'메이지진구 → 오모테산도', links:[map('omote','meiji','walking')] },
-        { time:'13:00', activity:'lunch', title:'오모테산도 점심 · 카페', description:'식당 후보를 정한 뒤 예약 여부를 확인해요.' },
-        { mode:'walk', duration:'약 20~25분', title:'오모테산도 → 시부야', links:[map('shibuya','omote','walking')] },
-        { time:'16:00', activity:'shop', title:'시부야 둘러보기', description:'쇼핑이나 전망대를 후보로 두고, 시간 지정 시설은 선택 후 예매해요.' },
-        { time:'저녁', activity:'dinner', title:'시부야 저녁' },
-        { mode:'train', duration:'약 25~30분', title:'시부야역 → 다바타역', description:'저녁을 먹고 JR 야마노테선으로 숙소에 돌아가요.', links:[map('tabata','shibuya')] }
+      {id:'18', date:'12/18', weekday:'금', title:'도쿄 동쪽·긴자', area:'asakusa',
+        note:'센소지 → 아키하바라 → 고쿄 외원 → 긴자 → 크리스마스 마켓 → 도쿄타워.', events:[
+        stop('08:00','lodging','tabataSouth','에어비앤비 출발',airbnbAccess, {mapLabel:'남쪽 출구 지도'}),
+        move('tabataSouth','asakusa','trainWalk','전체 약 30~40분','에어비앤비 → 다바타역 → 센소지',
+          '다바타역까지 도보 약 7분. JR로 우에노에 간 뒤 긴자선 아사쿠사역에서 걸어요.'),
+        stop('08:30 도착 목표','visit','asakusa','센소지','가미나리몬·본당·오층탑을 차례로 봐요.', estimates),
+        stop('09:00쯤','market','asakusa','센소지 연말 장터 둘째 날','경내 하고이타 장터. 12/17~19 행사, 금요일 09:00 시작.',
+          {status:'유동', links:[['다이토구 행사 안내', urls.hagoita]], activityLabel:'연말 장터'}),
+        move('asakusa','nakamise','walk','약 3~5분','센소지 경내 → 나카미세도리'),
+        stop('09:00 이후 · 09:25~09:30 출발','snack','nakamise','나카미세도리',
+          '기비당고나 튀김만주 한 가지. 문을 연 곳에 들러요.',
+          {status:'유동', links:[map('kibi','기비당고 지도'), map('manju','튀김만주 지도')]}),
+        move('nakamise','radio','metro','약 25~30분','아사쿠사 → 스에히로초역 → 라디오회관',
+          '긴자선 스에히로초역에서 내려 전자상가 거리를 지나 걸어요.', {links:[route('suehirocho','radio','walking','역 → 라디오회관')]}),
+        stop('10:00–11:00','shop','radio','아키하바라 라디오회관','관심 있는 층 위주로 보고 전자상가 거리를 잠깐 걸어요.', estimates),
+        move('radio','imperial','trainWalk','약 25~35분','아키하바라 → 고쿄 외원',
+          'JR로 도쿄역에 간 뒤 마루노우치 방면에서 니주바시까지 걸어요.'),
+        stop('11:30–12:20쯤','walk','imperial','고쿄 외원 · 니주바시',
+          '고쿄 동쪽 정원은 금요일 휴원. 외원에서 니주바시를 보고 산책해요.', {status:'유동', links:[['동쪽 정원 휴원 안내', urls.imperial]]}),
+        move('imperial','shinMaru','walk','약 15~20분','고쿄 외원 → 신마루빌딩', '시간이 맞을 때 들르는 구간이에요.', estimates),
+        stop('12:20 이후 · 15~20분','visit','shinMaru','신마루빌딩 7층 테라스','시간이 맞으면 도쿄역 붉은 벽돌 역사를 내려다봐요.', estimates),
+        move('shinMaru','imakatsu','metro','약 20~30분','마루노우치 → 긴자 점심',
+          '도쿄역에서 마루노우치선. 테라스를 생략하면 고쿄 외원에서 바로 출발해요.',
+          {links:[route('imperial','imakatsu','walking','외원 → 이마카츠 도보'), route('shinMaru','ishii','transit','멘야 이시이 대안')]}),
+        stop('13:00쯤–15:35','lunch','imakatsu','긴자 · 점심·쇼핑·카페',
+          '약 2시간 반. 이마카츠 긴자점 1순위, 멘야 이시이 긴자점 대안. 대기와 체류에 맞춰 방문지를 줄여요.',
+          {status:'유동', mapLabel:'이마카츠 지도', spots:[
+            {title:'🍴 멘야 이시이 긴자점', note:'점심 대안 · 이마카츠에서 도보 약 10분', links:[map('ishii'),route('imakatsu','ishii','walking')]},
+            {title:'🛍️ 무인양품 긴자', note:'점심 뒤 도보 약 10분', links:[map('muji'),route('imakatsu','muji','walking'),route('ishii','muji','walking','이시이에서 길찾기')]},
+            {title:'📍 애플 긴자 외관', note:'무인양품에서 도보 약 3분', links:[map('apple'),route('muji','apple','walking')]},
+            {title:'📍 메종 에르메스', note:'애플에서 도보 약 5분', links:[map('hermes'),route('apple','hermes','walking')]},
+            {title:'📚 긴자 츠타야', note:'에르메스에서 도보 약 5~8분 · GINZA SIX 6층', links:[map('ginzaTsutaya'),route('hermes','ginzaTsutaya','walking')]},
+            {title:'☕ 웨스트 긴자 본점', note:'츠타야에서 도보 약 8~10분', links:[map('west'),route('ginzaTsutaya','west','walking')]},
+            {title:'📍 소니파크', note:'여유가 있을 때 · 웨스트에서 도보 약 7분', links:[map('sony'),route('west','sony','walking')]}
+          ]}),
+        move('west','azabudai','metro','약 20~25분','긴자 → 가미야초역 5번 출구 → 아자부다이힐스',
+          '긴자역에서 히비야선 이용. 가미야초역 5번 출구는 아자부다이힐스와 연결돼요.',
+          {links:[route('kamiyacho','azabudai','walking','5번 출구 → 광장'),route('sony','azabudai','transit','소니파크에서 길찾기')]}),
+        stop('15:55–16:45','market','azabudai','아자부다이힐스',
+          '일몰 전에 건물과 중앙광장. 크리스마스 마켓 11/21~12/25, 11:00~21:00.', {status:'유동', links:[['마켓 공식 안내',urls.azabudai]]}),
+        move('azabudai','roppongi','walk','약 15~20분','아자부다이힐스 → 롯폰기힐스'),
+        stop('17:10–18:10','market','roppongi','롯폰기힐스 오야네 플라자','크리스마스 마켓 11/21~12/25, 11:00~21:00.',
+          {status:'유동', links:[['마켓 공식 안내',urls.roppongi]]}),
+        move('roppongi','tsujihan','walk','약 20~25분','롯폰기힐스 → 아크힐스'),
+        stop('18:40–19:00 도착 목표','dinner','tsujihan','츠지한 아크힐스점',
+          '아크모리빌딩 3층에서 해산물 덮밥. 예약 없이 현장 대기.', {status:'유동', links:[['매장 안내',urls.tsujihan]]}),
+        move('tsujihan','tower','walk','약 20~25분','아크힐스 → 도쿄타워', '저녁 대기 시간에 따라 출발이 달라져요.', estimates),
+        stop('20:30쯤','show','tower','도쿄타워 외관 야경','타워 외관을 구경하고 사진을 찍어요.', estimates),
+        move('tower','hamamatsucho','walk','약 15~20분','도쿄타워 → 하마마쓰초역'),
+        move('hamamatsucho','tabataSouth','train','약 25분','하마마쓰초역 → 다바타역','JR로 돌아와 남쪽 출구에서 걸어요.'),
+        stop('밤','lodging','tabataSouth','에어비앤비 복귀',airbnbAccess,{status:'유동', mapLabel:'남쪽 출구 지도'})
       ]},
-      { id:'20', date:'12/20', weekday:'일', title:'체크아웃 · 3명 귀국', status:'항공편 미정', note:'귀국편 확정 후 짐 보관과 공항 출발 시각을 정해요. 아래는 나리타 출발 기준이에요.', events:[
-        { time:'오전', activity:'lodging', title:'다바타 숙소 체크아웃', description:'짐을 정리하고 보관할 수 있는지 확인해요.' },
-        { mode:'train', duration:'약 10분', title:'다바타역 → 우에노역 (선택)', description:'여유가 있고 짐을 맡길 수 있으면 JR로 우에노에 가요.', links:[map('ueno','tabata')] },
-        { activity:'lunch', title:'우에노 근처 점심 (선택)' },
-        { time:'오후', mode:'train', duration:'약 5~10분', title:'다바타역 또는 우에노역 → 닛포리역', description:'맡겨둔 짐을 챙긴 뒤 JR로 닛포리에 가서 게이세이선으로 갈아타요.', links:[['다바타에서 출발', directions('nippori','tabata')], ['우에노에서 출발', directions('nippori','ueno')]] },
-        { mode:'train', duration:'스카이라이너 탑승 약 35~45분', title:'닛포리역 → 나리타공항', description:'스카이라이너 또는 게이세이 일반열차를 타요. 일반열차는 소요 시간이 더 길어요.', links:[map('nrt','nippori'), ['스카이라이너 ↗', urls.skyliner]] },
-        { activity:'airport', title:'나리타공항 체크인', description:'항공사 터미널과 체크인 마감 시각을 확인해요.', links:[map('nrt')] },
-        { time:'오후~밤', mode:'flight', duration:'비행시간 미정', title:'도쿄 → 한국 · 세 사람 귀국', description:'유선·필규 왕복편과 인혜 편도의 편명이 같은지 확인해요.' }
+      {id:'19', date:'12/19', weekday:'토', title:'시부야·하라주쿠·신주쿠', area:'crossing',
+        note:'미야시타파크를 점심 전에 들른 뒤 하라주쿠를 걸어 신주쿠로 가요.', events:[
+        stop('아침','lodging','tabataSouth','에어비앤비 출발','창가 자리를 노리면 스타벅스에 08:00쯤 도착을 목표로 해요.', {status:'유동', mapLabel:'남쪽 출구 지도'}),
+        move('tabataSouth','starbucks','trainWalk','역에서 약 30~40분','다바타역 → 시부야역 → QFRONT','JR 야마노테선으로 시부야까지 이동해요.'),
+        stop('08:30–09:00','cafe','starbucks','시부야 교차로 스타벅스',
+          'QFRONT SHIBUYA TSUTAYA 2층 · 07:00 오픈. 세 명 창가 자리를 원하면 08:00쯤 도착을 추천해요.',
+          {status:'유동', links:[['2층 매장 안내',urls.starbucks]]}),
+        move('starbucks','hachiko','walk','약 2~3분','스타벅스 → 하치코'),
+        stop('커피 전후','visit','hachiko','하치코 · 스크램블 교차로','하치코를 보고 교차로를 건너요.',
+          {status:'유동', links:[map('crossing','교차로 지도')]}),
+        move('hachiko','daikanyama','walk','약 20~25분','시부야 → 다이칸야마 츠타야', '들를 때만 이동해요.', estimates),
+        stop('스타벅스 이후 · 시간이 맞으면','shop','daikanyama','다이칸야마 츠타야 T-SITE',
+          '선택 일정. 다른 후보 한 곳으로 바꿔도 돼요. 10:30 미야시타파크와 점심 시간이 우선이에요.', estimates),
+        move('daikanyama','miyashita','walk','약 25~30분','다이칸야마 → 미야시타파크',
+          '다이칸야마를 생략하면 하치코에서 도보 약 8~10분.', {links:[route('hachiko','miyashita','walking','하치코에서 길찾기')]}),
+        stop('10:30쯤','walk','miyashita','미야시타파크','점심 전에 옥상 공원 위주로 20~30분 둘러봐요.', estimates),
+        move('miyashita','moheji','walk','약 10분','미야시타파크 → 시부야 스크램블스퀘어'),
+        stop('11:15–11:30 도착 목표','lunch','moheji','모헤지 시부야 스크램블스퀘어점',
+          '12층 몬자야끼. 11:00 오픈, 현장 대기.', {status:'유동', links:[['12층 매장 안내',urls.moheji]]}),
+        move('moheji','catStreet','walk','약 10~15분','모헤지 → 캣스트리트'),
+        stop('점심 뒤','walk','catStreet','캣스트리트','시부야에서 하라주쿠 방향으로 골목과 상점을 구경해요.', estimates),
+        move('catStreet','omote','walk','약 10~15분','캣스트리트 → 오모테산도'),
+        stop('15:00 전','shop','omote','오모테산도','쇼핑 시간은 유동. 여유가 있으면 GYRE 지하 1층 HAY에 들러요.',
+          {status:'유동', links:[map('hay','HAY 지도'),route('omote','hay','walking','HAY 길찾기')]}),
+        move('omote','takeshita','walk','약 8~12분','오모테산도 → 다케시타도리'),
+        stop('15:00까지','walk','takeshita','다케시타도리','상점가를 지나 JR 하라주쿠역으로 나와요.', estimates),
+        move('takeshita','harajuku','walk','약 3~5분','다케시타도리 → 하라주쿠역'),
+        move('harajuku','tocho','trainWalk','약 20~25분','JR 하라주쿠역 → 신주쿠역 서쪽 출구 → 도청',
+          'JR 야마노테선으로 신주쿠에 간 뒤 서쪽 출구에서 걸어요.',
+          {links:[route('shinjuku','tocho','walking','서쪽 출구 → 도청')]}),
+        stop('15:30','show','tocho','도쿄도청 남쪽 전망대','16:30쯤 일몰과 야경. 입장 대기에 따라 관람 시간이 달라져요.', estimates),
+        move('tocho','tochoPlaza','walk','약 5~10분','전망대 → 도민광장','시간이 맞으면 광장으로 내려와요.', estimates),
+        stop('17:30 · 선택','show','tochoPlaza','도쿄도청 빛 공연','도민광장에서 TOKYO Night & Light를 봐요.',
+          {status:'유동', links:[['공연 안내',urls.nightLight]]}),
+        move('tochoPlaza','omoide','walk','약 12~15분','도청 → 오모이데요코초',
+          '빛 공연을 생략하면 전망대에서 바로 걸어요.', {links:[route('tocho','omoide','walking','전망대에서 길찾기')]}),
+        stop('18:30','dinner','omoide','오모이데요코초 야장 저녁','🍢 골목 야키토리집에서 꼬치에 한잔. 가게는 현장에서 골라요.', {status:'가게 미정'}),
+        move('omoide','godzilla','walk','약 8~10분','오모이데요코초 → 가부키초'),
+        stop('20:00쯤','show','godzilla','가부키초 고질라 간판','호텔 그레이스리 신주쿠 위 고질라를 거리에서 봐요.', estimates),
+        move('godzilla','goldenGai','walk','약 5분','고질라 간판 → 골든가이'),
+        stop('20:00 이후','walk','goldenGai','골든가이','좁은 골목을 둘러보고 신주쿠역으로 돌아가요.', estimates),
+        move('goldenGai','tabataSouth','trainWalk','역까지 약 35~45분','골든가이 → 신주쿠역 → 다바타역','신주쿠역에서 JR 야마노테선으로 귀가해요.'),
+        stop('밤','lodging','tabataSouth','에어비앤비 복귀',airbnbAccess,{status:'유동', mapLabel:'남쪽 출구 지도'})
+      ]},
+      {id:'20', date:'12/20', weekday:'일', title:'귀국', area:'nrtSouth',
+        note:'세 사람 모두 에어서울 RS248 · 11:25 나리타 T1 → 14:05 인천 T2.', events:[
+        stop('07:10–07:20 출발 목표','lodging','tabataNorth','에어비앤비 체크아웃',
+          '체크아웃 마감 10:00. 캐리어를 챙겨 일찍 출발해요. ' + luggageAccess,
+          {status:'유동', mapLabel:'북쪽 출구 지도', links:[map('tabataSouth','남쪽 출구 지도')]}),
+        move('tabataNorth','nippori','trainWalk','역 이동·환승 여유 포함 약 20~25분','에어비앤비 → 다바타역 → 닛포리역',
+          '다바타역에서 JR로 두 정거장. 닛포리에서 게이세이 스카이라이너 승강장으로 이동해요.'),
+        move('nippori','nrtStation','train','40분','닛포리역 → 나리타 T1',
+          returnTrain + '. 일요일 시간표 기준. 13호를 놓치면 15호 08:05 → 08:45.', {links:[['공식 시간표',urls.skylinerTimes]]}),
+        move('nrtStation','nrtSouth','walk','약 5~10분','나리타공항역 → T1 남쪽 윙','4층 에어서울 체크인 카운터로 이동해요.'),
+        stop('08:30쯤 도착 목표','airport','nrtSouth','나리타 T1 남쪽 윙','짐을 부치고 출국 수속을 해요.',
+          {status:'유동', links:[['공항 안내', urls.naritaAirSeoul]]}),
+        flightCard(flights.rs248)
       ]}
     ];
     const bookings = [
-      ['예약 필요','urgent','유선 · 필규｜왕복','출국 12/16 수 인천 출발. 귀국 12/20 오후~저녁, 인혜와 동일편.'],
-      ['기존 기록 확인','check','인혜｜12/17 일본행','기존 대화 기준 발권 완료. 편명·도착 공항·터미널·시간은 e티켓에서 확인.'],
-      ['예약 필요','urgent','인혜｜남은 편도','12/20 귀국편으로 우선 정리. 기존 e티켓의 방향 확인 후 두 사람과 같은 편명으로 예약.'],
-      ['결제 완료','done','에어비앤비｜12/17~20','3명 3박. 다바타·니시닛포리 인근. 정확한 주소와 입·퇴실 시간은 Airbnb 예약 상세 기준.', [['숙소 페이지 ↗',urls.airbnb],['다바타역 ↗',directions('tabata')],['니시닛포리역 ↗',directions('nishi')]]],
-      ['1자리 확정 기록','check','시즈쿠 우에노｜12/16~17','남성 캡슐 1인 ¥3,580 현장 결제. 이용자 명의·두 번째 자리 확인 필요.', [map('capsule'),['숙소 안내 ↗',urls.shizuku]]],
-      ['각자 확인','check','여권｜유선 · 필규 · 인혜','각자 유효기간과 항공권 영문명을 대조. 여권번호·사진, 예약번호, 숙소 출입코드는 원본에서 확인.']
+      ...Object.entries(flights).map(([id, flight]) => [
+        '예약 완료','done', (id === 'rs248' ? '12/20(일)' : '12/16(수)') + ' · ' + flight.airline + ' ' + flight.code + ' · ' + flight.who,
+        flight.schedule, [map(flight.origin,'출발 터미널 지도'), map(flight.destination,flight.arrival), ['항공사 안내',flight.source]]
+      ]),
+      ['예약 완료','done','12/16(수) · ' + stayName,
+        '세 사람 체크인. 東京都台東区上野2-13-11. 12/17(목) 10:00까지 체크아웃. 당일 캐리어 보관 가능.', [map('capsule'), ['호텔 안내',urls.shizuku]]],
+      ['예약 완료','done','12/17(목)~12/20(일) · 에어비앤비',
+        '12/17 16:00 이후 체크인 · 12/20 10:00까지 체크아웃. ' + airbnbAccess + '. ' + luggageAccess,
+        [map('tabataSouth','남쪽 출구 지도'),map('tabataNorth','북쪽 출구 지도')]],
+      ['예약 완료','done','12/17(목) 10:20–11:50 · 기린 맥주 요코하마 공장',
+        '유선 예약 · 3명 견학·시음. 10:00 도착 목표.', [map('kirin'), ['견학 안내',urls.kirin]]]
     ];
     const transport = [
-      ['공항: 나리타 ↔ 닛포리','속도 우선은 게이세이 스카이라이너, 비용 우선은 출발 시간에 맞는 게이세이 일반열차. 닛포리에서 JR로 다바타 방면. 우에노 전날 숙박이면 게이세이우에노까지.', [['게이세이 공식 ↗',urls.skyliner], ['나리타 → 닛포리 ↗',directions('nippori','nrt')]]],
-      ['도쿄: JR 야마노테선','다바타에서 우에노·닛포리 방향과 이케부쿠로·신주쿠 방향을 구분. 구글맵에서 노선, 진행 방향, 플랫폼, 출구를 순서대로 확인.', [['Suica 공식 ↗',urls.suica]]],
-      ['요코하마: JR 게이힌도호쿠·네기시선','다바타 → 신코야스에서 내려 공장까지 도보 약 20분. 견학 후 신코야스로 돌아와 JR 간나이역으로 이동해요. 저녁에는 이시카와초역에서 다바타로 복귀해요.', [['다바타 → 신코야스 ↗',directions('shinkoyasu','tabata')],['신코야스역 → 공장 도보 ↗',directions('kirin','shinkoyasu','walking')]]],
-      ['패스: 지금은 구매 보류','Tokyo Subway Ticket 24/48/72시간 ¥1,000/¥1,500/¥2,000은 도쿄메트로·도에이 지하철 전용. JR·게이큐 중심인 이번 초안은 IC카드가 간단해요. 토요일에 지하철만 여러 번 탈 경우 24시간권과 실제 운임 합계를 비교. JR 도쿄 와이드 패스는 현재 일정에는 우선순위가 낮아요.', [['지하철권 공식 ↗',urls.metro],['JR 패스 공식 ↗',urls.wide]]]
+      ['나리타 ↔ 도쿄 · 스카이라이너','지정석 특급권이 별도로 필요해요. 12/20(일)은 ' + returnTrain + '.',
+        [['스카이라이너 안내',urls.skyliner],['공식 시간표',urls.skylinerTimes],route('nippori','nrtStation','transit')]],
+      ['하네다 T3 → 우에노','12/16(수) 인혜 도착편 기준. 게이큐와 JR로 이동해요.',[route('hnd','capsule','transit')]],
+      ['우에노 → 요코하마','12/17(목) 시즈쿠에서 출발해 JR 신코야스역을 거쳐 기린 공장으로 가요.',[route('capsule','kirin','transit')]],
+      ['다바타역 출구',airbnbAccess + '. ' + luggageAccess,
+        [map('tabataSouth','남쪽 출구 지도'),map('tabataNorth','북쪽 출구 지도'),['JR 역 안내',urls.tabata]]]
     ];
     function el(tag, className, text) {
       const node = document.createElement(tag);
@@ -346,6 +496,7 @@
       for (const [index, [label, url]] of links.entries()) {
         const anchor = el('a', index ? 'link alt' : 'link');
         if (url.startsWith('https://www.google.com/maps/dir/?')) anchor.append(icon('🧭', 'link-icon'));
+        if (url.startsWith('https://www.google.com/maps/search/?')) anchor.append(icon('📍', 'link-icon'));
         anchor.append(label);
         anchor.href = url;
         anchor.target = '_blank';
@@ -384,19 +535,43 @@
     updateProgress();
     const tabs = document.getElementById('tabs');
     const days = document.getElementById('days');
+    const tripSummary = document.getElementById('trip-summary');
+    const itinerary = document.getElementById('itinerary');
+    const overview = {
+      '16': [flights.rs267, flights.ke2105].map(flight => flight.code + ' ' + flight.schedule).join(' · '),
+      '17': '기린 10:20 · 아라이야 · 차이나타운 · 우에노 짐 픽업',
+      '18': '센소지 · 아키하바라 · 고쿄 · 긴자 · 힐스 · 도쿄타워',
+      '19': '교차로 스타벅스 · 모헤지 · 도청 전망대',
+      '20': flights.rs248.code + ' ' + flights.rs248.schedule
+    };
     let selectedDay;
     for (const [index, day] of dayList.entries()) {
+      const dateLabel = `${day.date}(${day.weekday})`;
+      const summary = el('li');
+      const shortcut = el('a');
+      shortcut.href = `#itinerary-${day.id}`;
+      shortcut.append(el('strong','',dateLabel),el('span','',day.title + ' · ' + overview[day.id]));
+      summary.append(shortcut);
+      tripSummary.append(summary);
+      const jumpTarget = el('span','day-jump');
+      jumpTarget.id = `itinerary-${day.id}`;
+      itinerary.querySelector('summary').append(jumpTarget);
       const button = el('button','tab');
       button.type = 'button';
       button.id = `tab-${day.id}`;
       button.setAttribute('role','tab');
+      button.setAttribute('aria-label',dateLabel + ' ' + day.title);
       button.setAttribute('aria-controls',`day-${day.id}`);
-      button.append(el('span','day-count',`${index + 1}일차`),el('span','',`${day.date.replace('/', '.')}(${day.weekday})`));
+      const tabName = el('span','tab-name');
+      day.title.split('·').forEach((word, part) => {
+        if (part) tabName.append('·',el('wbr'));
+        tabName.append(word);
+      });
+      button.append(el('span','tab-date',dateLabel),tabName);
       button.addEventListener('click',() => selectDay(day.id));
       button.addEventListener('keydown',event => {
-        const current = dayList.indexOf(day);
         const last = dayList.length - 1;
-        const positions = {ArrowLeft:(current + last) % dayList.length,ArrowRight:(current + 1) % dayList.length,Home:0,End:last};
+        const positions = {ArrowLeft:(index + last) % dayList.length,ArrowRight:(index + 1) % dayList.length,Home:0,End:last};
         if (!Object.hasOwn(positions,event.key)) return;
         event.preventDefault();
         const next = dayList[positions[event.key]].id;
@@ -408,28 +583,35 @@
       section.id = `day-${day.id}`;
       section.setAttribute('role','tabpanel');
       section.setAttribute('aria-labelledby',button.id);
-      const heading = el('div','day-heading');
-      heading.append(el('h3','',day.title),el('span','badge check',day.status));
-      section.append(heading,el('p','note',day.note));
-      if (day.routeLink) {
-        const tools = el('div','harbor-tools');
-        addLinks(tools,[day.routeLink]);
-        section.append(tools);
-      }
+      section.append(el('h3','',dateLabel + ' ' + day.title),el('p','note',day.note));
       const timeline = el('ol','timeline');
-      for (const {time, mode, activity, duration, title, description, status, links} of day.events) {
+      for (const {group, time, mode, activity, activityLabel, duration, title, description, status, links, spots} of day.events) {
+        if (group) {
+          timeline.append(el('li','event-group',group));
+          continue;
+        }
         const [symbol, label, type = activity] = mode ? movementTypes[mode] : activityTypes[activity];
         const event = el('li', mode ? 'event event--movement' : 'event');
         if (type) event.dataset.type = type;
         const detail = el('div');
         const meta = el('div','event-meta');
         if (time) meta.append(el('span','event-time',time));
-        meta.append(el('span','event-type',mode ? `이동 · ${label}` : label));
+        meta.append(el('span','event-type',mode ? label : (activityLabel || label)));
         if (duration) meta.append(el('span','event-duration',duration));
-        if (status) meta.append(el('span',status === '예약 필요' ? 'badge urgent' : 'badge check',status));
+        if (status) meta.append(el('span',status === '예약 완료' ? 'badge done' : 'badge check',status));
         detail.append(meta,el('h4','',title));
         if (description) detail.append(el('p','',description));
         addLinks(detail,links);
+        if (spots) {
+          const list = el('ul','event-spots');
+          for (const spot of spots) {
+            const item = el('li');
+            item.append(el('strong','',spot.title),el('p','',spot.note));
+            addLinks(item,spot.links);
+            list.append(item);
+          }
+          detail.append(list);
+        }
         event.append(icon(symbol, 'event-icon'),detail);
         timeline.append(event);
       }
@@ -447,29 +629,20 @@
       }
       days.dispatchEvent(new Event('daychange'));
     }
-    const fridayHash = '#itinerary-18';
-    const itinerary = document.getElementById('itinerary');
-    function openFriday() {
-      itinerary.open = true;
-      if (selectedDay !== '18') selectDay('18');
-    }
-    function openLinkedPanel() {
-      if (location.hash === fridayHash) {
-        openFriday();
+    function openLinkedPanel(hash = location.hash) {
+      const day = dayList.find(item => hash === `#itinerary-${item.id}`);
+      if (day) {
+        itinerary.open = true;
+        if (selectedDay !== day.id) selectDay(day.id);
         return;
       }
-      const panel = document.getElementById(location.hash.slice(1));
+      const panel = document.getElementById(hash.slice(1));
       if (panel?.tagName === 'DETAILS') panel.open = true;
     }
     for (const link of document.querySelectorAll('a[href^="#"]')) {
-      if (link.hash === fridayHash) {
-        link.addEventListener('click', openFriday);
-        continue;
-      }
-      const panel = document.getElementById(link.hash.slice(1));
-      if (panel?.tagName === 'DETAILS') link.addEventListener('click', () => { panel.open = true; });
+      link.addEventListener('click', () => openLinkedPanel(link.hash));
     }
-    window.addEventListener('hashchange',openLinkedPanel);
+    window.addEventListener('hashchange',() => openLinkedPanel());
     const bookingList = document.getElementById('booking-list');
     for (const [status,tone,title,description,links] of bookings) {
       const row = el('li');
@@ -486,7 +659,7 @@
     }
     const shareStatus = document.getElementById('share-status');
     document.getElementById('share').addEventListener('click', async () => {
-      const url = location.origin + location.pathname + (selectedDay === '18' ? fridayHash : '');
+      const url = location.origin + location.pathname + (itinerary.open ? `#itinerary-${selectedDay}` : '');
       if (location.protocol === 'file:') {
         shareStatus.textContent = '받은 HTML 파일을 그대로 전달하면 같은 일정을 볼 수 있어요.';
         shareStatus.scrollIntoView({block:'nearest'});
@@ -505,23 +678,66 @@
   </script>
   <script>
     const travelers = [
-      {id:'pilgyu',name:'필규',color:'#c74c12',backdrop:'#a83914',mark:'H',hair:'#292830',style:'fringe',trip:'12/16 수 인천 출발 · 왕복 예약 필요'},
-      {id:'inhye',name:'인혜',color:'#2352b6',backdrop:'#1b428d',mark:'S',hair:'#33272b',style:'long',trip:'12/17 목 도쿄 합류 · 편도 정보 확인'},
-      {id:'yuseon',name:'유선',color:'#2352b6',backdrop:'#1b428d',mark:'S',hair:'#29282b',style:'short',trip:'12/16 수 인천 출발 · 왕복 예약 필요'}
+      {id:'pilgyu',name:'필규',color:'#c74c12',backdrop:'#a83914',mark:'H',hair:'#292830',style:'fringe',trip:'12/16 ' + flights.rs267.code + ' · 12/20 ' + flights.rs248.code},
+      {id:'inhye',name:'인혜',color:'#2352b6',backdrop:'#1b428d',mark:'S',hair:'#33272b',style:'long',trip:'12/16 ' + flights.ke2105.code + ' · 12/20 ' + flights.rs248.code},
+      {id:'yuseon',name:'유선',color:'#2352b6',backdrop:'#1b428d',mark:'S',hair:'#29282b',style:'short',trip:'12/16 ' + flights.rs267.code + ' · 12/20 ' + flights.rs248.code}
     ];
     const ink='#292936', skin='#efb38b', shade='#c78269';
-    const outfits = {base:'A',sprout:'B',suit:'C'};
-    const travelerKey = 'tokyo-yokohama-dec26-traveler-v1';
+    const outfits = {base:'A',sprout:'B',suit:'C',chiikawa:'치이카와',hachiware:'하치와레',usagi:'우사기'};
+    const mascotColors = {
+      chiikawa:{fur:'#fff6ef', shade:'#f2d7d6', backdrop:'#8d4c62'},
+      hachiware:{fur:'#f9f6f0', shade:'#629bc2', backdrop:'#3d617c'},
+      usagi:{fur:'#ffe69c', shade:'#e2ac53', backdrop:'#885329'}
+    };
+    const travelerKey = 'tokyo-yokohama-dec26-outfits-v2';
     const readLocal = key => { try { return JSON.parse(localStorage.getItem(key)) || {}; } catch { return {}; } };
-    const saveLocal = (key,data) => { try { localStorage.setItem(key,JSON.stringify(data)); return true; } catch { return false; } };
-    const localTravelers = readLocal(travelerKey);
-    const passportSession = new Map();
-    const dress = person => localTravelers[person.id]?.outfit || 'base';
+    const localOutfits = readLocal(travelerKey);
+    const previousOutfits = readLocal('tokyo-yokohama-dec26-traveler-v1');
+    function dress(person) {
+      const outfit = localOutfits[person.id] || previousOutfits[person.id]?.outfit;
+      return Object.hasOwn(outfits, outfit) ? outfit : 'base';
+    }
+    function drawMascot(r, outfit, step) {
+      const {fur, shade} = mascotColors[outfit];
+      const rabbit = outfit === 'usagi';
+      const earY = rabbit ? 1 : 3;
+      const earHeight = rabbit ? 9 : 5;
+      r(ink,5,earY+1,5,earHeight);
+      r(ink,14,earY+1,5,earHeight);
+      r(ink,6,earY,3,2);
+      r(ink,15,earY,3,2);
+      r(shade,6,earY+2,3,earHeight-2);
+      r(shade,15,earY+2,3,earHeight-2);
+      r(ink,5,9,14,12);
+      r(ink,4,11,16,7);
+      r(fur,6,8,12,12);
+      r(fur,5,11,14,6);
+      r(fur,7,19,10,2);
+      if (outfit === 'hachiware') {
+        r(shade,6,8,5,3);
+        r(shade,13,8,5,3);
+        r(shade,6,11,2,1);
+        r(shade,16,11,2,1);
+      }
+      r(ink,8,13,2,2);
+      r(ink,14,13,2,2);
+      r('#ed9e9f',6,15,3,1);
+      r('#ed9e9f',15,15,3,1);
+      r(ink,11,15,2,2);
+      r(ink,7,20,3,3-step);
+      r(ink,14,20,3,2+step);
+      r(shade,8,20,2,2-step);
+      r(shade,14,20,2,1+step);
+    }
     function sprite(canvas, person, outfit, step=0) {
       const g = canvas.getContext('2d');
       if (!g) return;
       const r = (color,x,y,w,h) => { g.fillStyle=color; g.fillRect(x,y,w,h); };
       g.clearRect(0,0,24,24);
+      if (mascotColors[outfit]) {
+        drawMascot(r, outfit, step);
+        return;
+      }
       if (outfit==='sprout') {
         r('#22473a',11,0,2,5); r('#2e673b',6,0,5,2); r('#64a04c',7,1,5,2);
         r('#2e673b',13,0,5,2); r('#80b655',12,1,5,2);
@@ -561,14 +777,8 @@
     const mapCanvas = document.getElementById('map-art');
     const profile = document.getElementById('profile');
     const portrait = document.getElementById('profile-portrait');
-    const nameField = document.getElementById('passport-name');
-    const numberField = document.getElementById('passport-number');
-    const birthField = document.getElementById('passport-birth');
-    const expiryField = document.getElementById('passport-expiry');
-    const checkedField = document.getElementById('passport-checked');
-    const profileStatus = document.getElementById('profile-status');
-    let selectedTraveler;
     function outfitBackground(person, outfit) {
+      if (mascotColors[outfit]) return mascotColors[outfit].backdrop;
       return outfit === 'base' ? person.backdrop : outfit === 'sprout' ? '#476d3b' : '#344057';
     }
     function showOutfit(canvas, person, outfit) {
@@ -589,8 +799,8 @@
         button.append(example,el('span','',label));
         button.setAttribute('aria-pressed',String(dress(person)===id));
         button.addEventListener('click',() => {
-          localTravelers[person.id] = {...localTravelers[person.id],outfit:id};
-          saveLocal(travelerKey,localTravelers);
+          localOutfits[person.id] = id;
+          try { localStorage.setItem(travelerKey, JSON.stringify(localOutfits)); } catch {}
           for(const item of row.children) item.setAttribute('aria-pressed',String(item===button));
           showOutfit(portrait,person,id);
           redrawActor(actors.find(item=>item.person===person));
@@ -599,37 +809,17 @@
       }
     }
     function openProfile(person) {
-      selectedTraveler=person;
-      const data=localTravelers[person.id] || {};
-      const session=passportSession.get(person.id);
       document.getElementById('profile-name').textContent=person.name;
       document.getElementById('profile-trip').textContent=person.trip;
-      nameField.value=data.englishName || '';
-      numberField.value=session?.number || '';
-      birthField.value=session?.birth || '';
-      expiryField.value=data.expiry || '';
-      checkedField.checked=Boolean(data.checked);
-      profileStatus.textContent='';
       showOutfit(portrait,person,dress(person));
       fillOutfits(person);
       profile.showModal();
     }
     document.getElementById('profile-close').addEventListener('click',()=>profile.close());
-    profile.addEventListener('close',()=>{
-      numberField.value='';
-      birthField.value='';
-    });
-    document.getElementById('profile-form').addEventListener('submit',event=>{
-      event.preventDefault();
-      const id=selectedTraveler.id;
-      passportSession.set(id,{number:numberField.value.trim(),birth:birthField.value});
-      localTravelers[id]={...localTravelers[id],englishName:nameField.value.trim(),expiry:expiryField.value,checked:checkedField.checked};
-      profileStatus.textContent=saveLocal(travelerKey,localTravelers)?'저장했어요. 여권번호와 생년월일은 이 탭에만 있어요.':'이 탭에서만 임시로 기억해요.';
-    });
     const actors = travelers.map((person,index)=>{
       const button=el('button','actor');
       button.type='button';
-      button.setAttribute('aria-label',`${person.name} 캐릭터와 여권 메모 열기`);
+      button.setAttribute('aria-label',`${person.name} 캐릭터 선택 열기`);
       const canvas=el('canvas'); canvas.width=24; canvas.height=24; canvas.setAttribute('aria-hidden','true');
       button.style.setProperty('--hop-delay',`${index * -0.28}s`);
       const name=el('span','',person.name);
@@ -647,14 +837,18 @@
     actors.forEach(redrawActor);
     const korea=[[0,14],[39,14],[39,20],[52,20],[52,29],[64,29],[64,38],[56,38],[56,45],[66,45],[66,56],[59,56],[59,69],[48,69],[48,79],[30,79],[30,90],[15,90],[15,82],[0,82]];
     const japan=[[320,5],[303,5],[303,18],[291,18],[291,27],[278,27],[278,36],[272,36],[272,48],[261,48],[261,61],[248,61],[248,72],[236,72],[236,79],[223,79],[223,85],[204,85],[204,98],[193,98],[193,108],[175,108],[175,116],[157,116],[157,128],[146,128],[146,139],[190,139],[190,131],[207,131],[207,123],[224,123],[224,114],[239,114],[239,109],[249,109],[249,99],[242,99],[242,91],[251,91],[251,86],[261,86],[261,98],[270,98],[270,103],[283,103],[283,91],[291,91],[291,76],[302,76],[302,66],[311,66],[311,54],[320,54]];
-    const points={icn:[41,52],nrt:[261,53],tabata:[226,78],kirin:[208,101],yoko:[188,113],ueno:[236,88],harajuku:[207,89],shibuya:[202,96]};
-    const everyone=travelers.map(person=>person.id);
+    const points={
+      icn:[41,52],gmp:[48,63],nrt:[261,53],hnd:[222,98],tabata:[226,78],
+      kirin:[208,101],yoko:[188,113],ueno:[236,88],asakusa:[253,81],
+      ginza:[228,98],tower:[218,106],shibuya:[202,96],harajuku:[207,89],shinjuku:[195,78]
+    };
     const stages={
-      '16':{text:'12/16 · 필규와 유선 먼저 출발',route:['icn','nrt','ueno'],flight:0,active:['pilgyu','yuseon'],waiting:'icn',area:places.capsule},
-      '17':{text:'12/17 · 인혜 도쿄 합류',route:['icn','nrt','tabata'],flight:0,active:['inhye'],waiting:'tabata',area:places.tabata},
-      '18':{text:'12/18 · 다바타 → 기린맥주공장 → 요코하마',route:['tabata','kirin','yoko'],active:everyone,area:places.kirin},
-      '19':{text:'12/19 · 다바타 → 하라주쿠 → 시부야',route:['tabata','harajuku','shibuya'],active:everyone,area:places.shibuya},
-      '20':{text:'12/20 · 셋이 함께 귀국',route:['tabata','nrt','icn'],flight:1,active:everyone,area:places.nrt}
+      '16':{text:'12/16 · 인천·김포 → 나리타·하네다 → 우에노',route:['icn','nrt','ueno'],flight:0,
+        alternate:{route:['gmp','hnd','ueno'],flight:0}},
+      '17':{text:'12/17 · 우에노 → 기린 → 요코하마',route:['ueno','kirin','yoko']},
+      '18':{text:'12/18 · 아사쿠사 → 긴자 → 도쿄타워',route:['asakusa','ginza','tower']},
+      '19':{text:'12/19 · 시부야 → 하라주쿠 → 신주쿠',route:['shibuya','harajuku','shinjuku']},
+      '20':{text:'12/20 · 도쿄 → 나리타 → 인천',route:['tabata','nrt','icn'],flight:1}
     };
     const g=mapCanvas.getContext('2d');
     const reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -671,18 +865,25 @@
       polygon([[20,98],[26,98],[26,103],[20,103]],'#91b974');polygon([[120,128],[130,128],[130,134],[120,134]],'#91b974');
       const trees=[[12,28],[23,30],[47,35],[12,65],[30,71],[275,49],[296,46],[281,69],[209,103],[171,124],[232,94],[277,82],[308,33],[233,117],[56,61]];
       for(const [x,y] of trees){rect('#547d4d',x+1,y,2,5);rect('#547d4d',x,y+2,4,2);rect('#c9c982',x+1,y,1,2);}
-      const coords=current.route.map(key=>points[key]);
-      g.strokeStyle=current.flight===undefined?'#5b523b':'#3d766b';g.lineWidth=2;g.setLineDash([3,3]);g.beginPath();g.moveTo(...coords[0]);
-      for(const [index,point] of coords.slice(1).entries()) {
-        if(index===current.flight) g.quadraticCurveTo(151,4,...point);
-        else g.lineTo(...point);
-      }
-      g.stroke();g.setLineDash([]);
-      for(const id of current.route){const [x,y]=points[id];rect('#29483d',x-3,y-3,7,7);rect(id==='kirin'?'#efae5c':'#fef0c7',x-2,y-2,5,5);}
-      const {x,y,segment}=pathPoint(current,progress);
-      if(segment===current.flight && progress<1 && !reduced.matches){
-        rect('#466b69',x-7,y-2,12,3);rect('#fff4db',x-7,y-3,11,2);rect('#fff4db',x+3,y-2,4,2);
-        rect('#fff4db',x-2,y-7,2,8);rect('#f0b260',x-7,y-4,2,3);
+      const routes = current.alternate ? [current, current.alternate] : [current];
+      for (const route of routes) {
+        const coords=route.route.map(key=>points[key]);
+        g.strokeStyle=route.flight===undefined?'#5b523b':'#3d766b';
+        g.lineWidth=2;g.setLineDash([3,3]);g.beginPath();g.moveTo(...coords[0]);
+        for(const [index,point] of coords.slice(1).entries()) {
+          if(index===route.flight) g.quadraticCurveTo(151,4,...point);
+          else g.lineTo(...point);
+        }
+        g.stroke();g.setLineDash([]);
+        for(const id of route.route){
+          const [x,y]=points[id];
+          rect('#29483d',x-3,y-3,7,7);rect(id==='kirin'?'#efae5c':'#fef0c7',x-2,y-2,5,5);
+        }
+        const {x,y,segment}=pathPoint(route,progress);
+        if(segment===route.flight && progress<1 && !reduced.matches){
+          rect('#466b69',x-7,y-2,12,3);rect('#fff4db',x-7,y-3,11,2);rect('#fff4db',x+3,y-2,4,2);
+          rect('#fff4db',x-2,y-7,2,8);rect('#f0b260',x-7,y-4,2,3);
+        }
       }
     }
     function pathPoint(current,progress) {
@@ -705,10 +906,7 @@
       const spacing=46;
       const mapWidth=mapFrame.clientWidth || 320;
       actors.forEach((actor,index)=>{
-        const active=current.active.includes(actor.person.id);
-        const waiting=active?null:points[current.waiting];
-        const x=waiting?waiting[0]:position.x;
-        const y=waiting?waiting[1]:position.y;
+        const {x,y} = current.alternate && actor.person.id === 'inhye' ? pathPoint(current.alternate,progress) : position;
         const center=Math.max(70,Math.min(mapWidth-70,x*mapWidth/320));
         actor.button.style.left=`${(center+(index-1)*spacing)*100/mapWidth}%`;
         actor.button.style.top=`${(y-3)/1.39}%`;
@@ -721,9 +919,10 @@
       const current=stages[id];
       cancelAnimationFrame(frame);
       start=undefined;
-      mapPins.forEach(pin=>{pin.hidden=!current.route.includes(pin.dataset.pin);});
+      const visiblePins = [...current.route, ...(current.alternate?.route || [])];
+      mapPins.forEach(pin=>{pin.hidden=!visiblePins.includes(pin.dataset.pin);});
       document.getElementById('map-caption').textContent=current.text;
-      areaLink.href=`https://www.google.com/maps/search/?${new URLSearchParams({api:'1',query:current.area})}`;
+      areaLink.href=mapUrl(dayList.find(day=>day.id===id).area);
       frame=requestAnimationFrame(paint);
     }
     days.addEventListener('daychange',()=>showDayOnMap(selectedDay));
