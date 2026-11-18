@@ -53,6 +53,8 @@
     return;
   }
   const roomStorage = 'tokyo-yokohama-dec26-shared-room';
+  const pagesRoomOrigin = location.origin === 'https://jimmy6706.github.io'
+    ? 'https://trip-sync-production-a72ba7e4.up.railway.app' : '';
   function parseRoom(key, origin, member) {
     if (typeof key !== 'string' || !/^[A-Za-z0-9_-]{43}$/.test(key)) return null;
     let url;
@@ -66,7 +68,7 @@
   const serverRole = document.body.dataset.tripServer;
   if (!serverRole && /^https?:$/.test(location.protocol)) {
     const saved = readLocal(roomStorage, null);
-    const linked = parseRoom(fragment.get('room'), fragment.get('api'));
+    const linked = parseRoom(fragment.get('r') ?? fragment.get('room'), fragment.get('api') ?? pagesRoomOrigin);
     if (linked) {
       room = linked.key === saved?.key && linked.origin === saved.origin
         ? parseRoom(saved.key, saved.origin, saved.member) : linked;
@@ -563,7 +565,8 @@
   }
   function roomLink(target = '') {
     const url = new URL(location.pathname,location.origin);
-    const params = new URLSearchParams({room:room.key,api:room.origin});
+    const params = new URLSearchParams(room.origin === pagesRoomOrigin
+      ? {r:room.key} : {room:room.key,api:room.origin});
     if (target) params.set('at',target);
     url.hash = params;
     return url.href;
