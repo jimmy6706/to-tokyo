@@ -12,7 +12,7 @@
     if (room) {
       options.credentials = 'omit';
       options.redirect = 'error';
-      options.headers.Authorization = 'Bearer ' + room.member + '.' + room.key;
+      options.headers.Authorization = 'Bearer ' + (path === 'profiles' ? room.key : room.member + '.' + room.key);
     }
     const response = await fetch((room?.origin || '') + '/api/' + path, options);
     if (response.status === 204) return null;
@@ -85,18 +85,27 @@
   if (!role) return;
   if (room) document.body.dataset.tripServer = role;
 
-  const kindList = {personal:'개인별 준비',shared:'공동 준비',todo:'남은 할 일'};
+  const kindList = {personal:'각자 준비물',shared:'공동 준비물',todo:'남은 할 일'};
   const legacy = new Map(taskList.map(([id,title,stage,detail,links]) => ['legacy-' + id,{id,title,stage,detail,links}]));
   const dateStamp = new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
   const slot = byId('shared-prep');
   const useful = byId('useful');
-  const participant = room ? el('section','info-panel trip-participant') : null;
+  const participant = room ? el('dialog','trip-participant') : null;
   if (participant) {
     participant.id = 'trip-participant';
-    participant.hidden = true;
-    participant.setAttribute('aria-label','공동 여행 참여');
-    byId('main').prepend(participant);
+    participant.setAttribute('aria-labelledby','participant-title');
+    participant.addEventListener('cancel',event => event.preventDefault());
+    document.body.append(participant);
   }
+  const feedback = el('div','trip-feedback');
+  feedback.dataset.tripStatus = '';
+  feedback.setAttribute('role','status');
+  feedback.hidden = true;
+  document.body.append(feedback);
+  const filters = new Map();
+  let board;
+  let emptyFilter;
+  let dismissUndo;
   const panels = new Map();
   const noteViews = new Map();
   let state = null;
@@ -111,10 +120,14 @@
   const displayName = member => state?.people[member] || people.find(person => person.id === member)?.name || '';
   const placeKey = visit => visit.activity === 'lodging' && visit.title.includes('에어비앤비') ? 'airbnb' : visit.place;
   const noteKey = (day,visit) => day.id + '/' + visit.id;
-  const dateLabel = id => days.find(day=>day.id === id)?.date || id;
   function notesHere(day,visit) {
     const key = noteKey(day,visit);
-    return (state?.notes || []).filter(note => note.place === placeKey(visit) && (!note.visit || note.visit === key));
+    const place = placeKey(visit);
+    const notes = (state?.notes || []).filter(note => note.place === place && (!note.visit || note.visit === key));
+    const override = state?.guides?.find(guide => guide.id === key);
+    const text = override?.text ?? (visit.flight ? '' : visit.description);
+    if (text) notes.unshift({id:key,visit:key,place,text,guide:true,rev:0,...override});
+    return notes;
   }
   function currentCheck(item, member = self()) {
     return state.checks.find(check => check.item === item.id && check.person === (item.kind === 'personal' ? member : ''));
@@ -122,9 +135,14 @@
   function message(text) {
     status = text;
     for (const node of document.querySelectorAll('[data-trip-status]')) {
+      const quiet = ['', '저장소에 연결됨', '저장됨'].includes(status);
+      node.hidden = quiet && !retry && !undo;
       node.replaceChildren(el('span','',status));
       if (retry) node.append(button('다시 시도','action secondary',retry));
-      if (undo) node.append(button('실행 취소','action secondary',undo));
+      if (undo) node.append(button('실행 취소','trip-text',undo));
+      if (node === feedback && !retry && status === '저장됨' && undo) {
+        node.append(button('닫기','trip-text',() => { undo = null; message(status); }));
+      }
     }
   }
   function formNode(action) {
@@ -195,6 +213,7 @@
     state = snapshot;
     renderPrep();
     for (const view of noteViews.values()) paintNotes(view);
+    if (board) paintNotes(board);
     if (oldOutfits !== JSON.stringify(state.outfits)) {
       refreshFaces();
       if (byId('profile').open) syncProfile();
@@ -206,6 +225,7 @@
     if (inflight) return;
     inflight = true;
     retry = null;
+    undo = null;
     message('저장 중…');
     let result;
     try {
@@ -226,6 +246,13 @@
     try {
       await refresh(true);
       message('저장됨');
+      clearTimeout(dismissUndo);
+      if (undo) {
+        const lastUndo = undo;
+        dismissUndo = setTimeout(() => {
+          if (undo === lastUndo && status === '저장됨') { undo = null; message(status); }
+        },10000);
+      }
     } catch {
       retry = connect;
       message('저장됐어요. 최신 내용을 불러오지 못했어요.');
@@ -249,35 +276,59 @@
         showSaved(form,draft,() => holder.replaceChildren());
       });
     });
-    field(form,'항목 이름','title',{value:entry?.title,required:true,maxLength:120});
-    field(form,'설명','detail',{value:entry?.detail,multiline:true,maxLength:600});
-    if (kind === 'shared') field(form,'수량','qty',{type:'number',value:entry?.qty || 1,min:1,max:999,required:true});
-    if (kind !== 'personal') field(form,'담당자','assignee',{choices:[['','미지정'],...Object.entries(state.people)],value:entry?.assignee});
+    field(form,'이름','title',{value:entry?.title,required:true,maxLength:120});
+    const extra = el('details','item-extra');
+    extra.open = !!entry;
+    extra.append(el('summary','',kind === 'personal' ? '설명' : kind === 'shared' ? '설명 · 수량 · 담당' : '설명 · 담당'));
+    field(extra,'설명','detail',{value:entry?.detail,multiline:true,maxLength:600});
+    if (kind === 'shared') field(extra,'수량','qty',{type:'number',value:entry?.qty || 1,min:1,max:999,required:true});
+    if (kind !== 'personal') field(extra,'담당자','assignee',{choices:[['','미지정'],...Object.entries(state.people)],value:entry?.assignee});
+    form.append(extra);
     submitBar(form,() => holder.replaceChildren());
     editGuard(holder,form);
   }
+  function rowActions(name, edit, erase) {
+    const menu = el('details','row-menu');
+    const toggle = el('summary');
+    toggle.setAttribute('aria-label', name + ' 관리');
+    const choices = el('div','row-options');
+    for (const [label,action] of [['수정',edit],['삭제',erase]]) {
+      choices.append(button(label,'',() => { menu.open = false; action(); }));
+    }
+    menu.addEventListener('keydown',event => {
+      if (event.key === 'Escape') { menu.open = false; toggle.focus(); }
+    });
+    menu.append(toggle,choices);
+    return menu;
+  }
+  document.addEventListener('click',event => {
+    for (const menu of document.querySelectorAll('.row-menu[open]')) {
+      if (!menu.contains(event.target)) menu.open = false;
+    }
+  });
+
   function itemRow(item, editor) {
-    const row = el('li','trip-row');
+    const row = el('li','pack-row');
     const selected = currentCheck(item);
-    const banner = item.kind === 'personal'
-      ? Object.keys(state.people).filter(person => currentCheck(item,person)?.done).length + '/' + Object.keys(state.people).length + '명 완료'
-      : [item.kind === 'shared' ? item.qty + '개' : '',item.assignee ? displayName(item.assignee) + ' 담당' : '담당 미지정',
-          selected?.done ? '완료' : '미완료'].filter(Boolean).join(' · ');
-    row.append(el('h3','',item.title),el('p','trip-quiet',banner));
-    if (item.detail) row.append(el('p','trip-content',item.detail));
-    if (item.stage) row.append(el('p','trip-quiet','일정 상태 · ' + item.stage));
-    const info = item.kind === 'personal'
-      ? Object.entries(state.people).map(([person,name]) => name + ' ' + (currentCheck(item,person)?.done ? '완료' : '미완료')).join(' · ')
-      : selected ? displayName(selected.by) + ' · ' + dateStamp.format(new Date(selected.updated)) : '';
-    if (info) row.append(el('p','trip-quiet',info));
-    if (legacy.get(item.id)?.links) addLinks(row,legacy.get(item.id).links);
-    const controls = el('div','trip-controls');
-    const done = button(selected?.done ? '체크 해제' : item.kind === 'personal' ? '내 준비 체크' : '완료 체크','action',() =>
-      write({op:'check',id:item.id,rev:selected?.rev || 0,done:!selected?.done}));
-    done.setAttribute('aria-pressed',String(!!selected?.done));
-    controls.append(done,button('수정','action secondary',() => itemEditor(item,item.kind,editor)),
-      button('삭제','action secondary',() => remove('item',item)));
-    row.append(controls);
+    const box = el('input','pack-check');
+    box.type = 'checkbox';
+    box.checked = !!selected?.done;
+    box.setAttribute('aria-label', item.title + ' 완료');
+    box.addEventListener('change',() => {
+      const done = box.checked;
+      box.checked = !!selected?.done;
+      write({op:'check',id:item.id,rev:selected?.rev || 0,done});
+    });
+    const copy = el('div','pack-copy');
+    const title = el('label','pack-title',item.title);
+    box.id = 'pack-' + item.id;
+    title.htmlFor = box.id;
+    copy.append(title);
+    if (item.kind === 'shared' && item.qty > 1) copy.append(el('span','pack-meta','× ' + item.qty));
+    if (item.assignee) copy.append(el('span','pack-meta',displayName(item.assignee) + ' 담당'));
+    if (item.detail) copy.append(el('p','pack-detail',item.detail));
+    if (legacy.get(item.id)?.links) addLinks(copy,legacy.get(item.id).links);
+    row.append(box,copy,rowActions(item.title,() => itemEditor(item,item.kind,editor),() => remove('item',item)));
     return row;
   }
   function referenceEditor(entry,holder) {
@@ -296,123 +347,180 @@
   function openPrep() {
     slot.hidden = false;
     slot.classList.add('trip-sets');
-    const statusLine = el('p','trip-status');
-    statusLine.dataset.tripStatus = '';
-    statusLine.setAttribute('aria-live','polite');
     const toolbar = el('div','trip-toolbar');
-    for (const [filter,label] of [['all','전체'],['mine','내가 할 일'],['remaining','미완료']]) {
+    toolbar.setAttribute('role','group');
+    toolbar.setAttribute('aria-label','준비물 필터');
+    for (const [filter,label] of [['all','준비 중'],['mine','내 담당'],['done','완료함']]) {
+      const count = el('span','filter-count');
       const control = button(label,'action secondary trip-filter',() => {
         filtering = filter;
-        for (const other of toolbar.children) other.setAttribute('aria-pressed',String(other === control));
         renderPrep();
       });
-      control.setAttribute('aria-pressed',String(filter === filtering));
+      control.append(count);
+      filters.set(filter,{control,count});
       toolbar.append(control);
     }
-    slot.append(toolbar,statusLine);
+    emptyFilter = el('p','pack-empty empty-filter');
+    emptyFilter.hidden = true;
+    slot.append(toolbar,emptyFilter);
     for (const [kind,label] of Object.entries(kindList)) {
       const box = el('section','info-panel trip-section');
+      box.dataset.kind = kind;
       const heading = el('div','trip-heading');
       const editor = el('div');
       const list = el('ul');
-      const add = button('추가','action',() => itemEditor(null,kind,editor));
-      heading.append(el('h2','',label),add);
+      const add = button('＋ 추가','trip-text',() => itemEditor(null,kind,editor));
+      add.setAttribute('aria-label',label + ' 추가');
+      const title = el('h2','',label);
+      heading.append(title,add);
       box.append(heading,editor,list);
-      panels.set(kind,{list,editor,add});
+      panels.set(kind,{box,title,list,editor,add});
       slot.append(box);
     }
+    const boardBox = el('section','info-panel trip-section');
+    board = noteSection(boardBox);
+    slot.append(boardBox);
     const editor = el('div');
-    const add = button('링크 추가','action',() => referenceEditor(null,editor));
+    const add = button('＋ 링크 추가','trip-text',() => referenceEditor(null,editor));
     useful.hidden = false;
+    useful.open = true;
     useful.append(add,editor);
-    panels.set('links',{list:byId('useful-links'),editor,add});
+    panels.set('links',{list:byId('useful-links'),editor});
+    paintNotes(board);
   }
   function renderPrep() {
-    if (!state?.items) return;
+    if (!state?.items || !filters.size) return;
+    const completed = state.items.filter(item => currentCheck(item)?.done);
+    const pending = state.items.filter(item => !currentCheck(item)?.done);
+    const mine = pending.filter(item => item.kind === 'personal' || item.assignee === self());
+    const groups = {all:pending,mine,done:completed};
+    for (const [filter,{control,count}] of filters) {
+      control.setAttribute('aria-pressed',String(filter === filtering));
+      count.textContent = groups[filter].length;
+    }
+    emptyFilter.textContent = filtering === 'done' ? '아직 완료한 항목이 없어요.' : '지금 내가 맡은 항목이 없어요.';
+    emptyFilter.hidden = filtering === 'all' || groups[filtering].length > 0;
+    if (board) board.block.hidden = filtering !== 'all';
+    useful.hidden = filtering !== 'all';
     for (const [kind,panel] of panels) {
       if (kind === 'links') {
         const rows = state.links.map(link => {
-          const li = el('li','trip-row');
-          li.append(externalLink(link.title,link.url),button('수정','action secondary',() => referenceEditor(link,panel.editor)),
-            button('삭제','action secondary',() => remove('link',link)));
+          const li = el('li','reference-row');
+          const anchor = el('a','reference-link');
+          anchor.href = link.url;
+          anchor.rel = 'noopener noreferrer';
+          anchor.target = '_blank';
+          anchor.title = link.url;
+          anchor.append(el('strong','',link.title),el('span','reference-url',link.url.replace(/^https?:\/\//,'')));
+          li.append(anchor,rowActions(link.title,() => referenceEditor(link,panel.editor),() => remove('link',link)));
           return li;
         });
         panel.list.replaceChildren(...rows);
         byId('useful-empty').hidden = rows.length > 0;
         continue;
       }
-      const items = state.items.filter(item => item.kind === kind && (
-        filtering === 'all' || (filtering === 'mine' ? kind === 'personal' || item.assignee === self()
-          : kind === 'personal' ? Object.keys(state.people).some(person => !currentCheck(item,person)?.done) : !currentCheck(item)?.done)
-      ));
-      panel.list.replaceChildren(...(items.length ? items.map(item => itemRow(item,panel.editor)) :
-        [el('li','trip-quiet','표시할 항목이 없어요.')]));
+      const items = groups[filtering].filter(item => item.kind === kind);
+      panel.title.textContent = kind === 'todo' && filtering === 'done' ? '완료한 할 일' : kindList[kind];
+      panel.box.dataset.completed = filtering === 'done';
+      panel.box.hidden = !items.length && filtering !== 'all';
+      panel.add.hidden = filtering === 'done';
+      const empty = filtering === 'done' ? '완료한 항목이 없어요.' : filtering === 'mine' ? '내 담당 항목이 없어요.' : '준비할 항목이 없어요.';
+      panel.list.replaceChildren(...(items.length ? items.map(item => itemRow(item,panel.editor)) : [el('li','pack-empty',empty)]));
     }
   }
 
+  function closeNoteEditor(view) {
+    view.editor.replaceChildren();
+    view.add.hidden = false;
+    view.add.focus({preventScroll:true});
+  }
   function noteEditor(view,entry) {
-    const {day,visit,editor} = view;
+    const {visit,editor} = view;
     const form = formNode(draft => {
-      const key = placeKey(visit);
-      const payload = {op:'note',id:entry?.id,rev:entry?.rev,place:key,
-        days:days.filter(date=>date.visits.some(stop=>placeKey(stop) === key)).map(date=>date.id),
-        visit:draft.get('only') === 'on' ? noteKey(day,visit) : '',text:draft.get('text'),
-        suggestion:draft.get('suggestion') === 'on',pinned:draft.get('pinned') === 'on'};
+      const place = visit ? placeKey(visit) : 'trip-board';
+      const payload = entry?.guide ? {op:'guide',visit:entry.visit,rev:entry.rev,text:draft.get('text')} : {op:'note',id:entry?.id,rev:entry?.rev,place,
+        days:visit ? days.filter(date=>date.visits.some(stop=>placeKey(stop) === place)).map(date=>date.id) : [],
+        visit:entry?.visit || '',text:draft.get('text')};
       write(payload,updated => {
         offerEditUndo(payload,entry,updated);
-        showSaved(form,draft,() => editor.replaceChildren());
+        showSaved(form,draft,() => closeNoteEditor(view));
       });
     });
-    field(form,'메모','text',{value:entry?.text,multiline:true,required:true,maxLength:800});
-    if (!entry) toggle(form,'이 방문 날짜에만 표시','only');
-    toggle(form,'의견·제안','suggestion',entry?.suggestion);
-    toggle(form,'목록에 고정','pinned',entry?.pinned);
-    submitBar(form,() => editor.replaceChildren());
+    form.classList.add('note-editor');
+    const input = el('textarea');
+    input.name = 'text';
+    input.rows = 3;
+    input.required = true;
+    input.maxLength = 800;
+    input.setAttribute('aria-label',visit ? visit.label + ' 메모' : '공동 메모');
+    input.placeholder = visit ? '추천 메뉴, 가격, 들를 때 기억할 것…' : '일행과 함께 기억할 내용을 적어요…';
+    input.value = entry?.text || '';
+    input.addEventListener('keydown',event => {
+      if (event.key === 'Enter' && (event.metaKey || event.ctrlKey) && !event.isComposing) {
+        event.preventDefault(); form.requestSubmit();
+      }
+    });
+    form.append(input);
+    submitBar(form,() => closeNoteEditor(view));
+    view.add.hidden = true;
     editGuard(editor,form);
   }
   function paintNotes(view) {
     const {day,visit,list,badge} = view;
-    const notes = notesHere(day,visit);
-    const pinned = notes.filter(note => note.pinned).at(-1);
-    badge.hidden = notes.length === 0;
-    badge.textContent = notes.length ? '메모 ' + notes.length + '개' + (pinned ? ' · ' + pinned.text.split('\n')[0].slice(0,46) : '') : '';
-    list.replaceChildren(...(notes.length ? notes.map(note => {
-      const row = el('li','trip-row');
-      const meta = [displayName(note.author),dateStamp.format(new Date(note.created)),
-        note.visit ? dateLabel(note.visit.split('/')[0]) + ' 방문' : '공통 메모',note.suggestion ? '의견·제안' : '',note.pinned ? '고정' : ''];
-      row.append(el('p','trip-quiet',meta.filter(Boolean).join(' · ')),el('p','trip-content',note.text));
-      if (note.author === self()) {
-        const controls = el('div','trip-controls');
-        controls.append(button('수정','action secondary',() => noteEditor(view,note)),
-          button('삭제','action secondary',() => remove('note',note)));
-        row.append(controls);
+    const notes = visit ? notesHere(day,visit) : state.notes.filter(note => note.place === 'trip-board');
+    if (badge) {
+      const contributed = notes.filter(note => !note.guide || note.rev > 0).length;
+      badge.hidden = !contributed;
+      badge.textContent = '메모 ' + contributed;
+    }
+    view.block.hidden = visit ? role === 'viewer' && !notes.length : filtering !== 'all';
+    list.replaceChildren(...notes.map(note => {
+      const row = el('li','note-row');
+      const meta = el('div','note-meta');
+      meta.append(el('strong','',note.guide ? '기본 메모' : displayName(note.author)));
+      if (note.guide && note.by) meta.append(el('span','',displayName(note.by)));
+      const stamp = (label,value) => {
+        const time = el('time','',label + ' ' + dateStamp.format(new Date(value)));
+        time.dateTime = value;
+        return time;
+      };
+      if (note.created) meta.append(stamp('작성',note.created));
+      if (note.updated && note.updated !== note.created) meta.append(stamp('수정',note.updated));
+      row.append(meta,el('p','note-text',note.text));
+      if (role === 'member' && (note.guide || note.author === self())) {
+        const erase = () => {
+          if (!note.guide) return remove('note',note);
+          const payload = {op:'guide',visit:note.visit,rev:note.rev,text:''};
+          write(payload,updated => offerEditUndo(payload,note,updated));
+        };
+        row.append(rowActions(note.guide ? '기본 메모' : '메모',() => noteEditor(view,note),erase));
       }
       return row;
-    }) : [el('li','trip-quiet','등록된 메모가 없어요.')]));
+    }));
   }
-  function attachNote(day,visit,summary,body) {
+  function noteSection(block,day,visit) {
+    const editor = el('div');
+    const list = el('ul','note-list');
+    const badge = visit ? el('span','note-badge') : null;
+    const head = el('div','trip-heading');
+    head.append(el(visit ? 'h3' : 'h2','',visit ? '장소 메모' : '공동 메모'));
+    const view = {block,day,visit,list,badge,editor};
+    if (role === 'member') {
+      view.add = button('＋ 메모 쓰기','trip-text',() => noteEditor(view,null));
+      head.append(view.add);
+    }
+    block.append(head,list,editor);
+    return view;
+  }
+  function attachNote(day,visit,meta,body) {
     if (!state || !day || noteViews.has(noteKey(day,visit))) return;
     const block = el('section','trip-notes');
-    const editor = el('div');
-    const list = el('ul');
-    const badge = el('span','visit-condition');
-    const view = {day,visit,list,badge,editor};
-    const head = el('div','trip-heading');
-    head.append(el('h3','','장소 메모'));
-    if (role === 'member') {
-      head.append(button('메모 추가','action',() => noteEditor(view,null)));
-      const notice = el('p','trip-status');
-      notice.dataset.tripStatus = '';
-      notice.setAttribute('aria-live','polite');
-      block.append(head,notice);
-    } else {
-      block.append(head);
-    }
-    block.append(editor,list);
+    const view = noteSection(block,day,visit);
     body.append(block);
-    summary.querySelector('.visit-main').append(badge);
+    meta.append(view.badge);
     noteViews.set(noteKey(day,visit),view);
     paintNotes(view);
+    return true;
   }
 
   function syncProfile() {
@@ -425,13 +533,20 @@
   function openAccount() {
     const account = byId('profile-account');
     account.hidden = false;
-    const accountAction = room ? button('이름 바꾸기','action secondary',() => {
-      saveLocal(roomStorage,{...room,member:''});
+    const accountAction = room ? button('프로필 전환','action secondary',() => {
+      saveLocal(roomStorage,{...room,member:'',outfits:state.outfits});
       location.reload();
     }) : button('로그아웃','action secondary',async () => {
       try { await api('logout',{}); location.replace('/'); } catch (error) { message(error.message); }
     });
-    account.append(el('strong','','참여 이름 · ' + displayName(self())),accountAction);
+    account.append(accountAction);
+    const others = el('details','crew-directory');
+    others.append(el('summary','','일행 프로필 보기'));
+    const picker = byId('crew-picker');
+    picker.before(others);
+    others.append(picker);
+    byId('profile').append(others,account);
+    refreshFaces();
     const notice = byId('profile-sync');
     notice.hidden = false;
     notice.dataset.tripStatus = '';
@@ -511,7 +626,7 @@
       text((index ? '↓  ' : '') + visit.displayTime + '  ' + visit.label,30,'#20283a',800);
       if (visit.condition && visit.activity !== 'lodging') text(visit.condition,25,'#565e69');
       for (const note of selection.filter(note=>note.place === placeKey(visit) && (!note.visit || note.visit === noteKey(day,visit)))) {
-        text('메모 · ' + note.text,23,'#263f75');
+        text((note.guide ? '기본 메모' : displayName(note.author)) + ' · ' + note.text,23,'#263f75');
       }
       y += 16;
     });
@@ -552,8 +667,10 @@
       try { await navigator.share({files:[file],title:day.date + ' ' + day.title,text:'생성 시점의 여행 일정입니다.'}); }
       catch (error) { if (error.name !== 'AbortError') message('이미지 저장을 사용해 주세요.'); }
     });
-    const latest = button('최신 일정 링크','action secondary',() =>
-      write(createViewLink(day,visit),result => shareField(location.origin + '/#read=' + result.code)));
+    const latest = button('최신 일정 링크','action secondary',() => {
+      if (room) shareField(roomLink('itinerary-' + day.id + (visit ? '/' + visit.id : '')));
+      else write(createViewLink(day,visit),result => shareField(location.origin + '/#read=' + result.code));
+    });
     actions.append(download,native,latest);
     holder.replaceChildren(config,notice,preview,actions);
     config.append(notesOptions);
@@ -566,7 +683,7 @@
       stops.filter(stop=>stop.activity !== 'lodging').forEach(stop => notesHere(day,stop).forEach(note=>candidate.set(note.id,note)));
       notesOptions.replaceChildren();
       for (const note of candidate.values()) {
-        const check = toggle(notesOptions,dateLabel(day.id) + ' · ' + note.text,'include',savedSelection.has(note.id));
+        const check = toggle(notesOptions,(note.guide ? '기본 메모' : displayName(note.author)) + ' · ' + note.text,'include',savedSelection.has(note.id));
         check.addEventListener('change',() => {
           if (check.checked) savedSelection.add(note.id);
           else savedSelection.delete(note.id);
@@ -644,21 +761,40 @@
     window.addEventListener('hashchange',reset);
   }
   function showParticipant() {
-    participant.hidden = false;
+    const title = el('h1','','여행 프로필');
+    title.id = 'participant-title';
+    title.tabIndex = -1;
+    const panel = el('div','participant-panel');
     const notice = el('p','trip-status');
     notice.setAttribute('role','status');
     notice.dataset.tripStatus = '';
-    const picker = el('div','crew-picker');
+    const picker = el('div','profile-choices');
+    const tiles = new Map();
+    const cached = readLocal(roomStorage,null);
+    const cachedOutfits = cached?.key === room.key && cached.origin === room.origin ? cached.outfits : [];
+    const draw = outfits => {
+      for (const [person,tile] of tiles) {
+        const selected = outfits?.find(entry => entry.id === person.id)?.outfit;
+        tile.replaceChildren(portrait(person,Object.hasOwn(costumes,selected) ? selected : 'base',false,true));
+      }
+    };
     for (const person of people) {
-      const control = button('', '', async () => {
+      const control = button('', 'profile-choice', async () => {
         if (syncing) return;
         room.member = person.id;
         await connect();
       });
-      control.append(portrait(person,outfit(person),true),el('span','',person.name));
+      const tile = el('span','profile-tile');
+      tile.style.backgroundColor = person.field;
+      tiles.set(person,tile);
+      control.append(tile,el('strong','',person.name));
       picker.append(control);
     }
-    participant.replaceChildren(el('h2','','내 이름을 선택하세요'),picker,notice);
+    draw(cachedOutfits);
+    api('profiles').then(draw).catch(() => {});
+    panel.append(el('p','profile-trip','도쿄·요코하마 여행'),title,picker,notice);
+    participant.replaceChildren(panel);
+    if (!participant.open) { participant.showModal(); title.focus(); }
     message(status);
   }
   async function connect() {
@@ -683,7 +819,7 @@
       }
       if (room) {
         saveLocal(roomStorage,room);
-        participant.hidden = true;
+        participant.close();
       }
       retry = null;
       message('저장소에 연결됨');
