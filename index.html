@@ -1464,8 +1464,8 @@
     function updateDayContext() {
       const local = japanTime();
       const date = isoDate(currentDay);
-      const context = local.date < isoDate(days[0]) ? '미리보기' : local.date === date ? '오늘 · 일본 현지' : '일본 현지 시각';
-      const label = '12월 ' + currentDay.id + '일 ' + currentDay.weekday + '요일 · ' + context;
+      const context = local.date < isoDate(days[0]) ? '' : local.date === date ? '오늘 · 일본 현지' : '일본 현지 시각';
+      const label = ['12월 ' + currentDay.id + '일 ' + currentDay.weekday + '요일', context].filter(Boolean).join(' · ');
       const dayNumber = el('span','trip-day-number',(days.indexOf(currentDay) + 1) + '일차');
       $('schedule-date').replaceChildren(dayNumber,el('span','',label));
       dateButtons.forEach((control,index) => {
