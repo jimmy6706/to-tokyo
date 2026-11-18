@@ -1,10 +1,20 @@
 (() => {
   'use strict';
   const byId = id => document.getElementById(id);
+  let room = null;
   async function api(path, body) {
-    const response = await fetch('/api/' + path, body === undefined ? {cache:'no-store'} : {
-      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)
-    });
+    const options = {cache:'no-store',headers:{}};
+    if (body !== undefined) {
+      options.method = 'POST';
+      options.headers['Content-Type'] = 'application/json';
+      options.body = JSON.stringify(body);
+    }
+    if (room) {
+      options.credentials = 'omit';
+      options.redirect = 'error';
+      options.headers.Authorization = 'Bearer ' + room.member + '.' + room.key;
+    }
+    const response = await fetch((room?.origin || '') + '/api/' + path, options);
     if (response.status === 204) return null;
     if (!response.headers.get('content-type')?.includes('application/json')) throw new Error('공동 저장소에 연결할 수 없어요.');
     const result = await response.json();
@@ -16,7 +26,8 @@
     return result;
   }
   const joinForm = byId('trip-join');
-  const hashCode = ['join','read'].map(key => new URLSearchParams(location.hash.slice(1)).get(key)).find(Boolean);
+  const fragment = new URLSearchParams(location.hash.slice(1));
+  const hashCode = ['join','read'].map(key => fragment.get(key)).find(Boolean);
   async function join(code, message) {
     message.textContent = '링크를 확인하고 있어요…';
     try {
@@ -41,14 +52,51 @@
     }
     return;
   }
-  const role = document.body.dataset.tripServer;
+  const roomStorage = 'tokyo-yokohama-dec26-shared-room';
+  function parseRoom(key, origin, member) {
+    if (typeof key !== 'string' || !/^[A-Za-z0-9_-]{43}$/.test(key)) return null;
+    let url;
+    try { url = new URL(origin); } catch { return null; }
+    const local = location.protocol === 'http:' && ['localhost','127.0.0.1'].includes(location.hostname)
+      && url.protocol === 'http:' && ['localhost','127.0.0.1'].includes(url.hostname);
+    if (url.origin !== origin || (!local && url.protocol !== 'https:')) return null;
+    const chosen = people.find(person => person.id === member);
+    return {key,origin,member:chosen?.id || ''};
+  }
+  const serverRole = document.body.dataset.tripServer;
+  if (!serverRole && /^https?:$/.test(location.protocol)) {
+    const saved = readLocal(roomStorage, null);
+    const linked = parseRoom(fragment.get('room'), fragment.get('api'));
+    if (linked) {
+      room = linked.key === saved?.key && linked.origin === saved.origin
+        ? parseRoom(saved.key, saved.origin, saved.member) : linked;
+      // Keep the room key out of copied addresses, and retain any date or place in the link.
+      saveLocal(roomStorage, room);
+      const target = fragment.get('at') || '';
+      const route = /^(itinerary-(16|17|18|19|20)(\/[a-z0-9-]+)?|todo|bookings|transport|trip-map)$/.test(target)
+        ? '#' + target : '';
+      history.replaceState(null, '', location.pathname + location.search + route);
+      if (route) openLocation();
+    } else if (saved) {
+      room = parseRoom(saved.key, saved.origin, saved.member);
+    }
+  }
+  const role = serverRole || (room ? 'member' : '');
   if (!role) return;
+  if (room) document.body.dataset.tripServer = role;
 
   const kindList = {personal:'개인별 준비',shared:'공동 준비',todo:'남은 할 일'};
   const legacy = new Map(taskList.map(([id,title,stage,detail,links]) => ['legacy-' + id,{id,title,stage,detail,links}]));
   const dateStamp = new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
   const slot = byId('shared-prep');
   const useful = byId('useful');
+  const participant = room ? el('section','info-panel trip-participant') : null;
+  if (participant) {
+    participant.id = 'trip-participant';
+    participant.hidden = true;
+    participant.setAttribute('aria-label','공동 여행 참여');
+    byId('main').prepend(participant);
+  }
   const panels = new Map();
   const noteViews = new Map();
   let state = null;
@@ -136,7 +184,12 @@
     if (JSON.stringify([...new FormData(form)]) === JSON.stringify([...draft])) after();
   }
   async function refresh(force = false) {
-    const snapshot = await api('state' + (!force && state ? '?since=' + state.version : ''));
+    let snapshot = await api('state' + (!force && state ? '?since=' + state.version : ''));
+    if (snapshot?.auth.role === 'member' && !snapshot.seeded) {
+      const items = [...legacy.values()].map(({id,title,stage,detail}) => ({id,title,stage,detail}));
+      await api('action',{op:'seed',items,requestId:crypto.randomUUID()});
+      snapshot = await api('state');
+    }
     if (!snapshot || (state && snapshot.version < state.version)) return;
     const oldOutfits = JSON.stringify(state?.outfits);
     state = snapshot;
@@ -270,6 +323,7 @@
     }
     const editor = el('div');
     const add = button('링크 추가','action',() => referenceEditor(null,editor));
+    useful.hidden = false;
     useful.append(add,editor);
     panels.set('links',{list:byId('useful-links'),editor,add});
   }
@@ -337,7 +391,7 @@
     }) : [el('li','trip-quiet','등록된 메모가 없어요.')]));
   }
   function attachNote(day,visit,summary,body) {
-    if (!day || noteViews.has(noteKey(day,visit))) return;
+    if (!state || !day || noteViews.has(noteKey(day,visit))) return;
     const block = el('section','trip-notes');
     const editor = el('div');
     const list = el('ul');
@@ -371,9 +425,13 @@
   function openAccount() {
     const account = byId('profile-account');
     account.hidden = false;
-    account.append(el('strong','',displayName(self()) + '로 참여 중'),button('로그아웃','action secondary',async () => {
+    const accountAction = room ? button('이름 바꾸기','action secondary',() => {
+      saveLocal(roomStorage,{...room,member:''});
+      location.reload();
+    }) : button('로그아웃','action secondary',async () => {
       try { await api('logout',{}); location.replace('/'); } catch (error) { message(error.message); }
-    }));
+    });
+    account.append(el('strong','','참여 이름 · ' + displayName(self())),accountAction);
     const notice = byId('profile-sync');
     notice.hidden = false;
     notice.dataset.tripStatus = '';
@@ -385,7 +443,15 @@
     field.hidden = false;
     field.focus();
     field.select();
-    navigator.clipboard?.writeText(url).then(() => message('링크를 복사했어요.'),() => message('선택된 주소를 복사해 주세요.'));
+    message('선택된 주소를 복사해 주세요.');
+    navigator.clipboard?.writeText(url).then(() => message('링크를 복사했어요.'),() => {});
+  }
+  function roomLink(target = '') {
+    const url = new URL(location.pathname,location.origin);
+    const params = new URLSearchParams({room:room.key,api:room.origin});
+    if (target) params.set('at',target);
+    url.hash = params;
+    return url.href;
   }
   function createViewLink(day,visit) {
     return {op:'invite',kind:'viewer',day:day.id,visit:visit ? noteKey(day,visit) : '',place:visit ? placeKey(visit) : ''};
@@ -542,12 +608,19 @@
     holder.replaceChildren();
     options.replaceChildren();
     sharedPanelRefresh = null;
-    if (state?.auth.isOwner) options.append(button('일행 초대','action',() => invitationPanel(holder)));
-    const viewLink = (label,selected) => button(label,'action secondary',() =>
-      write(createViewLink(day,selected),result => shareField(location.origin + '/#read=' + result.code)));
-    options.append(viewLink(day.date + ' 일정 보기 링크',null));
-    if (visit) options.append(viewLink(visit.label + ' 장소 보기 링크',visit));
-    options.append(button('요약 이미지','action secondary',() => {
+    if (room) {
+      options.append(button('일행 링크','action',() => shareField(roomLink())));
+      const target = 'itinerary-' + day.id;
+      options.append(button(day.date + ' 일정 링크','action secondary',() => shareField(roomLink(target))));
+      if (visit) options.append(button(visit.label + ' 장소 링크','action secondary',() => shareField(roomLink(target + '/' + visit.id))));
+    } else if (state) {
+      if (state.auth.isOwner) options.append(button('일행 초대','action',() => invitationPanel(holder)));
+      const viewLink = (label,selected) => button(label,'action secondary',() =>
+        write(createViewLink(day,selected),result => shareField(location.origin + '/#read=' + result.code)));
+      options.append(viewLink(day.date + ' 일정 보기 링크',null));
+      if (visit) options.append(viewLink(visit.label + ' 장소 보기 링크',visit));
+    }
+    if (state) options.append(button('요약 이미지','action secondary',() => {
       sharedPanelRefresh = null;
       imagePanel(holder,day,visit);
     }));
@@ -570,9 +643,28 @@
     reset();
     window.addEventListener('hashchange',reset);
   }
+  function showParticipant() {
+    participant.hidden = false;
+    const notice = el('p','trip-status');
+    notice.setAttribute('role','status');
+    notice.dataset.tripStatus = '';
+    const picker = el('div','crew-picker');
+    for (const person of people) {
+      const control = button('', '', async () => {
+        if (syncing) return;
+        room.member = person.id;
+        await connect();
+      });
+      control.append(portrait(person,outfit(person),true),el('span','',person.name));
+      picker.append(control);
+    }
+    participant.replaceChildren(el('h2','','내 이름을 선택하세요'),picker,notice);
+    message(status);
+  }
   async function connect() {
     if (syncing) return;
     syncing = true;
+    if (!state) message('공동 저장소에 연결하는 중…');
     try {
       const initial = !state;
       await refresh(true);
@@ -581,7 +673,6 @@
           openPrep();
           openAccount();
           renderPrep();
-          if (!state.seeded) await write({op:'seed',items:[...legacy.values()].map(({id,title,stage,detail})=>({id,title,stage,detail}))});
         } else configureViewer();
         renderSchedule(currentDay);
         if (state.auth.role === 'viewer') {
@@ -590,12 +681,17 @@
         }
         byId('trip-connection')?.remove();
       }
+      if (room) {
+        saveLocal(roomStorage,room);
+        participant.hidden = true;
+      }
       retry = null;
       message('저장소에 연결됨');
     } catch (error) {
       retry = connect;
-      message(error.status === 401 ? '세션이 끝났어요. 페이지를 새로고침해 주세요.' : '공동 저장소에 연결할 수 없어요.');
-      if (!state && !byId('trip-connection')) {
+      message(error.status === 401 ? error.message : '공동 저장소에 연결할 수 없어요.');
+      if (!state && room) showParticipant();
+      else if (!state && !byId('trip-connection')) {
         const box = el('div','trip-status');
         box.id = 'trip-connection';
         box.dataset.tripStatus = '';
@@ -628,10 +724,14 @@
     share
   };
   byId('share-dialog').addEventListener('close',() => { sharedPanelRefresh = null; });
-  if (hashCode) {
+  if (hashCode && serverRole) {
     const notice = el('p','trip-status');
     byId('main').prepend(notice);
     join(hashCode,notice);
+  } else if (room && !room.member) {
+    status = '';
+    useful.hidden = true;
+    showParticipant();
   } else connect();
 
   setInterval(async () => {

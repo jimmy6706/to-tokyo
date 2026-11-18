@@ -1,4 +1,7 @@
 [data-trip-server] #legacy-prep { display: none; }
+.trip-participant { margin: 0 0 14px; }
+.trip-participant .crew-picker { margin: 8px 0 0; }
+.trip-participant .trip-status:empty { display: none; }
 [data-trip-server="viewer"] :is(#open-profile,#open-share,.dock,#open-overview) { pointer-events: none; }
 [data-trip-server="viewer"] :is(#open-profile,#open-share,.dock) { display: none; }
 .trip-sets { display: grid; gap: 12px; margin-top: 14px; }

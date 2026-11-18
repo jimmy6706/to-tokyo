@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { createHash, randomBytes, randomUUID } from 'node:crypto';
+import { createHash, randomBytes, randomUUID, timingSafeEqual } from 'node:crypto';
 import { readFileSync, mkdirSync, chmodSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -16,6 +16,7 @@ const dayMs = 86400000;
 const cookieName = 'tokyo_trip_session';
 const digest = value => createHash('sha256').update(value).digest('hex');
 const token = () => randomBytes(32).toString('base64url');
+const isRoomKey = value => /^[A-Za-z0-9_-]{43}$/.test(value);
 const guestHtml = `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>도쿄·요코하마 여행</title><style>body{background:#f7f3e9;color:#20283a;font:16px/1.5 system-ui;margin:0}main{max-width:28em;margin:12vh auto;padding:22px}label{display:block}input,button{font:inherit;min-height:44px;box-sizing:border-box}input{width:100%;margin:6px 0 8px}button{background:#263f75;color:white;border:0;border-radius:6px;padding:6px 18px}</style>
 <main><h1>도쿄·요코하마 여행</h1><p>일행에게 받은 초대 링크로 들어오세요.</p>
@@ -257,7 +258,12 @@ export function createStore(path) {
   return {issue,joinInvite,authenticate,state,mutate,logout:raw=>statements.logout.run(digest(raw || '')),db};
 }
 
-export function createTripServer({database, origin = ''}) {
+export function createTripServer({database, origin = '', pagesUrl = '', roomKey = ''}) {
+  if (Boolean(pagesUrl) !== Boolean(roomKey) || (roomKey && !isRoomKey(roomKey))) {
+    throw new Error('Set TRIP_PAGES_URL and a 32-byte base64url TRIP_ROOM_KEY together.');
+  }
+  const pagesOrigin = pagesUrl ? new URL(pagesUrl).origin : '';
+  const roomDigest = roomKey ? Buffer.from(digest(roomKey), 'hex') : null;
   const store = createStore(database);
   const html = readFileSync(join(core,'index.html'),'utf8').replace('<body>', '<body data-trip-server="member">');
   const viewerHtml = html.replace('data-trip-server="member"','data-trip-server="viewer"').replaceAll(/birth:'[\d-]+'/g,"birth:''")
@@ -280,8 +286,30 @@ export function createTripServer({database, origin = ''}) {
     res.setHeader('Referrer-Policy','no-referrer');
     res.setHeader('X-Frame-Options','DENY');
     const url = new URL(req.url,localOrigin);
+    const roomRoute = url.pathname === '/api/state' || url.pathname === '/api/action';
+    const requestOrigin = req.headers.origin;
+    const pagesRequest = Boolean(pagesOrigin && roomRoute && requestOrigin === pagesOrigin);
+    if (pagesOrigin && roomRoute) res.setHeader('Vary', 'Origin');
+    if (pagesRequest) {
+      res.setHeader('Access-Control-Allow-Origin', pagesOrigin);
+      if (req.method === 'OPTIONS') {
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+        res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+        res.setHeader('Access-Control-Max-Age', '600');
+        return res.writeHead(204).end();
+      }
+    }
     const cookie = req.headers.cookie?.match(new RegExp('(?:^|; *)' + cookieName + '=([\\w-]+)'))?.[1];
-    const auth = store.authenticate(cookie);
+    let auth;
+    if (pagesRequest) {
+      const credentials = /^Bearer ([a-z]+)\.([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization || '');
+      if (credentials && Object.hasOwn(members, credentials[1]) &&
+          timingSafeEqual(Buffer.from(digest(credentials[2]), 'hex'), roomDigest)) {
+        auth = {role:'member', id:credentials[1], isOwner:false};
+      }
+    } else {
+      auth = store.authenticate(cookie);
+    }
     function send(status,data,type = 'application/json; charset=utf-8') {
       res.writeHead(status,{'content-type':type});
       res.end(type.startsWith('application/json') ? JSON.stringify(data) : data);
@@ -297,7 +325,7 @@ export function createTripServer({database, origin = ''}) {
           return send(200,data,type);
         }
         if (url.pathname === '/api/state') {
-          if (!auth) return send(401,{error:'초대 링크로 들어와 주세요.'});
+          if (!auth) return send(401,{error:pagesRequest ? '일행에게 받은 공동 편집 링크를 다시 열어 주세요.' : '초대 링크로 들어와 주세요.'});
           const snapshot = store.state(auth);
           if (url.searchParams.get('since') === String(snapshot.version)) return res.writeHead(204).end();
           return send(200,snapshot);
@@ -308,7 +336,7 @@ export function createTripServer({database, origin = ''}) {
         }
       }
       if (req.method === 'POST' && ['/api/join','/api/action','/api/logout'].includes(url.pathname)) {
-        if (req.headers.origin !== localOrigin || !/^application\/json(?:\s*;|$)/i.test(req.headers['content-type'] || '')) deny('현재 여행 페이지에서 다시 시도해 주세요.');
+        if ((!pagesRequest && requestOrigin !== localOrigin) || !/^application\/json(?:\s*;|$)/i.test(req.headers['content-type'] || '')) deny('현재 여행 페이지에서 다시 시도해 주세요.');
         const chunks = [];
         let length = 0;
         for await (const chunk of req) {
@@ -324,12 +352,13 @@ export function createTripServer({database, origin = ''}) {
           if (joined.session) setSession(joined.session,joined.expiry);
           return send(200,{day:joined.day,visit:joined.visit,role:joined.kind});
         }
-        if (!auth) return send(401,{error:'세션이 끝났어요. 초대 링크로 다시 들어와 주세요.'});
+        if (!auth) return send(401,{error:pagesRequest ? '일행에게 받은 공동 편집 링크를 다시 열어 주세요.' : '세션이 끝났어요. 초대 링크로 다시 들어와 주세요.'});
         if (url.pathname === '/api/logout') {
           store.logout(cookie);
           setSession('',0);
           return send(200,{});
         }
+        if (pagesRequest && body.op === 'invite') deny();
         return send(200,store.mutate(auth,body));
       }
       send(404,{error:'주소를 찾지 못했어요.'});
@@ -345,16 +374,31 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const database = process.env.TRIP_DB || join(core,'.trip-data','trip.sqlite');
   const port = Number(process.env.PORT || 8787);
   const origin = process.env.TRIP_ORIGIN || '';
+  const pagesUrl = process.env.TRIP_PAGES_URL || '';
+  const roomKey = process.env.TRIP_ROOM_KEY || '';
   if (origin && (new URL(origin).origin !== origin || !origin.startsWith('https://'))) {
     throw new Error('TRIP_ORIGIN must be an HTTPS origin.');
   }
-  if (process.argv[2] === 'invite-owner') {
+  if (pagesUrl) {
+    const pages = new URL(pagesUrl);
+    if (pages.protocol !== 'https:' || pages.username || pages.password || pages.hash || pages.search) {
+      throw new Error('TRIP_PAGES_URL must be the HTTPS address of the GitHub Pages trip page.');
+    }
+  }
+  if (process.argv[2] === 'room-link') {
+    if (!origin || !pagesUrl || !isRoomKey(roomKey)) {
+      throw new Error('Set TRIP_ORIGIN, TRIP_PAGES_URL and TRIP_ROOM_KEY to generate the group link.');
+    }
+    const link = new URL(pagesUrl);
+    link.hash = new URLSearchParams({room:roomKey, api:origin});
+    console.log(link.href);
+  } else if (process.argv[2] === 'invite-owner') {
     const store = createStore(database);
     const invitation = store.issue('member',owner);
     console.log((origin || 'http://127.0.0.1:' + port) + '/#join=' + invitation.code);
     store.db.close();
   } else {
-    const {server} = createTripServer({database,origin});
+    const {server} = createTripServer({database,origin,pagesUrl,roomKey});
     server.listen(port, process.env.TRIP_HOST || '127.0.0.1', () => {
       console.log('Travel app · ' + (origin || 'http://127.0.0.1:' + server.address().port));
     });
