@@ -10,6 +10,7 @@ const members = {pilgyu:'필규', inhye:'인혜', yuseon:'유선'};
 const owner = 'pilgyu';
 const outfits = new Set(['base','sprout','chiikawa','hachiware','usagi']);
 const categories = new Set(['personal','shared','todo']);
+const itemVisibleTo = (item, member) => item.kind !== 'personal' || item.author === member;
 const dayIds = new Set(['16','17','18','19','20']);
 const seedIds = new Set(['yoko-dinner','airbnb-store','saturday-option','shopping-time']);
 const dayMs = 86400000;
@@ -96,6 +97,20 @@ export function createStore(path) {
   const read = (scope,key) => JSON.parse(statements.read.get(scope,key)?.data || 'null');
   const list = scope => statements.list.all(scope).map(row => JSON.parse(row.data)).filter(row => !row.deleted);
   const write = (scope,key,data) => { statements.write.run(scope,key,JSON.stringify(data)); };
+  transaction(() => {
+    // The first saved response still identifies the creator even if somebody else later edited the item.
+    const migrated = db.prepare(`UPDATE records
+      SET data = json_set(data, '$.author', COALESCE(
+        (SELECT member FROM requests
+         WHERE json_extract(requests.data, '$.id') = records.id
+           AND json_extract(requests.data, '$.kind') = 'personal'
+           AND json_extract(requests.data, '$.rev') = 1),
+        json_extract(data, '$.by')
+      ))
+      WHERE scope = 'item' AND json_extract(data, '$.kind') = 'personal'
+        AND json_extract(data, '$.author') IS NULL`).run();
+    if (migrated.changes) statements.bump.run();
+  });
   function issue(kind, member = '', day = '', visit = '') {
     const code = token();
     const key = randomUUID();
@@ -141,7 +156,10 @@ export function createStore(path) {
       const visibleGuides = guides.filter(guide => auth.visit ? guide.id === auth.visit.split('.')[1] : guide.id.startsWith(auth.day + '/'));
       return {version, auth, notes:visible, guides:visibleGuides, people:members};
     }
-    return {version,auth,seeded:!!statements.seeded.get(),people:members,notes,guides,items:list('item'),checks:list('check'),links:list('link'),outfits:list('outfit'),
+    const items = list('item').filter(item => itemVisibleTo(item,auth.id));
+    const visibleItems = new Set(items.map(item => item.id));
+    const checks = list('check').filter(check => visibleItems.has(check.item) && (!check.person || check.person === auth.id));
+    return {version,auth,seeded:!!statements.seeded.get(),people:members,notes,guides,items,checks,links:list('link'),outfits:list('outfit'),
       invitations:auth.isOwner ? statements.pending.all(Date.now()) : []};
   }
   function mutate(auth, payload) {
@@ -151,16 +169,26 @@ export function createStore(path) {
     const op = line(payload.op,25,true);
     return transaction(() => {
       const duplicate = statements.request.get(member,payload.requestId);
-      if (duplicate) return JSON.parse(duplicate.data);
+      if (duplicate) {
+        const result = JSON.parse(duplicate.data);
+        const itemId = categories.has(result.kind) ? result.id : result.item;
+        const item = itemId && read('item',itemId);
+        if (item) requireVisibleItem(item);
+        return result;
+      }
       const now = new Date().toISOString();
       const result = change();
       statements.saveRequest.run(member,payload.requestId,JSON.stringify(result));
       statements.bump.run();
       return result;
 
+      function requireVisibleItem(item) {
+        if (!itemVisibleTo(item,member)) throw new Failure(404,'항목을 찾을 수 없어요.');
+      }
       function revision(scope,key, allowDeleted = false) {
         const row = read(scope,id(key));
         if (!row || (row.deleted && !allowDeleted)) throw new Failure(404,'이미 삭제되었어요.');
+        if (scope === 'item') requireVisibleItem(row);
         if (payload.rev !== row.rev) conflict();
         return row;
       }
@@ -193,11 +221,14 @@ export function createStore(path) {
           if (assignee && !Object.hasOwn(members,assignee)) invalid();
           const qty = kind === 'shared' ? payload.qty : 1;
           if (!Number.isInteger(qty) || qty < 1 || qty > 999) invalid('수량은 1~999개로 입력해 주세요.');
-          return record('item',{kind,assignee,qty,title:line(payload.title,120,true),detail:line(payload.detail,600)},old);
+          const data = {kind,assignee,qty,title:line(payload.title,120,true),detail:line(payload.detail,600)};
+          if (kind === 'personal') data.author = member;
+          return record('item',data,old);
         }
         if (op === 'check') {
           const item = read('item',id(payload.id));
           if (!item || item.deleted) throw new Failure(404,'이미 삭제된 항목이에요.');
+          requireVisibleItem(item);
           if (typeof payload.done !== 'boolean') invalid();
           const person = item.kind === 'personal' ? member : '';
           const key = item.id + ':' + person;
