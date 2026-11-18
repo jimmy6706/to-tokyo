@@ -3,174 +3,470 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f7f6f1">
+  <meta name="theme-color" content="#ffffff">
   <meta name="robots" content="noindex, nofollow">
   <meta name="description" content="12월 도쿄·요코하마 일정, 예약 체크리스트와 구글맵 길찾기">
-  <title lang="ja">東京・横浜旅行</title>
+  <title>도쿄·요코하마 여행</title>
   <style>
-    :root{color-scheme:light;--paper:#f7f6f1;--card:#fffefa;--ink:#152e2a;--muted:#506560;--line:#d9e1d8;--green:#174d40;--light:#e6efe6;--orange:#963c24;--peach:#fae9dd;--radius:20px}
-    *{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;word-break:keep-all}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:var(--green);text-underline-offset:3px}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #a74f31;outline-offset:3px}h1,h2,h3,p{margin:0}h2{font-size:27px;line-height:1.23;letter-spacing:-.055em}h3{font-size:17px;line-height:1.4;letter-spacing:-.025em}ul,ol{padding:0;margin:0;list-style:none}[hidden]{display:none!important}
-    .shell{width:min(1060px,calc(100% - 48px));margin:auto}.outline,.link,.tab{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:43px;border-radius:10px;font-weight:750;text-decoration:none;cursor:pointer}.outline{border:1px solid #b6c7bc;background:var(--card);color:var(--green);padding:0 12px}.outline:hover,.link:hover{background:#d6e7d9}
-    main{padding:25px 0 48px}.hero{isolation:isolate;position:relative;overflow:hidden;display:grid;grid-template-columns:1.45fr 1fr;gap:20px;align-items:end;min-height:276px;padding:42px;border-radius:26px;background:#123e34;color:#f3f7ed}.hero:before{content:'';position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 82% 10%,#2e5b4b 0,transparent 58%)}.hero .dates{color:#d6e7d8;letter-spacing:.09em;font-size:13px;font-weight:750}.hero h1{margin:13px 0 8px;font-size:clamp(42px,6.8vw,85px);line-height:.99;letter-spacing:-.1em}.hero .sub{color:#dce9dc;margin-top:15px;font-size:14px}.rail{display:grid;gap:14px;align-self:center;margin-left:8px;padding:12px 0 12px 24px;border-left:2px solid #86b59b}.rail li{position:relative;display:flex;align-items:center;gap:11px;font-size:15px;font-weight:740}.rail li:before{content:'';position:absolute;left:-30px;width:10px;height:10px;border-radius:50%;background:#e5efe1;border:2px solid #184538}.rail li:first-child:before{background:#e9aa83}.rail small{font-size:11px;letter-spacing:.04em;color:#d6e7d8;white-space:nowrap}
-    .main-grid{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(270px,1fr);gap:24px;align-items:start;margin-top:27px}.stack{display:grid;gap:24px}.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;min-width:0}.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px}.note{font-size:13px;color:var(--muted);margin-top:5px}.badge{display:inline-block;vertical-align:middle;white-space:nowrap;font-size:11px;font-weight:800;padding:2px 8px;border-radius:20px;background:#edf0ea;color:#455b51}.badge.urgent{color:var(--orange);background:var(--peach)}.badge.done{color:#205a46;background:var(--light)}.badge.check{color:#765119;background:#f7eed7}.tasks>li+li,.reservations>li+li,.transit>li+li{border-top:1px solid var(--line)}.task{display:grid;grid-template-columns:23px minmax(0,1fr);gap:11px;padding:13px 0}.task input{margin:4px 0 0;width:19px;height:19px;accent-color:var(--green);cursor:pointer}.task label{font-weight:800;cursor:pointer}.task:has(input:checked) label{text-decoration:line-through;color:var(--muted)}.task p{font-size:13px;color:var(--muted);margin:3px 0 0}.task .badge{margin-left:6px}.task .links{margin-top:7px}.links{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:9px}.link{font-size:12px;padding:0 11px;color:var(--green);background:var(--light)}.link.alt{background:transparent;border:1px solid var(--line)}.link.alt:hover{background:var(--light)}
-    .tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:3px 0 15px}.tab{min-width:0;min-height:50px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;line-height:1.1;flex-direction:column;padding:5px}.tab span{font-size:10px}.tab[aria-selected=true]{background:var(--green);color:white;border-color:var(--green)}.day-heading{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:5px}.event p,.reservations p,.transit p{font-size:13px;color:var(--muted);margin-top:4px}.reservations li,.transit li{padding:12px 0}.reservations .badge{margin-bottom:3px}.reservations h3,.transit h3{font-size:15px}.reservations li:last-child,.transit li:last-child{padding-bottom:0}.callout{margin:2px 0 11px;padding:11px 13px;border-radius:11px;background:var(--light);font-size:13px;color:#214b3d}.callout p+p{margin-top:4px}.small{font-size:12px;color:var(--muted)}.foot{margin-top:23px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.text-link{display:inline-block;padding:5px 0}.status-live{min-height:1.4em}
-    @media(max-width:760px){.main-grid{grid-template-columns:1fr;gap:18px}.stack{gap:18px}.shell{width:calc(100% - 30px)}main{padding-top:15px}.hero{padding:25px;min-height:215px}.hero h1{font-size:clamp(35px,8.2vw,58px)}.panel{padding:19px}.hero .sub{font-size:12px}}
-    @media(max-width:460px){.hero{grid-template-columns:1fr;gap:16px;padding:22px}.hero h1{font-size:46px}.hero .dates{font-size:11px}.rail{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;border-left:0;border-top:1px solid #86b59b;padding:8px 0 0;margin:0}.rail li{display:block;font-size:12px}.rail li:before{display:none}.rail small{display:block;font-size:9px}.panel{padding:16px}}
-    @media(max-width:350px){.hero h1{font-size:39px}}
-    @media print{#share,.tabs,.links,#share-status{display:none!important}.shell{width:100%}.hero{min-height:0;padding:16px;color:#142b25;background:white;border:1px solid var(--line)}.hero:before,.rail{display:none}.hero .dates,.hero .sub{color:#142b25}.hero h1{font-size:35px}.main-grid{display:block}.panel{margin-top:12px;break-inside:avoid}.day[hidden]{display:block!important}.day+.day{margin-top:20px}}
-    :root{--paper:#f4efe2;--card:#fff9ec;--ink:#242c32;--muted:#546066;--line:#bfc1ad;--green:#205448;--light:#deead4;--peach:#f4dfc7;--radius:0px;--pixel:'Courier New','Apple SD Gothic Neo',monospace}
-    body{background-image:radial-gradient(#dcd7c7 1px,transparent 1px);background-size:12px 12px}.outline,.link,.tab,.callout,.badge{border-radius:0}.hero{display:block;min-height:0;padding:20px 23px 22px;border:2px solid var(--ink);border-radius:0;background:#fff9ec;color:var(--ink);box-shadow:5px 5px 0 #273932}.hero:before{display:none}.hero-head{margin-bottom:17px}.hero .dates{color:var(--green);font:700 13px/1.3 var(--pixel);letter-spacing:.04em}.hero h1{margin:7px 0 0;font-size:clamp(36px,6vw,64px);line-height:1.07;letter-spacing:-.085em}.hero .sub{color:var(--muted);margin:0 0 3px;text-align:right}.hero h1 br{display:none}
-    .map-frame{position:relative;border:2px solid #283731;background:#a9dce0;overflow:hidden;aspect-ratio:640/278}.map-art{display:block;width:100%;height:100%;image-rendering:pixelated}.map-pin{position:absolute;font-family:var(--pixel);font-size:11px;line-height:1.1;padding:3px 5px;border:1px solid #273932;background:#fff7df;color:#263931;white-space:nowrap;pointer-events:none}.map-pin.incheon{left:9%;top:28%}.map-pin.narita{left:78%;top:30%}.map-pin.tokyo{left:60%;top:47%}.map-pin.kirin{left:58%;top:68%;background:#ffe6b8}.map-pin.yoko{left:46%;top:82%}.map-caption{display:flex;justify-content:space-between;gap:10px;margin:9px 0;color:var(--muted);font-size:12px}.map-caption strong{color:var(--green)}.map-caption span:last-child{white-space:nowrap}.actor{position:absolute;left:0;top:0;transform:translate(-50%,-62%);display:grid;place-items:center;min-width:44px;min-height:49px;padding:0 1px;border:0;background:transparent;cursor:pointer;z-index:1}.actor canvas,.portrait{image-rendering:pixelated}.actor canvas{width:44px;height:44px;filter:drop-shadow(2px 2px 0 #25383266)}.actor span{background:#fff9ec;color:#22362d;border:1px solid #263c33;font:800 10px/1.2 system-ui;padding:1px 3px;white-space:nowrap}.actor:hover span{background:#fbdd9f}.actor:focus-visible{z-index:2;outline-offset:0}.stage-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.stage-buttons button,.wardrobe button,.outfits button{min-height:43px;border:1px solid #a5b2a0;background:#f3f1e3;color:var(--ink);cursor:pointer;font-size:13px;font-weight:800}.stage-buttons button[aria-pressed=true],.outfits button[aria-pressed=true]{background:var(--green);color:#fff;border-color:var(--green)}.stage-buttons button:hover,.wardrobe button:hover,.outfits button:hover{border-color:var(--green);box-shadow:inset 0 -3px #263c3330}.wardrobe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:12px}.wardrobe button{display:flex;justify-content:center;align-items:center;gap:6px;background:var(--card);font-size:12px}.wardrobe canvas{width:32px;height:32px}.wardrobe small{font-weight:500;color:var(--muted)}.panel{border:2px solid #40514a;box-shadow:4px 4px 0 #d4cebc}.tab{font-family:var(--pixel)}.link{border-bottom:2px solid #8da493}.link.alt{border-bottom:2px solid #c1c8b8}
-    dialog{width:min(430px,calc(100% - 30px));max-height:calc(100% - 30px);padding:20px;border:2px solid var(--ink);background:var(--card);color:var(--ink);box-shadow:5px 5px 0 #273932;overflow:auto}dialog::backdrop{background:#172a27a0}.profile-head{display:flex;align-items:center;gap:12px;margin-bottom:13px}.profile-head .portrait{width:64px;height:64px;background:#e7ead5;border:1px solid #8b9f88}.profile-head .outline{margin-left:auto}.outfits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:8px 0 16px}
-    @media(max-width:760px){.hero{padding:15px}.hero-head{margin-bottom:13px}.map-pin{font-size:10px}.hero h1{font-size:clamp(33px,7vw,54px)}}
-    @media(max-width:500px){.hero .sub{text-align:left;margin-top:6px}.map-frame{aspect-ratio:1.9}.map-pin{font-size:9px;padding:2px 3px}.map-pin.incheon{left:5%;top:21%}.map-pin.narita{left:78%;top:26%}.map-pin.tokyo{left:58%;top:47%}.map-pin.kirin{left:65%;top:65%}.map-pin.yoko{left:41%;top:84%}.actor canvas{width:36px;height:36px}.actor{min-width:40px;min-height:40px}.wardrobe small{display:none}.stage-buttons button{font-size:11px}.map-caption{font-size:11px}}
-    @media print{.map-frame,.map-caption,.stage-buttons,.wardrobe,dialog{display:none!important}.hero .sub{text-align:left}.hero-head{display:block;margin:0}}
-    .shell{max-width:840px}
-    .hero-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
-    .hero-meta .outline{min-height:44px;flex:none;font-size:12px}
-    .main-grid{display:grid;grid-template-columns:1fr;gap:13px;margin-top:22px}
-    .panel{padding:0}
-    .panel summary{display:flex;align-items:center;gap:12px;min-height:64px;padding:12px 17px;list-style:none;cursor:pointer}
-    .panel summary::-webkit-details-marker{display:none}
-    .panel summary:focus-visible{outline:3px solid #a74f31;outline-offset:2px}
-    .panel summary h2{font-size:23px;flex:1}
-    .panel summary:after{content:'+';width:30px;text-align:center;background:var(--light);color:var(--green);font:800 23px/30px var(--pixel)}
-    .panel[open] summary:after{content:'−'}
-    .panel-body{border-top:1px solid var(--line);padding:12px 17px 18px}
-    .panel-body>.note{margin:0 0 10px}
-    .map-frame{aspect-ratio:2.15;min-height:230px}
-    .map-caption{align-items:center;margin:9px 0 0}
-    .map-caption a{min-height:44px;display:inline-flex;align-items:center;padding:0 2px;white-space:nowrap}
-    .map-pin{z-index:1}
-    .map-pin.ueno{left:77%;top:58%}
-    .map-pin.hara{left:62%;top:55%}
-    .map-pin.shibuya{left:54%;top:71%}
-    .actor{min-width:46px;min-height:56px;transform:translate(-50%,-68%);z-index:2}
-    .actor canvas{width:44px;height:44px;animation:hop 1.25s steps(3,end) infinite;animation-delay:var(--hop-delay,0s);pointer-events:none}
-    .actor:focus-visible{z-index:3}
-    .actor span{pointer-events:none}
-    @keyframes hop{0%,68%,100%{transform:translateY(0)} 33%{transform:translateY(-7px)}}
-    @media(prefers-reduced-motion:reduce){.actor canvas{animation:none}}
-    .outfits button{display:grid;justify-items:center;gap:3px;padding:5px;min-height:62px;border:1px solid #a5b2a0;background:#f3f1e3;color:var(--ink);font:800 14px var(--pixel);cursor:pointer}
-    .outfits button[aria-pressed=true]{background:var(--green);color:#fff;border-color:var(--green)}
-    .outfits canvas{width:33px;height:33px}
-    .day-tools{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:7px;margin:4px 0}
-    .tab span{white-space:nowrap}
-    .trip-summary{display:grid;margin-top:8px;border-top:1px solid var(--line)}
-    .trip-summary li+li{border-top:1px solid var(--line)}
-    .trip-summary a{display:grid;grid-template-columns:85px minmax(0,1fr);gap:8px;align-items:center;min-height:44px;padding:6px 2px;color:var(--ink);text-decoration:none;font-size:12px}
-    .trip-summary a:hover strong{text-decoration:underline}
-    .trip-summary-date{display:grid;gap:2px;line-height:1.35}
-    .trip-summary strong{color:var(--green)}
-    .trip-summary span{color:var(--muted)}
-    #itinerary summary{position:relative}
-    .day-jump{position:absolute;top:0;left:0;width:1px;height:1px}
-    .map-pin.gimpo{left:11%;top:45%}
-    .map-pin.haneda{left:70%;top:73%}
-    .map-pin.asakusa{left:79%;top:48%}
-    .map-pin.ginza{left:68%;top:70%}
-    .map-pin.tower{left:73%;top:85%}
-    .map-pin.shinjuku{left:52%;top:50%}
-    .tab .tab-name{white-space:normal;font-family:system-ui,sans-serif;font-size:11px;line-height:1.2}
-    .tab .tab-date{font-size:12px}
-    .tab{min-height:58px;justify-content:flex-start;padding-top:9px}
-    .timeline{display:grid;gap:8px;margin-top:14px;padding-left:17px;background:linear-gradient(var(--line),var(--line)) 5px 10px/2px calc(100% - 20px) no-repeat}
-    .event-group{padding:5px 0;color:var(--green);font-size:14px;font-weight:800}
-    .event-group:not(:first-child){margin-top:9px}
-    .event{
-      --event-accent:#45674c;--event-icon:#e9efde;
-      position:relative;display:grid;grid-template-columns:36px minmax(0,1fr);gap:10px;
-      padding:12px;border:1px solid var(--line);border-left:4px solid var(--event-accent);
-      background:#fffdf5;box-shadow:0 2px 0 #dbd7c8;
+    :root {
+      color-scheme: light;
+      --paper: #f8f9fb;
+      --surface: #fff;
+      --ink: #192738;
+      --muted: #566476;
+      --line: #dfe5eb;
+      --blue: #253f70;
+      --sky: #edf2fa;
+      --amber: #ffebba;
+      --peach: #fae7db;
+      --green: #245d4c;
+      --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+      --gutter: clamp(12px, 4.1vw, 24px);
+      --visit-grid: 4.9rem minmax(0, 1fr) 14px;
     }
-    .event::before{content:'';position:absolute;left:-20px;top:21px;width:9px;height:9px;border:2px solid var(--card);background:var(--event-accent)}
-    .event--movement{--event-accent:#536762;--event-icon:transparent;grid-template-columns:23px minmax(0,1fr);gap:5px;margin-left:15px;padding:4px 0 4px 5px;background:transparent;border:0;box-shadow:none}
-    .event--movement::before{left:-26px;top:14px;width:25px;height:1px;border:0;background:var(--line)}
-    .event[data-type=meal]{--event-accent:#8c482d;--event-icon:#f7e5d4;background:#fffaee}
-    .event[data-type=show]{--event-accent:#674b73;--event-icon:#efe6f3;background:#fffafd}
-    .event-icon{display:grid;place-items:center;height:36px;background:var(--event-icon);font-size:19px;line-height:1}
-    .event--movement .event-icon{height:23px;font-size:15px}
-    .event-meta{display:flex;align-items:center;flex-wrap:wrap;gap:2px 8px;margin-bottom:3px;font-size:12px}
-    .event-time{color:var(--ink);font-weight:850;font-variant-numeric:tabular-nums}
-    .event-type{color:var(--event-accent);font-weight:800}
-    .event-duration{color:var(--event-accent);font-weight:750}
-    .event h4{margin:0;font-size:16px;line-height:1.4;letter-spacing:-.025em}
-    .event--movement h4{font-size:13px;color:var(--muted)}
-    .event--movement p{font-size:12px;margin-top:2px}
-    .event--movement .links{margin-top:3px}
-    .event--movement .link{background:transparent;border:1px solid var(--line)}
-    .event--movement .link:hover{background:var(--light)}
-    .event .link{min-height:44px}
-    .event-spots{margin-top:8px}
-    .event-spots li{padding:7px 0;border-top:1px solid var(--line)}
-    .event-spots li:last-child{padding-bottom:0}
-    .event-spots .links{margin-top:4px}
-    .link-icon{font-size:14px;line-height:1}
-    #share-status{overflow-wrap:anywhere;min-width:0}
-    @media(max-width:375px){
-      .tabs{gap:3px}
-      .tab{padding-inline:2px}
-      .tab .tab-date{font-size:10px}
-      .tab .tab-name{font-size:10px}
-      .event{grid-template-columns:30px minmax(0,1fr);gap:8px;padding:10px}
-      .event-icon{height:30px;font-size:17px}
-      .event--movement{grid-template-columns:20px minmax(0,1fr);gap:5px;padding:4px 0 4px 4px}
-      .trip-summary a{grid-template-columns:64px minmax(0,1fr)}
+    * { box-sizing: border-box; }
+    html { scroll-padding-block: 8rem 5.75rem; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1rem/1.5 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
     }
-    @media(max-width:500px){
-      .panel summary{min-height:62px;padding:11px 13px}
-      .panel summary h2{font-size:21px}
-      .panel-body{padding:11px 13px 15px}
-      .map-frame{aspect-ratio:1.45}
-      .map-caption{font-size:12px;align-items:flex-start}
-      .map-caption strong{padding:9px 0}
-      .actor canvas{width:40px;height:40px}
-      .map-pin.yoko{left:43%;top:87%}
-      .map-pin.tokyo{left:61%;top:38%}
-      .map-pin.ueno{left:80%;top:66%}
-      .map-pin.hara{left:53%;top:56%}
-      .map-pin.shibuya{left:50%;top:79%}
+    [hidden] { display: none !important; }
+    h1, h2, h3, p, figure { margin: 0; }
+    h1, h2, h3 { line-height: 1.25; letter-spacing: -.035em; }
+    button, input { font: inherit; }
+    button, a, summary { -webkit-tap-highlight-color: transparent; }
+    button, summary { cursor: pointer; }
+    button { color: inherit; }
+    a { color: var(--blue); text-underline-offset: .18em; }
+    :focus-visible { outline: 2px solid #406dab; outline-offset: 2px; }
+    button:disabled { cursor: default; }
+    ol, ul { list-style: none; margin: 0; padding: 0; }
+    summary { list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    .shell { width: min(100%, 1080px); margin-inline: auto; padding-inline: var(--gutter); }
+    .pixel { display: block; image-rendering: pixelated; flex-shrink: 0; }
+    .glyph { width: 16px; height: 16px; }
+    .skip { position: fixed; z-index: 10; top: 6px; left: 12px; transform: translateY(-150%); }
+    .skip:focus { transform: none; }
+    .topbar { position: sticky; top: 0; z-index: 4; background: var(--surface); border-bottom: 1px solid var(--line); }
+    .masthead {
+      min-height: 58px; padding-top: env(safe-area-inset-top); display: flex;
+      align-items: center; gap: 8px;
     }
-    @media print{.panel summary:after,.day-tools{display:none}.panel-body{border:0}}
+    .brand {
+      display: inline-flex; align-items: center; justify-content: flex-start; padding: 0;
+      border: 0; background: transparent; min-width: 0; min-height: 44px; gap: 8px;
+      margin-right: auto; text-align: left; font-size: 1.08rem; font-weight: 750;
+      letter-spacing: -.045em;
+    }
+    .brand-mark { display: grid; width: 29px; height: 25px; place-items: center; background: #fffdf8; border: 1px solid #dee3e8; border-radius: 4px; flex: none; }
+    .top-button {
+      min-height: 44px; min-width: 44px; padding: 0 5px; display: inline-flex; align-items: center;
+      justify-content: center; gap: 5px; background: transparent; border: 0;
+      font-size: .84rem; font-weight: 760; color: var(--blue);
+    }
+    .top-button:hover, .brand:hover { color: #395e94; }
+    .crew-stack { display: flex; align-items: center; padding-left: 3px; }
+    .crew-stack canvas { width: 24px; height: 24px; border: 1px solid var(--paper); border-radius: 50%; margin-left: -3px; }
+    .dates {
+      display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px;
+      padding-block: 2px 8px;
+    }
+    .date {
+      display: flex; align-items: center; justify-content: center; flex-wrap: wrap; align-content: center;
+      gap: 0 4px; min-height: 44px; padding: 3px 1px; line-height: 1.15;
+      border: 1px solid transparent; border-radius: 10px; background: #f4f6f8; color: var(--muted);
+    }
+    .date-number { font-family: var(--mono); font-size: .88rem; font-weight: 750; letter-spacing: -.025em; font-variant-numeric: tabular-nums; }
+    .date-week { font-size: .76rem; font-weight: 740; }
+    .date:hover { background: #eaf0f6; }
+    .date[aria-current="date"] { color: white; background: var(--ink); }
+    .date.is-today:not([aria-current]) { border-color: #879cba; color: var(--blue); }
+    .page { padding-block: 22px calc(88px + env(safe-area-inset-bottom)); }
+    .day-heading { display: flex; align-items: end; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+    .context { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: .8rem; font-weight: 700; margin-bottom: 5px; }
+    .context::before { content: ""; width: 16px; height: 3px; border-radius: 2px; background: #bd344c; }
+    h1 { font-size: clamp(1.85rem, 6.7vw, 2.65rem); font-weight: 850; }
+    main h1 { width: fit-content; }
+    h2 { font-size: 1.35rem; }
+    h3 { font-size: 1rem; }
+    .action, .link {
+      display: inline-flex; justify-content: center; align-items: center; gap: 6px;
+      min-height: 44px; min-width: 44px; padding: 5px 10px; border: 1px solid #d7ddea;
+      border-radius: 10px; background: var(--sky); color: var(--blue); text-decoration: none;
+      font-size: .875rem; font-weight: 700; line-height: 1.35;
+    }
+    .action:hover, .link:hover { background: #dbe7fa; }
+    .action.secondary, .link { background: var(--surface); }
+    .action.secondary:hover, .link:hover { background: var(--sky); }
+    .links { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+    .link-label { min-width: 0; text-align: left; }
+    .external-mark { flex: none; color: var(--muted); font-size: .8rem; font-weight: 500; }
+    .link .glyph { width: 14px; height: 14px; }
+    .link--directions { border-color: #cbd6e8; color: var(--blue); }
+    .navigation-icon { width: 13px; height: 13px; flex: none; background: currentColor; clip-path: polygon(96% 4%, 65% 94%, 49% 57%, 6% 43%); }
+    .link--map { background: #f2f8f5; border-color: #d3e6dc; color: var(--green); }
+    .link.link--directions { background: var(--sky); }
+    .day-cue {
+      display: flex; gap: 8px; align-items: flex-start; margin: 0 0 12px;
+      padding: 11px 13px; border: 1px solid #e3e8ef; border-radius: 12px; background: #f0f3f7;
+      color: #405065; font-size: .875rem; line-height: 1.5;
+    }
+    .cue-label { flex: none; font-size: .78rem; font-weight: 800; color: #43556e; padding-block: 1px; }
+    mark { color: inherit; background: linear-gradient(transparent 65%, var(--amber) 65%); font-weight: 750; font-variant-numeric: tabular-nums; }
+    .day-part { color: var(--muted); font-size: .82rem; font-weight: 730; }
+    .lane-label { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 9px 12px; background: #f0f3f8; font-weight: 820; color: var(--blue); }
+    .lane-label:not(:first-child) { border-top: 1px solid var(--line); }
+    .lane-label .pixel { border-radius: 50%; }
+    .lane-label .day-part { margin-left: auto; }
+    .schedule, .info-panel {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 3px 12px #24364a05;
+    }
+    .schedule { overflow: clip; }
+    .visit + .visit { border-top: 1px solid var(--line); }
+    .visit-summary, .move-summary {
+      min-height: 44px; display: grid; grid-template-columns: var(--visit-grid); gap: 8px;
+      align-items: start; padding: 14px 13px; position: relative;
+    }
+    .visit-summary:hover { background: #f7f9fb; }
+    .visit-summary:focus-visible, .move-summary:focus-visible { outline-offset: -3px; }
+    .visit[open] > summary { background: #f0f4fc; }
+    .visit-time { display: grid; gap: 2px; padding-top: 1px; min-width: 0; }
+    .clock {
+      font: 700 .96rem/1.35 var(--mono); letter-spacing: -.035em; font-variant-numeric: tabular-nums;
+    }
+    .clock-end { color: var(--muted); font: 600 .8rem/1.3 var(--mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .clock-qualifier { color: var(--muted); font-size: .8rem; line-height: 1.25; font-weight: 710; }
+    .visit-main { display: grid; min-width: 0; gap: 3px; }
+    .visit-title { font-size: 1.1rem; line-height: 1.35; font-weight: 780; letter-spacing: -.03em; }
+    .visit-condition { font-size: .875rem; line-height: 1.38; color: var(--muted); }
+    .meta-row { display: flex; align-items: center; flex-wrap: wrap; gap: 3px 6px; }
+    .badge {
+      display: inline-flex; align-items: center; padding: 1px 5px; border-radius: 4px;
+      font-size: .75rem; font-weight: 800; line-height: 1.45; color: var(--muted); background: #eff2f5;
+    }
+    .badge.confirmed { background: #e1f0e8; color: var(--green); }
+    .badge.meal { background: var(--peach); color: #803f2a; }
+    .badge.choice { background: #f4eddb; color: #6b5332; }
+    .badge.pending { background: #fff0c8; color: #64491d; }
+    .chevron {
+      justify-self: center; margin-top: 7px; width: 7px; height: 7px;
+      border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor;
+      color: #596b84; transform: rotate(45deg);
+    }
+    details[open] > summary .chevron { transform: translateY(3px) rotate(225deg); }
+    .move-row { position: relative; background: #f7f9fc; border-block: 1px solid #e7ebf0; }
+    .move-row + .move-row { border-top: 0; }
+    .move-summary {
+      min-height: 50px; align-items: center; grid-template-columns: 19px minmax(0, 1fr) 10px;
+      padding: 6px 103px 6px 14px; color: var(--blue); font-size: .825rem;
+    }
+    .move-summary .chevron { margin: -3px 0 0; }
+    .move-summary:hover { background: #eef2f8; }
+    .move-summary > .glyph { width: 14px; height: 14px; }
+    .move-copy { min-width: 0; line-height: 1.45; }
+    .move-label { display: flex; flex-wrap: wrap; gap: 0 5px; align-items: baseline; }
+    .move-destination { display: block; font-size: .85rem; font-weight: 700; color: var(--ink); }
+    .move-mode { color: var(--muted); }
+    .move-duration { font-weight: 720; font-variant-numeric: tabular-nums; }
+    .move-condition { display: block; color: var(--muted); font-size: .8rem; }
+    .route-action {
+      position: absolute; top: 3px; right: 8px; z-index: 1; isolation: isolate;
+      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+      min-height: 44px; padding: 0 10px; color: var(--blue); font-size: .81rem;
+      font-weight: 750; text-decoration: none;
+    }
+    .route-action::before {
+      content: ""; position: absolute; z-index: -1; inset: 6px 0;
+      background: var(--surface); border: 1px solid #c9d5e4; border-radius: 8px;
+    }
+    .route-action:hover::before { background: var(--sky); border-color: #8ca3c3; }
+    .move-detail, .visit-detail { padding: 10px 12px 12px; font-size: .9375rem; }
+    .visit-detail { border-top: 1px solid var(--line); }
+    .move-detail p + p, .visit-detail p + p { margin-top: 5px; }
+    .visit-context { display: flex; flex-wrap: wrap; gap: 4px 8px; color: var(--muted); font-size: .8125rem; }
+    .visit-full-name { font-weight: 700; }
+    .route-path { margin: 0 0 8px; font-size: .875rem; }
+    .route-path li { position: relative; padding: 2px 0 2px 18px; }
+    .route-path li::before {
+      content: ""; position: absolute; top: .7em; left: 2px; width: 6px; height: 6px;
+      border: 1.5px solid #7385a3; background: white; border-radius: 50%; z-index: 1;
+    }
+    .route-path li:not(:last-child)::after {
+      content: ""; position: absolute; left: 6px; top: 1em; bottom: -.8em; border-left: 1px solid #bdcadd;
+    }
+    .route-path li:last-child { color: var(--blue); font-weight: 750; }
+    .route-path li:last-child::before { background: var(--blue); border-color: var(--blue); }
+    .route-path + p { color: var(--muted); font-size: .875rem; line-height: 1.6; }
+    .below-note { font-size: .875rem; color: var(--muted); padding: 12px 2px 0; }
+    .candidate-list { margin-top: 10px; }
+    .candidate-list > summary { min-height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 4px 10px; background: #f1f4f8; border-radius: 7px; font-weight: 780; }
+    .candidate-list li { border-top: 1px solid var(--line); padding: 9px 2px; }
+    .candidate-list .badge { margin-left: 5px; }
+    .candidate-list p { color: var(--muted); font-size: .875rem; }
+    .dock {
+      position: fixed; z-index: 3; inset: auto 0 0; padding-bottom: env(safe-area-inset-bottom);
+      border-top: 1px solid var(--line); background: var(--surface);
+    }
+    .dock-items { max-width: 530px; margin: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 4px 7px; }
+    .dock button {
+      display: grid; gap: 2px; justify-items: center; align-content: center; min-height: 47px;
+      min-width: 44px; padding: 3px; border: 0; border-radius: 8px; background: transparent;
+      font-size: .78rem; font-weight: 770; line-height: 1.15; color: var(--muted);
+    }
+    .dock button[aria-current="page"] { color: var(--blue); background: var(--sky); }
+    .dock button:hover { background: var(--sky); }
+    .info-panel { padding: 13px 16px; margin-top: 12px; }
+    .info-panel > summary { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 44px; font-size: 1.1rem; font-weight: 830; }
+    .info-panel > summary .chevron { margin: 0 4px; }
+    .info-panel > p, .info-list p { color: var(--muted); font-size: .9375rem; }
+    .info-list li { padding: 10px 0; border-top: 1px solid var(--line); }
+    .info-list h3 { margin: 3px 0; }
+    .info-list { margin-top: 7px; }
+    .task { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; align-items: start; }
+    .task-check { display: grid; width: 44px; height: 44px; place-items: center; cursor: pointer; }
+    .task input { display: block; width: 22px; height: 22px; margin: 0; accent-color: var(--blue); }
+    .task-name { display: block; width: fit-content; padding-block: 3px; font-weight: 820; }
+    .task:has(input:checked) .task-name { text-decoration: line-through; color: var(--muted); }
+    .transport-shortcuts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; align-items: flex-start; }
+    .transport-shortcuts > details { min-width: 0; }
+    .transport-shortcuts .bookmark-link { background: #eff6f2; border-color: #d3e4da; color: var(--green); }
+    .transport-shortcuts .suica-toggle { background: var(--surface); }
+    .info-panel:has(> summary) { padding-block: 6px; }
+    .info-panel[open] { padding-bottom: 16px; }
+    .info-list > li:first-child { border-top: 0; }
+    .suica-toggle { justify-content: flex-start; gap: 8px; }
+    .suica-toggle .chevron { margin-top: -3px; margin-left: 3px; }
+    .suica-copy { margin-top: 6px; padding: 9px 11px; border-radius: 8px; background: var(--sky); color: var(--muted); font-size: .875rem; }
+    .transport-list { margin-top: 0; }
+    .transport-list li:first-child { border-top: 0; padding-top: 0; }
+    .trip-map { max-width: 590px; margin: 12px auto 0; }
+    .map-screen {
+      position: relative; overflow: clip; isolation: isolate; border: 1px solid #a2bfc8;
+      border-radius: 9px; background: #c4e2e9; cursor: grab;
+      touch-action: pan-y pinch-zoom; user-select: none;
+    }
+    .map-screen:active { cursor: grabbing; }
+    .world { width: 100%; height: auto; }
+    .map-actors, .map-labels { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .map-label {
+      position: absolute; transform: translate(-50%, -50%); padding: 1px 4px;
+      color: #263b59; background: #fffaf0f5; border-radius: 3px;
+      font-size: .71rem; line-height: 1.25; font-weight: 820; white-space: nowrap;
+    }
+    .map-caption { margin: 8px 0; font-size: .875rem; color: var(--muted); }
+    .map-day { font-size: .95rem; color: var(--blue); font-weight: 840; }
+    .map-clock {
+      position: absolute; top: 8px; left: 8px; padding: 3px 7px; color: var(--blue);
+      background: #fffaf0; border-radius: 4px; font: 750 .75rem/1.4 var(--mono);
+      pointer-events: none;
+    }
+    .map-flights { margin-top: 4px; }
+    .map-flights p { line-height: 1.5; }
+    .map-flights strong { color: var(--ink); }
+    .map-controls { display: flex; flex-wrap: wrap; gap: 6px; }
+    .map-controls button { flex: 1; min-width: max-content; }
+    .map-hint { margin-top: 6px; font-size: .8rem; color: var(--muted); }
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+    }
+    .overview-days { margin-top: 7px; }
+    .overview-days button {
+      display: grid; grid-template-columns: minmax(64px, auto) 1fr; align-items: baseline; gap: 2px 8px; padding: 8px 0;
+      min-height: 44px; width: 100%; text-align: left; background: transparent; border: 0; cursor: pointer;
+    }
+    .overview-days button:hover strong { text-decoration: underline; }
+    .overview-days button span:last-child { grid-column: 2; color: var(--muted); font-size: .875rem; }
+    .overview-days li + li { border-top: 1px solid var(--line); }
+    dialog {
+      width: min(440px, calc(100% - 24px)); max-height: calc(100dvh - 24px);
+      padding: 19px; border: 1px solid var(--line); border-radius: 20px;
+      background: var(--surface); color: var(--ink); overflow: auto; overscroll-behavior: contain;
+      box-shadow: 0 16px 52px #1d2d4840;
+    }
+    dialog::backdrop { background: #18223886; }
+    body:has(dialog[open]) { overflow: hidden; }
+    .dialog-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .crew-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin-top: 12px; }
+    .crew-picker button, .outfit-grid button {
+      display: flex; gap: 5px; align-items: center; justify-content: center; flex-wrap: wrap;
+      min-height: 44px; padding: 4px 2px; border: 1px solid var(--line); border-radius: 8px;
+      background: var(--surface); font-size: .875rem; font-weight: 800; cursor: pointer;
+    }
+    .crew-picker button[aria-pressed="true"], .outfit-grid button[aria-pressed="true"] {
+      border-color: var(--blue); background: var(--sky); color: var(--blue);
+    }
+    .crew-picker canvas { border-radius: 50%; }
+    .profile-card {
+      display: flex; min-height: 110px; gap: 12px; align-items: center; margin: 10px 0 13px;
+      border-radius: 10px; padding: 9px 10px; background: var(--sky);
+    }
+    .profile-card canvas { width: 96px; height: 96px; border-radius: 7px; }
+    .profile-card h3 { font-size: 1.2rem; }
+    .profile-card p { font-size: .875rem; margin-top: 2px; color: var(--muted); }
+    .outfit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 7px; }
+    .outfit-grid button { flex-direction: column; padding: 5px 1px; }
+    .outfit-grid canvas { border-radius: 5px; }
+    .outfit-grid .mascot-sprite { width: 48px; height: 48px; }
+    .share-options { display: grid; gap: 6px; margin-top: 10px; }
+    .share-url { width: 100%; min-height: 44px; border: 1px solid #a1acc3; border-radius: 7px; padding: 6px; color: var(--blue); }
+    .share-status:empty { display: none; }
+    .share-status { margin-top: 8px; font-size: .875rem; color: var(--muted); }
+    .day-intro { margin-bottom: 14px; }
+    .day-intro:has(#day-note[hidden]) .day-cue { margin-bottom: 0; }
+    .day-intro .below-note { padding: 0 2px; }
+    @media (min-width: 800px) {
+      .masthead { min-height: 67px; }
+      .dates { grid-template-columns: repeat(5, minmax(78px, 100px)); padding-bottom: 12px; }
+      .page { padding-top: 32px; }
+      #schedule-view { display: grid; grid-template-columns: minmax(205px, 1fr) minmax(0, 2.65fr); gap: 28px; align-items: start; }
+      #schedule-view > .trip-read-banner { grid-column: 1 / -1; }
+      .day-intro { position: sticky; top: 148px; }
+      .day-heading { margin-bottom: 20px; }
+      .day-cue { display: block; }
+      .cue-label { display: block; margin-bottom: 4px; }
+      .visit-summary { padding: 17px 20px; }
+      .move-summary { padding-left: 21px; }
+      .move-detail, .visit-detail { padding: 12px 20px 17px; }
+      #prep-view, #transport-view, #info-view { max-width: 790px; margin: auto; }
+      .dock { inset: auto auto 16px 50%; transform: translateX(-50%); border: 1px solid var(--line); border-radius: 18px; padding: 0; box-shadow: 0 5px 20px #21344818; }
+      .dock-items { width: 360px; gap: 4px; padding: 5px; }
+      .dock button { border-radius: 13px; }
+    }
+    @media (max-width: 355px) {
+      :root { --visit-grid: minmax(4.4rem, 4.9rem) minmax(0, 1fr) 9px; }
+      .visit-summary { gap: 6px; padding-inline: 9px; }
+      .brand { gap: 5px; font-size: .96rem; }
+      .top-button { gap: 3px; padding-inline: 2px; }
+      .crew-stack canvas + canvas { display: none; }
+    }
+    @media (max-height: 500px) {
+      .topbar { position: static; }
+      html { scroll-padding-top: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+    @media print {
+      html { scroll-padding: 0; }
+      .topbar, .dock, .map-controls, dialog, .skip { display: none !important; }
+      .page { padding: 0; }
+      .visit, .move { break-inside: avoid; }
+    }
   </style>
+  <link rel="stylesheet" href="stage2.css">
+  <script src="stage2.js" defer></script>
 </head>
 <body>
-  <main class="shell" id="home">
-    <section class="hero" aria-labelledby="title">
-      <div class="hero-head">
-        <div class="hero-meta"><p class="dates">2026.12.16 WED — 12.20 SUN</p><button class="outline" id="share" type="button">공유</button></div>
-        <h1 id="title" lang="ja">東京・横浜旅行</h1>
-      </div>
-      <div class="map-frame" id="trip-map" aria-label="날짜별 동선을 보여주는 픽셀 지도">
-        <canvas class="map-art" id="map-art" width="320" height="139" aria-hidden="true"></canvas>
-        <span class="map-pin incheon" data-pin="icn">인천</span><span class="map-pin gimpo" data-pin="gmp">김포</span><span class="map-pin narita" data-pin="nrt">나리타</span><span class="map-pin haneda" data-pin="hnd">하네다</span><span class="map-pin tokyo" data-pin="tabata">도쿄</span><span class="map-pin kirin" data-pin="kirin">기린</span><span class="map-pin yoko" data-pin="yoko">요코하마</span><span class="map-pin ueno" data-pin="ueno">우에노</span><span class="map-pin hara" data-pin="harajuku">하라주쿠</span><span class="map-pin shibuya" data-pin="shibuya">시부야</span><span class="map-pin asakusa" data-pin="asakusa">아사쿠사</span><span class="map-pin ginza" data-pin="ginza">긴자</span><span class="map-pin tower" data-pin="tower">도쿄타워</span><span class="map-pin shinjuku" data-pin="shinjuku">신주쿠</span>
-      </div>
-      <p class="map-caption"><strong id="map-caption" aria-live="polite"></strong><a href="#itinerary">날짜 선택 ↓</a></p>
-      <ol class="trip-summary" id="trip-summary" aria-label="여행 일정 요약"></ol>
-    </section>
-    <div class="main-grid">
-      <details class="panel" id="itinerary">
-        <summary><h2>날짜별 일정</h2></summary>
-        <div class="panel-body"><p class="note">현지 시간 기준 · 날짜를 고르면 픽셀 지도도 바뀌어요.</p><div class="tabs" id="tabs" role="tablist" aria-label="여행 날짜"></div><div class="day-tools"><a class="link alt" id="replay-map" href="#trip-map">픽셀 지도 ↑</a><a class="link alt" id="google-area" target="_blank" rel="noopener noreferrer">Google 지도 ↗</a></div><div id="days"></div></div>
-      </details>
-      <details class="panel" id="bookings">
-        <summary><h2>예약</h2></summary>
-        <div class="panel-body"><p class="note">항공편 · 숙소 · 기린 견학 예약</p><ul class="reservations" id="booking-list"></ul></div>
-      </details>
-      <details class="panel" id="transport">
-        <summary><h2>교통</h2></summary>
-        <div class="panel-body"><div class="callout"><p><strong>세 사람 모두 Suica 준비 완료</strong></p><p>JR·지하철·게이큐 일반열차는 충전 잔액으로 개찰구를 통과해요. 스카이라이너는 별도 지정석 특급권이 필요해요.</p></div><ul class="transit" id="transport-list"></ul></div>
-      </details>
-      <details class="panel" id="todo">
-        <summary><h2>남은 할 일 / 준비물</h2><span class="badge done" id="progress" aria-live="polite"></span></summary>
-        <div class="panel-body"><p class="note">체크는 이 브라우저에 저장돼요.</p><ol class="tasks" id="task-list"></ol></div>
-      </details>
+  <a class="action skip" href="#main">본문으로</a>
+  <header class="topbar">
+    <div class="shell masthead">
+      <button class="brand" id="open-overview" type="button" aria-label="도쿄·요코하마 여행 개요"><span class="brand-mark" data-icon="flag"></span>도쿄·요코하마 여행</button>
+      <button class="top-button" id="open-profile" type="button"><span class="crew-stack" id="crew-stack" aria-hidden="true"></span>일행</button>
+      <button class="top-button" id="open-share" type="button"><span data-icon="share"></span>공유</button>
     </div>
-    <footer class="foot small"><p>일정 업데이트 · 2026.11.18</p><p id="share-status" class="status-live" aria-live="polite"></p></footer>
+    <nav class="shell dates" id="dates" aria-label="여행 날짜"></nav>
+  </header>
+  <main class="shell page" id="main" tabindex="-1">
+    <section id="schedule-view" aria-labelledby="schedule-title">
+      <div class="day-intro">
+        <header class="day-heading">
+          <div><p class="context" id="schedule-date"></p><h1 id="schedule-title" tabindex="-1"></h1></div>
+        </header>
+        <p class="day-cue" id="day-cue"></p>
+        <p class="below-note" id="day-note"></p>
+      </div>
+      <div class="schedule" id="schedule"></div>
+    </section>
+    <section id="prep-view" aria-labelledby="prep-title" hidden>
+      <h1 id="prep-title" tabindex="-1">준비물</h1>
+      <div id="shared-prep" hidden></div>
+      <section class="info-panel" id="legacy-prep">
+        <div class="dialog-head"><h2>남은 할 일</h2><span class="badge confirmed" id="progress" aria-live="polite"></span></div>
+        <p>체크는 이 브라우저에 저장돼요.</p>
+        <ul class="info-list" id="task-list"></ul>
+      </section>
+      <details class="info-panel" id="useful">
+        <summary>도움되는 정보 모음 <span class="chevron" aria-hidden="true"></span></summary>
+        <p id="useful-empty">모아 둔 링크가 아직 없어요.</p>
+        <ul class="info-list" id="useful-links"></ul>
+      </details>
+    </section>
+    <section id="info-view" aria-labelledby="info-title" hidden>
+      <h1 id="info-title" tabindex="-1">여행 정보</h1>
+      <details class="info-panel" id="overview">
+        <summary>여행 개요 <span class="chevron" aria-hidden="true"></span></summary>
+        <p>2026년 12월 16일 수요일 – 20일 일요일</p>
+        <figure class="trip-map">
+          <div class="map-screen" id="map-screen" role="img" aria-label="한반도와 일본의 개략도. 인천, 김포, 부산, 도쿄, 요코하마, 나리타, 하네다.">
+            <canvas class="pixel world" id="world" width="320" height="264" aria-hidden="true"></canvas>
+            <canvas class="pixel map-actors" id="map-actors" width="320" height="264" aria-hidden="true"></canvas>
+            <div class="map-labels" id="map-labels" aria-hidden="true"></div>
+            <span class="map-clock" id="map-clock" aria-hidden="true" hidden></span>
+          </div>
+          <figcaption class="map-caption">
+            <p class="map-day" id="map-day"></p>
+            <p id="map-route"></p>
+            <div class="map-flights" id="map-flights" hidden></div>
+          </figcaption>
+          <div class="map-controls" aria-label="여행 지도 조작">
+            <button class="action secondary" id="map-prev" type="button" aria-label="이전 날">‹ 이전 날</button>
+            <button class="action secondary" id="map-pause" type="button">일시정지</button>
+            <button class="action secondary" id="map-next" type="button" aria-label="다음 날">다음 날 ›</button>
+          </div>
+          <p class="map-hint">지도를 좌우로 밀어 다음 날짜를 볼 수 있어요.</p>
+          <p class="visually-hidden" id="map-announcement" aria-live="polite"></p>
+        </figure>
+        <ol class="overview-days" id="overview-days"></ol>
+      </details>
+      <details class="info-panel" id="bookings">
+        <summary>예약 · 항공 · 숙소 <span class="chevron" aria-hidden="true"></span></summary>
+        <ul class="info-list" id="booking-list"></ul>
+      </details>
+      <p class="below-note">일정 업데이트 · 2026.11.18</p>
+    </section>
+    <section id="transport-view" aria-labelledby="transport-title" hidden>
+      <h1 id="transport-title" tabindex="-1">교통</h1>
+      <div class="transport-shortcuts">
+        <a class="action bookmark-link" href="https://maps.app.goo.gl/Qh3cP3YgHowUYvVt9" target="_blank" rel="noopener noreferrer"><span data-icon="pin"></span>Google 지도 북마크 <span class="external-mark" aria-hidden="true">↗</span></a>
+        <details>
+          <summary class="action suica-toggle"><span data-icon="card"></span>세 사람 모두 Suica 준비 완료 <span class="chevron" aria-hidden="true"></span></summary>
+          <p class="suica-copy">JR·지하철·게이큐 일반열차는 충전 잔액으로 개찰구를 통과해요. 스카이라이너는 별도 지정석 특급권이 필요해요.</p>
+        </details>
+      </div>
+      <section class="info-panel" aria-label="구간별 교통">
+        <ul class="info-list transport-list" id="transport-list"></ul>
+      </section>
+    </section>
   </main>
-  <dialog id="profile" aria-labelledby="profile-name">
-    <div class="profile-head"><canvas id="profile-portrait" class="portrait" width="24" height="24" aria-hidden="true"></canvas><div><h2 id="profile-name"></h2><p class="small" id="profile-trip"></p></div><button id="profile-close" class="outline" type="button" aria-label="캐릭터 닫기">닫기</button></div>
-    <h3>캐릭터</h3><div class="outfits" id="outfits" aria-label="캐릭터 선택"></div>
+  <nav class="dock" aria-label="주요 메뉴">
+    <div class="dock-items" id="dock">
+      <button type="button" data-view="schedule"><span data-icon="calendar"></span>일정</button>
+      <button type="button" data-view="transport"><span data-icon="train"></span>교통</button>
+      <button type="button" data-view="prep"><span data-icon="bag"></span>준비물</button>
+      <button type="button" data-view="info"><span data-icon="info"></span>여행 정보</button>
+    </div>
+  </nav>
+  <dialog id="profile" aria-labelledby="profile-title">
+    <div class="dialog-head"><h2 id="profile-title">일행 캐릭터</h2><form method="dialog"><button class="action secondary" autofocus>닫기</button></form></div>
+    <div class="crew-picker" id="crew-picker" aria-label="일행 선택"></div>
+    <div id="profile-account" class="trip-account" hidden></div>
+    <p id="profile-sync" class="trip-sync" role="status" hidden></p>
+    <div class="profile-card" id="profile-card" aria-live="polite"></div>
+    <h3>캐릭터 선택</h3>
+    <div class="outfit-grid" id="outfit-grid" aria-label="캐릭터 선택"></div>
+  </dialog>
+  <dialog id="share-dialog" aria-labelledby="share-title">
+    <div class="dialog-head"><h2 id="share-title">일정 링크 공유</h2><form method="dialog"><button class="action secondary" autofocus>닫기</button></form></div>
+    <div class="share-options" id="share-options"></div>
+    <input class="share-url" id="share-url" aria-label="복사할 주소" readonly hidden>
+    <p class="share-status" id="share-status" aria-live="polite"></p>
+    <div id="share-panel"></div>
   </dialog>
   <script>
     const urls = {
@@ -182,7 +478,10 @@
       tabata: 'https://www.jreast.co.jp/estation/stations/972.html',
       suica: 'https://www.jreast.co.jp/kr/welcomesuica/welcomesuica.html',
       skyliner: 'https://www.keisei.co.jp/keisei/tetudou/skyliner/us/',
-      skylinerTimes: 'https://www.keisei.co.jp/keisei/tetudou/skyliner/us/traffic/skyliner_1126.php',
+      skylinerTimes: 'https://www.keisei.co.jp/keisei/tetudou/skyliner/jp/traffic/skyliner_timetable_1121.php',
+      airbnbListing: 'https://www.airbnb.co.kr/rooms/1479488019081534033',
+      airSeoulCheckin: 'https://flyairseoul.com/CW/ko/procedures.do',
+      naritaCounter: 'https://flyairseoul.com/CM/ko/noticeContent.do?board_id=notice&seq=11148',
       airSeoul: 'https://flyairseoul.com/CW/ja/noticeContent.do?pageNo=1&seq=11221',
       naritaAirSeoul: 'https://www.narita-airport.jp/en/flight/airline-search/asv/',
       koreanAir: 'https://www.koreanair.com/contents/booking/flight-info?hl=ko',
@@ -201,6 +500,7 @@
       nrtSouth: '成田空港 第1ターミナル 南ウイング 4F 出発ロビー',
       hnd: '羽田空港 第3ターミナル', ueno: 'JR 上野駅', keiseiUeno: '京成上野駅',
       capsule: 'Smart Stay SHIZUKU 上野駅前 東京都台東区上野2-13-11',
+      airbnb:'東京都北区田端1丁目10-2',
       tabataSouth: 'JR 田端駅 南口', tabataNorth: 'JR 田端駅 北口', nippori: '日暮里駅 京成線 スカイライナー',
       kirin: 'キリンビール 横浜工場 1-17-1 生麦', shinkoyasu: 'JR 新子安駅 横浜', kannai: 'JR 関内駅 横浜',
       araiya: '荒井屋 万國橋店 横浜市中区海岸通4-23', bankoku: '万国橋 横浜',
@@ -252,12 +552,12 @@
     };
     function stop(time, activity, place, title, description, options = {}) {
       const {links = [], ...details} = options;
-      return {time, activity, title, description, ...details, links: [map(place, details.mapLabel), ...links]};
+      return {time, activity, place, title, description, ...details, links: [map(place, details.mapLabel), ...links]};
     }
     function move(origin, destination, mode, duration, title, description, options = {}) {
       const {links = [], ...details} = options;
       return {
-        mode, duration, title, description, ...details,
+        origin, destination, mode, duration, title, description, ...details,
         links:[route(origin, destination, mode === 'walk' ? 'walking' : 'transit'), ...links]
       };
     }
@@ -275,9 +575,9 @@
     };
     function flightCard(flight) {
       return stop(flight.time, 'flight', flight.origin, flight.airline + ' ' + flight.code + ' · ' + flight.who,
-        flight.schedule, {status:'예약 완료', mapLabel:'출발 터미널 지도', links:[map(flight.destination, flight.arrival)]});
+        flight.schedule, {flight, status:'예약 완료', mapLabel:'출발 터미널 지도', links:[map(flight.destination, flight.arrival)]});
     }
-    const returnTrain = '스카이라이너 13호 · 닛포리 07:45 출발 → 나리타 T1 08:25 도착';
+    const returnTrain = '스카이라이너 119호 · 닛포리 08:25 출발 → 나리타공항역 09:09 도착';
     const taskList = [
       ['yoko-dinner','요코하마 저녁식당 정하기','미정','12/17(목) 차이나타운에서 저녁. 세 명이 함께 갈 식당을 정해요.'],
       ['airbnb-store','에어비앤비 근처 마트·편의점 찾아보기','미정','장 볼 곳과 늦게까지 여는 곳을 확인해요.'],
@@ -285,7 +585,7 @@
       ['shopping-time','쇼핑 장소와 시간 정하기','미정','금요일 긴자 또는 토요일 시부야·오모테산도. 사고 싶은 품목과 매장을 정해요.']
     ];
     const dayList = [
-      {id:'16', date:'12/16', weekday:'수', title:'일본 도착', area:'capsule', note:'공개 운항 시간표 기준. 세 사람 모두 우에노에서 숙박해요.', events:[
+      {id:'16', date:'12/16', weekday:'수', title:'일본 도착', area:'capsule', note:'각자 인천과 김포에서 출발해 우에노에서 합류·숙박해요. 항공편은 공개 운항 시간표 기준이에요.', events:[
         {group:'필규·유선'},
         flightCard(flights.rs267),
         move('nrt','keiseiUeno','train','스카이라이너 약 45분','나리타 T1 → 게이세이우에노역',
@@ -300,7 +600,7 @@
           {status:'유동', links:[['호텔 안내',urls.shizuku]]})
       ]},
       {id:'17', date:'12/17', weekday:'목', title:'요코하마', area:'kirin',
-        note:'기린 견학에 맞춰 우에노에서 08:50 전후 출발. 저녁에 우에노로 돌아와 캐리어를 찾고 에어비앤비에 체크인해요.', events:[
+        note:'08:50 전후 우에노 출발 · 10:00 기린 공장 도착 목표. 저녁에는 우에노에서 짐을 찾아 에어비앤비에 체크인해요.', events:[
         stop('08:30 전후 · 10:00까지','lodging','capsule',stayName + ' 체크아웃',
           '프런트에 캐리어를 맡기고 합류해요. 체크아웃 당일 보관 가능. 밤에 찾을 수 있는 시각을 맡길 때 확인해요.',
           {status:'유동', links:[['짐 보관 안내', urls.shizuku]]}),
@@ -308,7 +608,7 @@
           '08:50 전후 출발. JR 게이힌도호쿠선으로 신코야스역까지 간 뒤 공장까지 약 20분 걸어요.',
           {links:[route('ueno','shinkoyasu','transit','JR 구간'),route('shinkoyasu','kirin','walking','역 → 공장')] }),
         stop('10:00 도착 목표 · 10:20–11:50','tour','kirin','기린 맥주 요코하마 공장',
-          'KIRIN ICHIBAN 맛 체험 견학·시음. 유선이 12/17(목) 10:20 회차 3명 예약 완료.',
+          'KIRIN ICHIBAN 맛 체험 견학·시음. 12/17(목) 10:20 회차 3명 예약 완료.',
           {status:'예약 완료', links:[['견학 안내', urls.kirin]]}),
         move('kirin','araiya','trainWalk','약 45~60분','기린 → 신코야스역 → 간나이역 → 아라이야',
           'JR 간나이역에서 식당까지 약 7분 걸어요.', {links:[
@@ -348,7 +648,7 @@
         note:'센소지 → 아키하바라 → 고쿄 외원 → 긴자 → 크리스마스 마켓 → 도쿄타워.', events:[
         stop('08:00','lodging','tabataSouth','에어비앤비 출발',airbnbAccess, {mapLabel:'남쪽 출구 지도'}),
         move('tabataSouth','asakusa','trainWalk','전체 약 30~40분','에어비앤비 → 다바타역 → 센소지',
-          '다바타역까지 도보 약 7분. JR로 우에노에 간 뒤 긴자선 아사쿠사역에서 걸어요.'),
+          '다바타역까지 도보 약 7분. JR로 우에노에 간 뒤 긴자선 아사쿠사역에서 걸어요.', {fromStay:'센소지'}),
         stop('08:30 도착 목표','visit','asakusa','센소지','가미나리몬·본당·오층탑을 차례로 봐요.', estimates),
         stop('09:00쯤','market','asakusa','센소지 연말 장터 둘째 날','경내 하고이타 장터. 12/17~19 행사, 금요일 09:00 시작.',
           {status:'유동', links:[['다이토구 행사 안내', urls.hagoita]], activityLabel:'연말 장터'}),
@@ -399,7 +699,7 @@
       {id:'19', date:'12/19', weekday:'토', title:'시부야·하라주쿠·신주쿠', area:'crossing',
         note:'미야시타파크를 점심 전에 들른 뒤 하라주쿠를 걸어 신주쿠로 가요.', events:[
         stop('아침','lodging','tabataSouth','에어비앤비 출발','창가 자리를 노리면 스타벅스에 08:00쯤 도착을 목표로 해요.', {status:'유동', mapLabel:'남쪽 출구 지도'}),
-        move('tabataSouth','starbucks','trainWalk','역에서 약 30~40분','다바타역 → 시부야역 → QFRONT','JR 야마노테선으로 시부야까지 이동해요.'),
+        move('tabataSouth','starbucks','trainWalk','역에서 약 30~40분','에어비앤비 → 다바타역 → 시부야역 → QFRONT','다바타역 남쪽 출구까지 도보 약 7분. JR 야마노테선으로 시부야까지 이동해요.', {fromStay:'시부야 교차로 스타벅스'}),
         stop('08:30–09:00','cafe','starbucks','시부야 교차로 스타벅스',
           'QFRONT SHIBUYA TSUTAYA 2층 · 07:00 오픈. 세 명 창가 자리를 원하면 08:00쯤 도착을 추천해요.',
           {status:'유동', links:[['2층 매장 안내',urls.starbucks]]}),
@@ -442,16 +742,17 @@
       ]},
       {id:'20', date:'12/20', weekday:'일', title:'귀국', area:'nrtSouth',
         note:'세 사람 모두 에어서울 RS248 · 11:25 나리타 T1 → 14:05 인천 T2.', events:[
-        stop('07:10–07:20 출발 목표','lodging','tabataNorth','에어비앤비 체크아웃',
+        stop('07:50–07:55 출발 목표','lodging','tabataNorth','에어비앤비 체크아웃',
           '체크아웃 마감 10:00. 캐리어를 챙겨 일찍 출발해요. ' + luggageAccess,
           {status:'유동', mapLabel:'북쪽 출구 지도', links:[map('tabataSouth','남쪽 출구 지도')]}),
         move('tabataNorth','nippori','trainWalk','역 이동·환승 여유 포함 약 20~25분','에어비앤비 → 다바타역 → 닛포리역',
           '다바타역에서 JR로 두 정거장. 닛포리에서 게이세이 스카이라이너 승강장으로 이동해요.'),
-        move('nippori','nrtStation','train','40분','닛포리역 → 나리타 T1',
-          returnTrain + '. 일요일 시간표 기준. 13호를 놓치면 15호 08:05 → 08:45.', {links:[['공식 시간표',urls.skylinerTimes]]}),
-        move('nrtStation','nrtSouth','walk','약 5~10분','나리타공항역 → T1 남쪽 윙','4층 에어서울 체크인 카운터로 이동해요.'),
-        stop('08:30쯤 도착 목표','airport','nrtSouth','나리타 T1 남쪽 윙','짐을 부치고 출국 수속을 해요.',
-          {status:'유동', links:[['공항 안내', urls.naritaAirSeoul]]}),
+        move('nippori','nrtStation','train','44분','닛포리역 → 나리타 T1',
+          returnTrain + '. 일요일 시간표 기준. 더 일찍 가려면 17호(닛포리 08:05 → 공항역 08:44)를 이용해요.', {links:[['공식 시간표',urls.skylinerTimes]]}),
+        move('nrtStation','nrtSouth','walk','약 5~10분','나리타공항역 → T1 남쪽 윙','4층 남쪽 윙 E 아일랜드 에어서울 체크인 카운터로 이동해요.'),
+        stop('09:00–09:30 도착 목표','airport','nrtSouth','나리타 T1 남쪽 윙',
+          '119호 이용 시 체크인 카운터에 09:14~09:19쯤 도착해요. 11:25 출발편은 09:25까지 공항 도착을 권장해요. 체크인 마감은 10:35예요.',
+          {status:'유동', links:[['에어서울 체크인 안내', urls.airSeoulCheckin], ['카운터 위치 공지', urls.naritaCounter], ['공항 안내', urls.naritaAirSeoul]]}),
         flightCard(flights.rs248)
       ]}
     ];
@@ -464,10 +765,9 @@
         '세 사람 체크인. 東京都台東区上野2-13-11. 12/17(목) 10:00까지 체크아웃. 당일 캐리어 보관 가능.', [map('capsule'), ['호텔 안내',urls.shizuku]]],
       ['예약 완료','done','12/17(목)~12/20(일) · 에어비앤비',
         '12/17 16:00 이후 체크인 · 12/20 10:00까지 체크아웃. ' + airbnbAccess + '. ' + luggageAccess,
-        [map('tabataSouth','남쪽 출구 지도'),map('tabataNorth','북쪽 출구 지도')]],
-      ['예약 완료','done','12/17(목) 10:20–11:50 · 기린 맥주 요코하마 공장',
-        '유선 예약 · 3명 견학·시음. 10:00 도착 목표.', [map('kirin'), ['견학 안내',urls.kirin]]]
+        [['에어비앤비 숙소 정보',urls.airbnbListing], map('tabataSouth','남쪽 출구 지도'),map('tabataNorth','북쪽 출구 지도')]]
     ];
+    const usefulLinks = []; // 각 항목은 [제목, URL]
     const transport = [
       ['나리타 ↔ 도쿄 · 스카이라이너','지정석 특급권이 별도로 필요해요. 12/20(일)은 ' + returnTrain + '.',
         [['스카이라이너 안내',urls.skyliner],['공식 시간표',urls.skylinerTimes],route('nippori','nrtStation','transit')]],
@@ -476,463 +776,1217 @@
       ['다바타역 출구',airbnbAccess + '. ' + luggageAccess,
         [map('tabataSouth','남쪽 출구 지도'),map('tabataNorth','북쪽 출구 지도'),['JR 역 안내',urls.tabata]]]
     ];
+    const $ = id => document.getElementById(id);
     function el(tag, className, text) {
       const node = document.createElement(tag);
       if (className) node.className = className;
       if (text) node.textContent = text;
       return node;
     }
-    function icon(symbol, className) {
-      const node = el('span', className, symbol);
+    function button(text, className, action) {
+      const node = el('button', className, text);
+      node.type = 'button';
+      node.addEventListener('click', action);
+      return node;
+    }
+    function canvas(size, height = size) {
+      const node = el('canvas', 'pixel');
+      node.width = size;
+      node.height = height;
       node.setAttribute('aria-hidden', 'true');
       return node;
     }
-    function addLinks(container, links = []) {
-      if (!links.length) return;
-      const row = el('div', 'links');
-      for (const [index, [label, url]] of links.entries()) {
-        const anchor = el('a', index ? 'link alt' : 'link');
-        if (url.startsWith('https://www.google.com/maps/dir/?')) anchor.append(icon('🧭', 'link-icon'));
-        if (url.startsWith('https://www.google.com/maps/search/?')) anchor.append(icon('📍', 'link-icon'));
-        anchor.append(label);
-        anchor.href = url;
-        anchor.target = '_blank';
-        anchor.rel = 'noopener noreferrer';
-        row.append(anchor);
-      }
-      container.append(row);
+    const icons = {
+      pin: ['..####..','.#....#.','.#.##.#.','.#.##.#.','.#....#.','..####..','...##...','...##...'],
+      share: ['...##...','..####..','...##...','.#.##.#.','##....##','##....##','########','########'],
+      train: ['.######.','##....##','##....##','########','##.##.##','.######.','..#..#..','.#....#.'],
+      walk: ['...##...','...##...','..###...','.####.#.','.#.###..','...##...','..#.#...','.#...#..'],
+      calendar: ['.##..##.','########','########','#......#','#.##...#','#.##...#','#......#','########'],
+      bag: ['..####..','..#..#..','########','#.####.#','#......#','#.####.#','#......#','########'],
+      info: ['..####..','.#....#.','#..##..#','#......#','#..##..#','#..##..#','.#....#.','..####..'],
+      card: ['.######.','########','##....##','########','#......#','#..##..#','########','.######.']
+    };
+    function drawGrid(rect, color, x, y, grid) {
+      grid.forEach((row, dy) => {
+        [...row].forEach((pixel, dx) => {
+          if (pixel === '#') rect(color, x + dx, y + dy, 1, 1);
+        });
+      });
     }
-    const storageKey = 'tokyo-yokohama-dec26-checklist-v1';
-    let checked = new Set();
-    try { checked = new Set(JSON.parse(localStorage.getItem(storageKey) || '[]')); } catch {}
-    const taskNodes = document.getElementById('task-list');
+    function painter(node) {
+      const ctx = node.getContext('2d');
+      return (color, x, y, w, h) => {
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, w, h);
+      };
+    }
+    function glyph(name, color = '#263f75') {
+      if (name === 'flag') {
+        const flag = canvas(12, 8);
+        const rect = painter(flag);
+        flag.style.width = '24px';
+        flag.style.height = '16px';
+        rect('#fffdf8', 0, 0, 12, 8);
+        drawGrid(rect,'#bd2642',3,1,['..##..','.####.','######','######','.####.','..##..']);
+        return flag;
+      }
+      const node = canvas(8);
+      node.classList.add('glyph');
+      drawGrid(painter(node), color, 0, 0, icons[name]);
+      return node;
+    }
+    document.querySelectorAll('[data-icon]').forEach(node => {
+      node.append(glyph(node.dataset.icon));
+    });
+
+    const people = [
+      {id:'pilgyu', name:'필규', birth:'1998-06-16', flight:flights.rs267, club:'한화', uniform:'한화이글스', hair:'#302934', cut:'fringe', cap:'#e56a28', fabric:'#353041', field:'#f6d9c6'},
+      {id:'inhye', name:'인혜', birth:'1999-11-19', flight:flights.ke2105, club:'삼성', uniform:'삼성라이온즈', hair:'#432c39', cut:'long', cap:'#2f5cc1', fabric:'#fff8ea', field:'#dee8fc'},
+      {id:'yuseon', name:'유선', birth:'1998-02-20', flight:flights.rs267, club:'삼성', uniform:'삼성라이온즈', hair:'#282735', cut:'crop', cap:'#2f5cc1', fabric:'#fff8ea', field:'#dee8fc'}
+    ];
+    const costumes = {base:'유니폼', sprout:'새싹', chiikawa:'치이카와', hachiware:'하치와레', usagi:'우사기'};
+    const mascotPalette = {
+      line:'#694d50', ink:'#553c41', white:'#fffbf7', whiteShade:'#f2e6eb',
+      blue:'#86b5d4', blueLight:'#a8cce1', yellow:'#ffe6ab', yellowShade:'#f5cd88',
+      ear:'#efb2b2', cheek:'#f7b5c3', gleam:'#fffdf7', smile:'#ed929e'
+    };
+    const mascots = {
+      chiikawa: {
+        field:'#fae4ec', fill:'white', thumbnail:[2,4,28,23],
+        silhouette:[
+          '', '', '', '', '8-10 21-23', '7-11 20-24', '7-11 20-24', '7-24',
+          '6-25', '5-26', '4-27', '3-28', '3-28', '2-29', '2-29', '2-29',
+          '2-29', '2-29', '2-29', '3-28', '3-28', '4-27', '5-26', '6-25',
+          '8-23', '10-21', '12-19', '', '', '', '', ''
+        ],
+        marks:[
+          ['ear',8,6,2,2], ['ear',22,6,2,2],
+          ['ink',10,14,2,3], ['ink',20,14,2,3],
+          ['gleam',10,14,1,1], ['gleam',20,14,1,1],
+          ['cheek',6,17,4,2], ['cheek',22,17,4,2],
+          ['ink',13,18,1,1], ['ink',14,19,1,1], ['ink',15,18,2,1], ['ink',17,19,1,1], ['ink',18,18,1,1],
+          ['whiteShade',7,23,18,1], ['whiteShade',10,24,12,1], ['whiteShade',12,25,8,1]
+        ]
+      },
+      hachiware: {
+        field:'#deecfa', fill:'white', thumbnail:[2,3,28,24],
+        silhouette:[
+          '', '', '', '6-7 24-25', '6-8 23-25', '6-9 22-25', '5-11 20-26', '5-12 19-26',
+          '5-26', '4-27', '4-27', '3-28', '3-28', '2-29', '2-29', '2-29',
+          '2-29', '2-29', '2-29', '3-28', '3-28', '4-27', '5-26', '6-25',
+          '8-23', '10-21', '12-19', '', '', '', '', ''
+        ],
+        marks:[
+          ['blue',3,4,26,7], ['blue',3,11,12,1], ['blue',17,11,12,1],
+          ['blue',3,12,10,1], ['blue',19,12,10,1], ['blue',3,13,8,1], ['blue',21,13,8,1],
+          ['blueLight',7,6,2,2], ['blueLight',23,6,2,2],
+          ['ink',10,15,2,3], ['ink',20,15,2,3],
+          ['gleam',10,15,1,1], ['gleam',20,15,1,1],
+          ['cheek',6,18,4,2], ['cheek',22,18,4,2],
+          ['ink',14,19,4,1], ['ink',15,20,2,1], ['smile',15,19,2,1],
+          ['whiteShade',7,23,18,1], ['whiteShade',10,24,12,1], ['whiteShade',12,25,8,1]
+        ]
+      },
+      usagi: {
+        field:'#faedc5', fill:'yellow', thumbnail:[3,2,26,26],
+        silhouette:[
+          '', '', '10-12', '9-13 20-22', '9-13 19-23', '9-13 19-23', '9-13 19-23', '9-13 19-23',
+          '9-13 19-23', '9-13 19-23', '8-14 18-23', '8-24', '7-24', '6-25', '5-26', '4-27',
+          '3-28', '3-28', '3-28', '3-28', '3-28', '3-28', '4-27', '5-26',
+          '6-25', '8-23', '10-21', '13-18', '', '', '', ''
+        ],
+        marks:[
+          ['ear',11,5,1,6], ['ear',21,6,1,5],
+          ['ink',10,17,2,3], ['ink',20,17,2,3],
+          ['gleam',10,17,1,1], ['gleam',20,17,1,1],
+          ['cheek',6,20,4,2], ['cheek',22,20,4,2],
+          ['ink',14,21,4,1], ['ink',15,22,2,2], ['smile',15,22,2,1],
+          ['yellowShade',7,24,18,1], ['yellowShade',10,25,12,1], ['yellowShade',13,26,6,1]
+        ]
+      }
+    };
+    function makeMascotSprite(mascot) {
+      const art = canvas(32);
+      const rect = painter(art);
+      const occupied = mascot.silhouette.map(row => {
+        const cells = Array(32).fill(false);
+        for (const range of row.split(' ').filter(Boolean)) {
+          const [left,right] = range.split('-').map(Number);
+          cells.fill(true,left,right + 1);
+        }
+        return cells;
+      });
+      const inside = (x,y) => occupied[y]?.[x] && occupied[y]?.[x-1] && occupied[y]?.[x+1]
+        && occupied[y-1]?.[x] && occupied[y+1]?.[x];
+      occupied.forEach((row,y) => row.forEach((pixel,x) => {
+        if (pixel) rect(mascotPalette[inside(x,y) ? mascot.fill : 'line'],x,y,1,1);
+      }));
+      for (const [tone,left,top,width,height] of mascot.marks) {
+        for (let y = top; y < top + height; y++) {
+          for (let x = left; x < left + width; x++) {
+            if (inside(x,y)) rect(mascotPalette[tone],x,y,1,1);
+          }
+        }
+      }
+      return art;
+    }
+    const mascotSprites = new Map(Object.entries(mascots).map(([name,mascot]) => [name,makeMascotSprite(mascot)]));
+    function mascotPortrait(selected,face,transparent) {
+      const mascot = mascots[selected];
+      const node = canvas(face ? 24 : 32);
+      const ctx = node.getContext('2d');
+      ctx.imageSmoothingEnabled = false;
+      if (!transparent) {
+        ctx.fillStyle = mascot.field;
+        ctx.fillRect(0,0,node.width,node.height);
+      }
+      const art = mascotSprites.get(selected);
+      if (face) {
+        const [x,y,w,h] = mascot.thumbnail;
+        const height = Math.round(22 * h / w);
+        ctx.drawImage(art,x,y,w,h,1,Math.round((24-height)/2),22,height);
+      } else {
+        ctx.drawImage(art,0,0);
+        node.classList.add('mascot-sprite');
+      }
+      return node;
+    }
+    const outline = '#312a40';
+    const teamMarks = {
+      한화:['###','#..','##.','#..','###'],
+      삼성:['#..','#..','#..','#..','###']
+    };
+    const outfitKey = 'tokyo-yokohama-dec26-outfits-v2';
+    function readLocal(key, fallback = {}) {
+      try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
+    }
+    function saveLocal(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
+    }
+    const choices = readLocal(outfitKey);
+    const oldChoices = readLocal('tokyo-yokohama-dec26-traveler-v1');
+    function outfit(person) {
+      const remote = window.tripSync?.outfit(person.id);
+      if (remote) return remote;
+      const selected = choices[person.id] || oldChoices[person.id]?.outfit;
+      return Object.hasOwn(costumes, selected) ? selected : 'base';
+    }
+    function shifted(rect, x, y) {
+      return (color, dx, dy, w, h) => rect(color, x + dx, y + dy, w, h);
+    }
+    function humanFace(rect, person, costume) {
+      const cap = costume === 'base';
+      const skin = '#ffd3aa';
+      const blush = '#e7877b';
+      if (person.cut === 'long') {
+        rect(outline, 3, 7, 18, 16);
+        rect(person.hair, 4, 8, 16, 14);
+        rect('#674654', 5, 14, 2, 7);
+      }
+      rect(outline, 4, 6, 16, 12);
+      rect(outline, 6, 4, 12, 16);
+      rect(person.hair, 5, 6, 14, 6);
+      rect(person.hair, 7, 5, 10, 2);
+      rect('#684757', 7, 6, 6, 1);
+      rect('#dea27f', 4, 12, 16, 4);
+      rect(skin, 6, 10, 12, 8);
+      rect(skin, 8, 18, 8, 1);
+      if (person.cut === 'fringe') {
+        rect(person.hair, 6, 9, 11, 2);
+        rect(person.hair, 7, 11, 2, 1);
+      } else if (person.cut === 'long') {
+        rect(person.hair, 6, 9, 2, 7);
+        rect(person.hair, 16, 9, 2, 7);
+        rect(person.hair, 7, 9, 4, 2);
+      } else {
+        rect(person.hair, 5, 10, 3, 2);
+        rect(person.hair, 15, 9, 4, 3);
+      }
+      if (cap) {
+        const orange = person.club === '한화';
+        rect(outline, 5, 3, 14, 6);
+        rect(outline, 7, 2, 10, 2);
+        rect(person.cap, 6, 4, 12, 4);
+        rect(orange ? '#ff9f4e' : '#779ce8', 8, 3, 8, 2);
+        rect(orange ? '#302a39' : '#224590', 4, 8, orange ? 16 : 18, 2);
+        const capLogo = orange ? ['#.#','###','#.#'] : ['#..','#..','###'];
+        drawGrid(rect, '#fff8e9', 11, 4, capLogo);
+      }
+      if (costume === 'sprout') {
+        rect('#32614a', 11, 1, 2, 5);
+        rect('#55985e', 7, 1, 4, 2);
+        rect('#91bc61', 13, 0, 4, 2);
+      }
+      rect(outline, 8, 13, 2, 2);
+      rect(outline, 14, 13, 2, 2);
+      rect(blush, 6, 16, 3, 1);
+      rect(blush, 15, 16, 3, 1);
+      rect('#934e56', 11, 16, 2, 1);
+      if (person.cut === 'crop') rect(outline, 16, 15, 1, 1);
+    }
+    function portrait(person, selected, face = false, transparent = false) {
+      if (Object.hasOwn(mascots,selected)) return mascotPortrait(selected,face,transparent);
+      const size = face ? 24 : 48;
+      const node = canvas(size);
+      const rect = painter(node);
+      const uniform = selected === 'base';
+      if (!transparent) rect(uniform ? person.field : '#e2edda', 0, 0, size, size);
+      if (face) {
+        humanFace(rect, person, selected);
+        return node;
+      }
+      const fabric = uniform ? person.fabric : '#548d69';
+      rect('#312a401f', 14, 44, 20, 2);
+      rect(outline, 15, 22, 18, 16); rect(outline, 12, 26, 24, 8);
+      rect(outline, 16, 35, 16, 8); rect(outline, 14, 41, 9, 3); rect(outline, 25, 41, 9, 3);
+      rect(fabric, 16, 24, 16, 12); rect(fabric, 13, 27, 22, 5);
+      rect('#ffd3aa', 13, 32, 3, 3); rect('#ffd3aa', 32, 32, 3, 3);
+      rect(uniform ? '#fdf6e7' : '#667452', 17, 36, 14, 5);
+      rect(outline, 23, 37, 2, 5);
+      rect('#9298a8', 15, 41, 7, 1); rect('#9298a8', 26, 41, 7, 1);
+      if (uniform) {
+        rect(person.cap, 13, 29, 3, 3); rect(person.cap, 32, 29, 3, 3);
+        rect(person.club === '한화' ? '#dc6128' : '#a5bbe8', 24, 24, 2, 11);
+        drawGrid(rect, person.club === '한화' ? '#fff2d7' : '#264b9b', 19, 28, teamMarks[person.club]);
+      } else {
+        rect('#ebf1cf', 19, 28, 10, 6);
+        rect('#6aa36a', 23, 29, 2, 4);
+      }
+      humanFace(shifted(rect, 12, 3), person, selected);
+      return node;
+    }
+    function refreshFaces() {
+      $('crew-stack').replaceChildren(...people.map(person => portrait(person, outfit(person), true)));
+      document.querySelectorAll('[data-face]').forEach(node => {
+        const person = people.find(member => member.id === node.dataset.face);
+        node.replaceChildren(portrait(person, outfit(person), true));
+      });
+    }
+    let profilePerson = people[0];
+    const personButtons = people.map(person => {
+      const control = button('', '', () => selectPerson(person));
+      const face = el('span');
+      face.dataset.face = person.id;
+      control.append(face, el('span', '', person.name));
+      $('crew-picker').append(control);
+      return control;
+    });
+    function showProfilePortrait() {
+      const selected = outfit(profilePerson);
+      const copy = el('div');
+      copy.append(el('h3', '', profilePerson.name),
+        ...(profilePerson.birth ? [el('p', '', '생년월일 ' + profilePerson.birth.replaceAll('-', '.'))] : []),
+        el('p', '', '12/16 ' + profilePerson.flight.code + ' · 12/20 ' + flights.rs248.code),
+        el('p', '', selected === 'base' ? profilePerson.uniform : costumes[selected]));
+      $('profile-card').replaceChildren(portrait(profilePerson, selected), copy);
+    }
+    function selectPerson(person) {
+      profilePerson = person;
+      personButtons.forEach((control, index) => control.setAttribute('aria-pressed', String(people[index] === person)));
+      showProfilePortrait();
+      const variants = Object.entries(costumes).map(([id, label]) => {
+        const control = button('', '', () => {
+          if (window.tripSync) {
+            window.tripSync.saveOutfit(person.id,id);
+            return;
+          }
+          choices[person.id] = id;
+          saveLocal(outfitKey, choices);
+          showProfilePortrait();
+          refreshFaces();
+          variants.forEach(node => node.setAttribute('aria-pressed', String(node === control)));
+        });
+        control.append(portrait(person, id), el('span', '', id === 'base' ? person.uniform : label));
+        control.setAttribute('aria-pressed', String(outfit(person) === id));
+        control.dataset.outfit = id;
+        if (window.tripSync) control.disabled = !window.tripSync.canDress(person.id);
+        return control;
+      });
+      $('outfit-grid').replaceChildren(...variants);
+    }
+    function openProfile() {
+      const self = window.tripSync?.member();
+      selectPerson(people.find(person => person.id === self) || profilePerson);
+      $('profile').showModal();
+    }
+    $('open-profile').addEventListener('click', openProfile);
+    refreshFaces();
+
+    const visitCopy = {
+      '16': {
+        capsule: {title:'시즈쿠 체크인', condition:'필규·유선 · 우에노역 앞'},
+        'capsule-2': {title:'시즈쿠 체크인', condition:'예약 도착보다 1시간 이상 늦으면 연락'}
+      },
+      '17': {
+        capsule: {title:'시즈쿠 체크아웃', condition:'10:00 마감 · 짐 보관·밤 수령 시각 확인', timePart:0},
+        kirin: {condition:'10:00 도착 목표 · 3명', timePart:1, timeLabel:'견학'},
+        araiya: {condition:'점심 주문 마감 14:00'},
+        redbrick: {condition:'16:00 점등 · 목요일 일반 입장 ¥500'},
+        osanbashi: {condition:'17:00 조명쇼 · 늦으면 17:30 회차'},
+        yamashita: {condition:'요루노요 Y 큐브'},
+        chinatown: {condition:'19:00 저녁 · 조요몬에서 산책', timePart:0},
+        'capsule-2': {condition:'아침에 확인한 시각에 프런트에서 수령'},
+        tabataSouth: {condition:'16:00부터 체크인 · 캐리어는 북쪽 출구', timePart:0}
+      },
+      '18': {
+        tabataSouth: {condition:'다바타역 남쪽 출구까지 도보 약 7분'},
+        'asakusa-2': {condition:'09:00 시작 · 경내 하고이타 장터'},
+        nakamise: {condition:'09:25~09:30 출발 · 간식 한 가지', timePart:0},
+        imperial: {condition:'금요일 동쪽 정원 휴원 · 외원 산책'},
+        shinMaru: {condition:'시간이 맞으면 7층 테라스', optional:true, timePart:0},
+        imakatsu: {condition:'점심 1순위 이마카츠 · 대안 멘야 이시이'},
+        azabudai: {condition:'일몰 전 중앙광장 · 크리스마스 마켓'},
+        roppongi: {condition:'크리스마스 마켓 · 21:00까지'},
+        tsujihan: {condition:'아크모리빌딩 3층 · 현장 대기'},
+        'tabataSouth-2': {condition:'다바타역 남쪽 출구에서 도보 약 7분'}
+      },
+      '19': {
+        tabataSouth: {condition:'스타벅스 창가 자리 목표 08:00 도착'},
+        starbucks: {condition:'QFRONT 2층 · 창가 자리 목표 08:00 도착'},
+        daikanyama: {condition:'10:30 미야시타파크가 우선', optional:true, timePart:0},
+        miyashita: {condition:'점심 전에 옥상 공원 · 20~30분'},
+        moheji: {condition:'12층 · 11:00 오픈 · 현장 대기'},
+        omote: {condition:'시간이 맞으면 GYRE 지하 1층 HAY', candidates:1},
+        takeshita: {condition:'JR 하라주쿠역으로 이동'},
+        tocho: {condition:'16:30쯤 일몰 · 입장 대기 가능'},
+        tochoPlaza: {condition:'도민광장 TOKYO Night & Light', optional:true, timePart:0},
+        'tabataSouth-2': {condition:'다바타역 남쪽 출구에서 도보 약 7분'}
+      },
+      '20': {
+        tabataNorth: {condition:'체크아웃 마감 10:00 · 캐리어는 북쪽 출구'},
+        nrtSouth: {condition:'4층 남쪽 윙 E 아일랜드 · 체크인 10:35 마감'}
+      }
+    };
+    const branches = {
+      '필규·유선': {people:people.filter(person => person.flight === flights.rs267), airport:'인천 T2'},
+      '인혜': {people:people.filter(person => person.flight === flights.ke2105), airport:'김포 국제선'}
+    };
+    const days = dayList.map(day => {
+      let lane = {entries:[]};
+      const lanes = [lane];
+      const visits = [];
+      const occurrences = new Map();
+      let inbound = [];
+      for (const event of day.events) {
+        if (event.group) {
+          lane = {name:event.group, entries:[]};
+          if (!lanes[0].entries.length && !lanes[0].name) lanes.pop();
+          lanes.push(lane);
+          inbound = [];
+        } else if (event.mode) {
+          inbound.push(event);
+          lane.entries.push(event);
+        } else {
+          const occurrence = (occurrences.get(event.place) || 0) + 1;
+          occurrences.set(event.place, occurrence);
+          const id = event.flight?.code.toLowerCase() || event.place + (occurrence > 1 ? '-' + occurrence : '');
+          const copy = visitCopy[day.id]?.[id] || {};
+          const visit = {
+            ...event, id, inbound,
+            label:copy.title || event.title, condition:copy.condition || (event.flight ? event.description : ''),
+            displayTime:copy.timePart == null ? event.time : event.time.split(' · ')[copy.timePart],
+            timeLabel:copy.timeLabel, optional:!!copy.optional, candidates:event.spots?.length || copy.candidates || 0
+          };
+          visits.push(visit);
+          lane.entries.push(visit);
+          inbound = [];
+        }
+      }
+      return {...day, lanes, visits};
+    });
+
+    function linkKind(href) {
+      try {
+        const url = new URL(href, location.href);
+        if (url.hostname === 'www.google.com') {
+          if (url.pathname.startsWith('/maps/dir/')) return 'directions';
+          if (url.pathname.startsWith('/maps/search/')) return 'map';
+        }
+      } catch {}
+      return 'resource';
+    }
+    function externalLink(label, href, className = 'link') {
+      const kind = linkKind(href);
+      const text = label === '지도' && kind === 'map' ? '위치 보기' : label;
+      const anchor = el('a', className);
+      anchor.classList.add('link--' + kind);
+      if (kind === 'map') anchor.append(glyph('pin', '#245d4c'));
+      if (kind === 'directions') {
+        const icon = el('span','navigation-icon');
+        icon.setAttribute('aria-hidden','true');
+        anchor.append(icon);
+      }
+      anchor.append(el('span','link-label',text));
+      if (kind === 'resource') {
+        const mark = el('span','external-mark','↗');
+        mark.setAttribute('aria-hidden','true');
+        anchor.append(mark);
+      }
+      anchor.href = href;
+      anchor.target = '_blank';
+      anchor.rel = 'noopener noreferrer';
+      anchor.setAttribute('aria-label',text + ' · 새 탭에서 열기');
+      return anchor;
+    }
+    function addLinks(parent, links = []) {
+      if (!links.length) return;
+      const row = el('div','links');
+      const seen = new Set();
+      for (const [label, href] of links) {
+        const url = new URL(href, location.href);
+        url.searchParams.sort();
+        if (seen.has(url.href)) continue;
+        seen.add(url.href);
+        row.append(externalLink(label,href));
+      }
+      parent.append(row);
+    }
+    function chevron() {
+      const node = el('span','chevron');
+      node.setAttribute('aria-hidden', 'true');
+      return node;
+    }
+    function highlight(text) {
+      const fragment = document.createDocumentFragment();
+      for (const token of text.split(/((?:\d{2}:\d{2})(?:[~–]\d{2}:\d{2})?)/g)) {
+        fragment.append(/^\d{2}:/.test(token) ? el('mark','',token) : token);
+      }
+      return fragment;
+    }
+    function visitTime(visit) {
+      const cell = el('span','visit-time');
+      const parts = /^(\d{2}:\d{2})(?:\s*(쯤|전후)?[~–](\d{2}:\d{2}))?(.*)$/.exec(visit.displayTime);
+      cell.append(el('span','clock',parts ? parts[1] : visit.displayTime));
+      if (parts?.[2]) cell.append(el('span','clock-qualifier',parts[2]));
+      if (parts?.[3]) cell.append(el('span','clock-end','– ' + parts[3]));
+      const qualifier = visit.timeLabel || parts?.[4].trim();
+      if (qualifier) cell.append(el('span','clock-qualifier',qualifier));
+      return cell;
+    }
+    function statusBadge(visit) {
+      const [,, tone] = activityTypes[visit.activity];
+      if (visit.status === '예약 완료') return el('span','badge confirmed','예약 확정');
+      if (visit.optional) return el('span','badge choice','선택');
+      if (visit.status && visit.status !== '유동') return el('span','badge pending', visit.status);
+      if (tone === 'meal') return el('span','badge meal', activityTypes[visit.activity][1]);
+      return visit.status === '유동' && !/(쯤|전후|밤|아침|이후|전|목표|뒤|까지)/.test(visit.displayTime)
+        ? el('span','badge','일정 유동') : null;
+    }
+    function laneTitle(lane) {
+      const heading = el('div','lane-label');
+      const branch = branches[lane.name];
+      for (const person of branch.people) {
+        const face = el('span');
+        face.dataset.face = person.id;
+        face.append(portrait(person, outfit(person), true));
+        heading.append(face);
+      }
+      heading.append(el('span','',lane.name), el('span','day-part',branch.airport + ' 출발'));
+      return heading;
+    }
+    function moveCondition(move) {
+      const text = move.description || '';
+      return text.match(/^\d{2}:\d{2} 전후 [^.]*출발/)?.[0]
+        || text.match(/가미야초역 5번 출구/)?.[0]
+        || text.match(/(?:북쪽|남쪽) 출구/)?.[0]
+        || move.title.match(/신주쿠역 서쪽 출구/)?.[0]
+        || text.match(/막차를 확인/)?.[0]?.replace('를','')
+        || (text.includes('지정석 특급권이 필요') ? '지정석 특급권 필요' : '')
+        || (move.origin === 'nippori' && move.destination === 'nrtStation' ? returnTrain : '');
+    }
+    function renderMove(move, consecutive) {
+      const detail = el('details', 'move');
+      const summary = el('summary','move-summary');
+      const condition = moveCondition(move);
+      const copy = el('span','move-copy');
+      const label = el('span','move-label');
+      if (!move.duration.includes('스카이라이너')) label.append(el('span','move-mode',movementTypes[move.mode][1].replace(' + ','+')));
+      label.append(el('span','move-duration',move.duration));
+      if (consecutive) copy.append(el('span','move-destination',move.title.split(' → ').at(-1)));
+      copy.append(label);
+      if (condition) {
+        const note = el('span','move-condition');
+        note.append(highlight(condition));
+        copy.append(note);
+      }
+      summary.append(glyph(move.mode === 'walk' ? 'walk' : 'train'), copy, chevron());
+      const body = el('div','move-detail');
+      const path = el('ol','route-path');
+      path.setAttribute('aria-label','이동 순서');
+      for (const place of move.title.split(' → ')) path.append(el('li','',place));
+      body.append(path);
+      if (move.description) body.append(el('p','',move.description));
+
+      const [[, stationRoute], ...otherLinks] = move.links;
+      const quickRoute = move.fromStay ? directions(move.destination, 'airbnb') : stationRoute;
+      if (move.fromStay) otherLinks.unshift(['다바타역 남쪽 출구에서 길찾기', stationRoute]);
+      addLinks(body, otherLinks.filter(([,href]) => href !== quickRoute));
+      detail.append(summary,body);
+
+      const row = el('div','move-row');
+      const link = externalLink('길찾기', quickRoute, 'route-action');
+      const routeName = move.fromStay ? '숙소 → ' + move.fromStay : move.title;
+      link.setAttribute('aria-label', routeName + ' 길찾기 · 새 탭에서 열기');
+      link.title = routeName;
+      row.append(detail, link);
+      return row;
+    }
+    function visitCandidates(visit) {
+      const details = el('details','candidate-list');
+      const summary = el('summary','', '방문 후보 보기');
+      summary.append(chevron());
+      const list = el('ul');
+      for (const [index, spot] of visit.spots.entries()) {
+        const li = el('li');
+        li.append(el('strong','',spot.title), el('span','badge choice',index === 0 ? '식사 대안' : '선택 방문'), el('p','',spot.note));
+        addLinks(li,spot.links);
+        list.append(li);
+      }
+      details.append(summary,list);
+      return details;
+    }
+    function renderVisit(visit, lane) {
+      const detail = el('details','visit');
+      detail.id = 'visit-' + visit.id;
+      detail.dataset.visit = visit.id;
+      detail.name = 'schedule-visit';
+
+      const meta = el('span','meta-row');
+      const badge = statusBadge(visit);
+      if (badge) meta.append(badge);
+
+      const content = el('span','visit-main');
+      const flight = visit.flight;
+      const title = flight && lane.name === flight.who ? flight.airline + ' ' + flight.code : visit.label;
+      content.append(el('strong','visit-title',title));
+      if (visit.condition) {
+        const condition = el('span','visit-condition');
+        condition.append(flight ? flight.schedule.replace(/\d{2}:\d{2} /g,'') : highlight(visit.condition));
+        content.append(condition);
+      }
+      if (visit.candidates) meta.append(el('span','badge choice','후보 ' + visit.candidates + '곳'));
+      if (meta.childElementCount) content.append(meta);
+      const summary = el('summary','visit-summary');
+      summary.append(visitTime(visit),content,chevron());
+
+      const body = el('div','visit-detail');
+      const context = el('p','visit-context');
+      const category = visit.activityLabel || activityTypes[visit.activity][1];
+      if (visit.time !== visit.displayTime) {
+        for (const part of visit.time.split(' · ')) {
+          if (part !== visit.displayTime && !visit.condition.includes(part) && part !== badge?.textContent) context.append(el('span','',part));
+        }
+      }
+      if (badge?.textContent !== category && visit.timeLabel !== category) context.append(el('span','',category));
+      if (context.childElementCount) body.append(context);
+      if (visit.label !== visit.title) body.append(el('p','visit-full-name',visit.title));
+      if (visit.description && visit.description !== visit.condition) body.append(el('p','',visit.description));
+      const status = visit.status === '유동' ? '일정 유동' : visit.status;
+      if (status && visit.status !== '예약 완료' && badge?.textContent !== status) body.append(el('p','day-part',status));
+      addLinks(body,visit.links);
+      if (visit.spots) body.append(visitCandidates(visit));
+      detail.append(summary,body);
+      window.tripSync?.attachNote(dayForVisit(visit),visit,summary,body);
+      detail.addEventListener('toggle', () => {
+        if (detail.open) activeVisit = visit.id;
+        else if (activeVisit === visit.id) activeVisit = null;
+      });
+      return detail;
+    }
+    function dayForVisit(visit) {
+      return currentDay?.visits.includes(visit) ? currentDay : days.find(day => day.visits.includes(visit));
+    }
+    function renderSchedule(day) {
+      const fragment = document.createDocumentFragment();
+      for (const lane of day.lanes) {
+        if (lane.name) fragment.append(laneTitle(lane));
+        for (const [index, entry] of lane.entries.entries()) {
+          const consecutive = lane.entries[index - 1]?.mode || lane.entries[index + 1]?.mode;
+          fragment.append(entry.mode ? renderMove(entry, consecutive) : renderVisit(entry, lane));
+        }
+      }
+      $('schedule').replaceChildren(fragment);
+      $('day-note').textContent = day.note;
+    }
+    const dateKey = 'tokyo-yokohama-dec26-selected-date';
+    const clock = new Intl.DateTimeFormat('en-CA', {
+      timeZone:'Asia/Tokyo', year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit', hourCycle:'h23'
+    });
+    function japanTime(now = new Date()) {
+      const fields = Object.fromEntries(clock.formatToParts(now).map(part => [part.type,part.value]));
+      return {date:[fields.year,fields.month,fields.day].join('-'), minute:timeMinutes(fields.hour + ':' + fields.minute)};
+    }
+    function timeMinutes(text) {
+      const match = /(\d{2}):(\d{2})/.exec(text);
+      return match ? Number(match[1]) * 60 + Number(match[2]) : null;
+    }
+    const isoDate = day => '2026-12-' + day.id;
+    let currentDay;
+    let activeVisit = null;
+    let currentView;
+    const navButtons = [...$('dock').querySelectorAll('[data-view]')];
+
+    const dateButtons = days.map(day => {
+      const control = button('', 'date', () => {
+        if (currentDay !== day) {
+          selectDay(day);
+          if (location.hash.startsWith('#itinerary-')) history.replaceState(null, '', shareUrl());
+        }
+        showView('schedule',false);
+        scrollTo(0,0);
+      });
+      control.append(el('span','date-number',day.id), el('span','date-week',day.weekday));
+      $('dates').append(control);
+      return control;
+    });
+    $('dates').addEventListener('keydown', event => {
+      const index = dateButtons.indexOf(event.target);
+      if (index < 0) return;
+      const targets = {ArrowRight:index + 1,ArrowLeft:index - 1,Home:0,End:dateButtons.length - 1};
+      if (!Object.hasOwn(targets,event.key)) return;
+      event.preventDefault();
+      dateButtons[(targets[event.key] + dateButtons.length) % dateButtons.length].focus();
+    });
+    function updateDayContext() {
+      const local = japanTime();
+      const date = isoDate(currentDay);
+      const context = local.date < isoDate(days[0]) ? '미리보기' : local.date === date ? '오늘 · 일본 현지' : '일본 현지 시각';
+      const label = '12월 ' + currentDay.id + '일 ' + currentDay.weekday + '요일 · ' + context;
+      $('schedule-date').textContent = label;
+      dateButtons.forEach((control,index) => {
+        const today = isoDate(days[index]) === local.date;
+        control.classList.toggle('is-today',today);
+        control.setAttribute('aria-label', days[index].date + ' ' + days[index].weekday + '요일' + (today ? ' · 오늘' : ''));
+      });
+      const cue = $('day-cue');
+      let message = currentDay.note;
+      if (local.date === date) {
+        const plannedMinute = visit => timeMinutes(visit.displayTime);
+        const next = currentDay.visits.filter(visit => {
+          const minute = plannedMinute(visit);
+          return minute !== null && minute >= local.minute && !visit.optional;
+        }).sort((a,b) => plannedMinute(a) - plannedMinute(b))[0];
+        if (next) {
+          const departure = next.inbound.map(moveCondition).filter(Boolean).find(condition => /출발/.test(condition));
+          const parts = ['다음 예정 · ' + next.label, next.displayTime, next.condition, departure];
+          message = parts.filter(Boolean).join(' · ');
+        } else {
+          message = '시각이 남아 있는 예정 일정이 없어요. 아래에서 하루 계획을 확인하세요.';
+        }
+      }
+      cue.replaceChildren(el('span','cue-label',local.date === date ? '현재 일정' : '하루 요약'), el('span'));
+      cue.lastChild.append(highlight(message));
+      $('day-note').hidden = message === currentDay.note;
+    }
+    function selectDay(day, persist = true) {
+      currentDay = day;
+      activeVisit = null;
+      if (persist) saveLocal(dateKey, day.id);
+      dateButtons.forEach((control,index) => {
+        if (days[index] === day) control.setAttribute('aria-current','date');
+        else control.removeAttribute('aria-current');
+      });
+      $('schedule-title').textContent = day.title;
+      renderSchedule(day);
+      updateDayContext();
+    }
+    function showView(view, focusHeading = true) {
+      if (document.body.dataset.tripServer === 'viewer') view = 'schedule';
+      const changed = currentView !== view;
+      currentView = view;
+      navButtons.forEach(control => {
+        const active = control.dataset.view === view;
+        $(control.dataset.view + '-view').hidden = !active;
+        if (active) control.setAttribute('aria-current','page');
+        else control.removeAttribute('aria-current');
+      });
+      $('dates').hidden = view !== 'schedule';
+      syncMapPlayback();
+      if (changed && focusHeading) {
+        scrollTo(0,0);
+        $(view + '-title').focus({preventScroll:true});
+      }
+    }
+    function revealStop(node) {
+      if (!node) return;
+      const rect = node.getBoundingClientRect();
+      const top = document.querySelector('.topbar').getBoundingClientRect().bottom;
+      const bottom = document.querySelector('.dock').getBoundingClientRect().top;
+      if (rect.top < top + 5 || rect.bottom > bottom - 5) node.scrollIntoView({block:'start'});
+    }
+    function focusStop(node) {
+      if (!node) return;
+      node.focus({preventScroll:true});
+      revealStop(node);
+    }
+    function openVisit(id) {
+      const visit = $('visit-' + id);
+      if (!visit) return;
+      showView('schedule',false);
+      visit.open = true;
+      activeVisit = id;
+      focusStop(visit.firstElementChild);
+    }
+    navButtons.forEach(control => control.addEventListener('click',() => showView(control.dataset.view)));
+    function openInfo(id) {
+      showView('info');
+      const panel = $(id);
+      panel.open = true;
+      revealStop(panel.firstElementChild);
+    }
+    $('open-overview').addEventListener('click',() => openInfo('overview'));
+    function openLocation() {
+      const link = /^#itinerary-(\d{2})(?:\/([a-z0-9-]+))?$/.exec(location.hash);
+      const linkedDay = link && days.find(day => day.id === link[1]);
+      const today = japanTime().date;
+      const calendarDay = days.find(day => isoDate(day) === today);
+      const stored = days.find(day => day.id === readLocal(dateKey, null));
+      selectDay(linkedDay || calendarDay || stored || days[0], !!linkedDay);
+      showView('schedule',false);
+      if (linkedDay && link[2]) openVisit(link[2]);
+      const section = location.hash.slice(1);
+      if (section === 'todo') showView('prep');
+      if (section === 'bookings') openInfo(section);
+      if (section === 'transport') showView('transport');
+      if (section === 'trip-map') openInfo('overview');
+    }
+    window.addEventListener('hashchange', () => {
+      if (location.hash !== '#main') openLocation();
+    });
+
+    const checklistKey = 'tokyo-yokohama-dec26-checklist-v1';
+    const oldChecked = readLocal(checklistKey, []);
+    const checked = new Set(Array.isArray(oldChecked) ? oldChecked : []);
     function updateProgress() {
-      const done = taskList.filter(([id]) => checked.has(id)).length;
-      document.getElementById('progress').textContent = `${done} / ${taskList.length} 완료`;
+      $('progress').textContent = taskList.filter(([id]) => checked.has(id)).length + ' / ' + taskList.length + ' 완료';
     }
     for (const [id,title,status,description,links] of taskList) {
       const row = el('li','task');
       const box = el('input');
       box.type = 'checkbox';
-      box.id = `task-${id}`;
+      box.id = 'task-' + id;
       box.checked = checked.has(id);
-      box.addEventListener('change', () => {
-        if (box.checked) checked.add(id); else checked.delete(id);
-        try { localStorage.setItem(storageKey, JSON.stringify([...checked])); } catch {}
+      box.addEventListener('change',() => {
+        if (box.checked) checked.add(id);
+        else checked.delete(id);
+        saveLocal(checklistKey,[...checked]);
         updateProgress();
       });
-      const details = el('div');
-      const label = el('label','',title);
+      const touch = el('label','task-check');
+      touch.htmlFor = box.id;
+      touch.append(box);
+      const detail = el('div');
+      const label = el('label','task-name',title);
       label.htmlFor = box.id;
-      details.append(label,el('span',status === '최우선' ? 'badge urgent' : 'badge',status),el('p','',description));
-      addLinks(details,links);
-      row.append(box,details);
-      taskNodes.append(row);
+      detail.append(label, el('span','badge pending',status), el('p','',description));
+      addLinks(detail,links);
+      row.append(touch,detail);
+      $('task-list').append(row);
     }
     updateProgress();
-    const tabs = document.getElementById('tabs');
-    const days = document.getElementById('days');
-    const tripSummary = document.getElementById('trip-summary');
-    const itinerary = document.getElementById('itinerary');
-    const overview = {
-      '16': [flights.rs267, flights.ke2105].map(flight => flight.code + ' ' + flight.schedule).join(' · '),
-      '17': '기린 맥주 공장 · 아라이야 · 차이나타운 · 우에노 짐 픽업',
-      '18': '센소지 · 아키하바라 · 고쿄 · 긴자 · 힐스 · 도쿄타워',
-      '19': '교차로 스타벅스 · 모헤지 · 도청 전망대',
-      '20': flights.rs248.code + ' ' + flights.rs248.schedule
-    };
-    let selectedDay;
-    for (const [index, day] of dayList.entries()) {
-      const dateLabel = `${day.date}(${day.weekday})`;
-      const summary = el('li');
-      const shortcut = el('a');
-      shortcut.href = `#itinerary-${day.id}`;
-      const summaryDate = el('span','trip-summary-date');
-      summaryDate.append(el('strong','',`${index + 1}일차`),el('span','',dateLabel));
-      shortcut.append(summaryDate,el('span','',day.title + ' · ' + overview[day.id]));
-      summary.append(shortcut);
-      tripSummary.append(summary);
-      const jumpTarget = el('span','day-jump');
-      jumpTarget.id = `itinerary-${day.id}`;
-      itinerary.querySelector('summary').append(jumpTarget);
-      const button = el('button','tab');
-      button.type = 'button';
-      button.id = `tab-${day.id}`;
-      button.setAttribute('role','tab');
-      button.setAttribute('aria-label',dateLabel + ' ' + day.title);
-      button.setAttribute('aria-controls',`day-${day.id}`);
-      const tabName = el('span','tab-name');
-      day.title.split('·').forEach((word, part) => {
-        if (part) tabName.append('·',el('wbr'));
-        tabName.append(word);
-      });
-      button.append(el('span','tab-date',dateLabel),tabName);
-      button.addEventListener('click',() => selectDay(day.id));
-      button.addEventListener('keydown',event => {
-        const last = dayList.length - 1;
-        const positions = {ArrowLeft:(index + last) % dayList.length,ArrowRight:(index + 1) % dayList.length,Home:0,End:last};
-        if (!Object.hasOwn(positions,event.key)) return;
-        event.preventDefault();
-        const next = dayList[positions[event.key]].id;
-        selectDay(next);
-        document.getElementById(`tab-${next}`).focus();
-      });
-      tabs.append(button);
-      const section = el('div','day');
-      section.id = `day-${day.id}`;
-      section.setAttribute('role','tabpanel');
-      section.setAttribute('aria-labelledby',button.id);
-      section.append(el('h3','',dateLabel + ' ' + day.title),el('p','note',day.note));
-      const timeline = el('ol','timeline');
-      for (const {group, time, mode, activity, activityLabel, duration, title, description, status, links, spots} of day.events) {
-        if (group) {
-          timeline.append(el('li','event-group',group));
-          continue;
-        }
-        const [symbol, label, type = activity] = mode ? movementTypes[mode] : activityTypes[activity];
-        const event = el('li', mode ? 'event event--movement' : 'event');
-        if (type) event.dataset.type = type;
-        const detail = el('div');
-        const meta = el('div','event-meta');
-        if (time) meta.append(el('span','event-time',time));
-        meta.append(el('span','event-type',mode ? label : (activityLabel || label)));
-        if (duration) meta.append(el('span','event-duration',duration));
-        if (status) meta.append(el('span',status === '예약 완료' ? 'badge done' : 'badge check',status));
-        detail.append(meta,el('h4','',title));
-        if (description) detail.append(el('p','',description));
-        addLinks(detail,links);
-        if (spots) {
-          const list = el('ul','event-spots');
-          for (const spot of spots) {
-            const item = el('li');
-            item.append(el('strong','',spot.title),el('p','',spot.note));
-            addLinks(item,spot.links);
-            list.append(item);
-          }
-          detail.append(list);
-        }
-        event.append(icon(symbol, 'event-icon'),detail);
-        timeline.append(event);
-      }
-      section.append(timeline);
-      days.append(section);
-    }
-    function selectDay(id) {
-      selectedDay = id;
-      for (const day of dayList) {
-        const selected = day.id === id;
-        const button = document.getElementById(`tab-${day.id}`);
-        button.setAttribute('aria-selected',String(selected));
-        button.tabIndex = selected ? 0 : -1;
-        document.getElementById(`day-${day.id}`).hidden = !selected;
-      }
-      days.dispatchEvent(new Event('daychange'));
-    }
-    function openLinkedPanel(hash = location.hash) {
-      const day = dayList.find(item => hash === `#itinerary-${item.id}`);
-      if (day) {
-        itinerary.open = true;
-        if (selectedDay !== day.id) selectDay(day.id);
-        return;
-      }
-      const panel = document.getElementById(hash.slice(1));
-      if (panel?.tagName === 'DETAILS') panel.open = true;
-    }
-    for (const link of document.querySelectorAll('a[href^="#"]')) {
-      link.addEventListener('click', () => openLinkedPanel(link.hash));
-    }
-    window.addEventListener('hashchange',() => openLinkedPanel());
-    const bookingList = document.getElementById('booking-list');
-    for (const [status,tone,title,description,links] of bookings) {
+    for (const [, ,title,description,links] of bookings) {
       const row = el('li');
-      row.append(el('span',`badge ${tone}`,status),el('h3','',title),el('p','',description));
+      row.append(el('span','badge confirmed','예약 확정'), el('h3','',title), el('p','',description));
       addLinks(row,links);
-      bookingList.append(row);
+      $('booking-list').append(row);
     }
-    const transportList = document.getElementById('transport-list');
+    for (const [title,href] of usefulLinks) {
+      const row = el('li');
+      addLinks(row,[[title,href]]);
+      $('useful-links').append(row);
+    }
+    $('useful-empty').hidden = usefulLinks.length > 0;
+    $('useful').hidden = !document.body.dataset.tripServer && usefulLinks.length === 0;
+
     for (const [title,description,links] of transport) {
       const row = el('li');
-      row.append(el('h3','',title),el('p','',description));
+      row.append(el('h3','',title), el('p','',description));
       addLinks(row,links);
-      transportList.append(row);
+      $('transport-list').append(row);
     }
-    const shareStatus = document.getElementById('share-status');
-    document.getElementById('share').addEventListener('click', async () => {
-      const url = location.origin + location.pathname + (itinerary.open ? `#itinerary-${selectedDay}` : '');
-      if (location.protocol === 'file:') {
-        shareStatus.textContent = '받은 HTML 파일을 그대로 전달하면 같은 일정을 볼 수 있어요.';
-        shareStatus.scrollIntoView({block:'nearest'});
-        return;
-      }
+    for (const day of days) {
+      const li = el('li');
+      const jump = button('','',() => {
+        selectDay(day);
+        showView('schedule');
+      });
+      jump.append(el('strong','date-number',day.date), el('strong','',day.title), el('span','',day.note));
+      li.append(jump);
+      $('overview-days').append(li);
+    }
+
+    function shareUrl(visit) {
+      const url = new URL(location.href);
+      url.hash = 'itinerary-' + currentDay.id + (visit ? '/' + visit.id : '');
+      return url.href;
+    }
+    async function shareLink(visit) {
+      const url = shareUrl(visit);
       try {
-        if (navigator.share) { await navigator.share({title:document.title,url}); return; }
+        if (navigator.share) {
+          await navigator.share({title:visit?.label || currentDay.title,url});
+          return;
+        }
         await navigator.clipboard.writeText(url);
-        shareStatus.textContent = '링크를 복사했어요.';
+        $('share-status').textContent = '링크를 복사했어요.';
       } catch (error) {
         if (error.name === 'AbortError') return;
-        shareStatus.textContent = `이 주소를 복사해 주세요. ${url}`;
+        const field = $('share-url');
+        field.value = url;
+        field.hidden = false;
+        field.focus();
+        field.select();
+        $('share-status').textContent = '선택된 주소를 복사해 주세요.';
       }
-      shareStatus.scrollIntoView({block:'nearest'});
-    });
-  </script>
-  <script>
-    const travelers = [
-      {id:'pilgyu',name:'필규',color:'#c74c12',backdrop:'#a83914',mark:'H',hair:'#292830',style:'fringe',trip:'12/16 ' + flights.rs267.code + ' · 12/20 ' + flights.rs248.code},
-      {id:'inhye',name:'인혜',color:'#2352b6',backdrop:'#1b428d',mark:'S',hair:'#33272b',style:'long',trip:'12/16 ' + flights.ke2105.code + ' · 12/20 ' + flights.rs248.code},
-      {id:'yuseon',name:'유선',color:'#2352b6',backdrop:'#1b428d',mark:'S',hair:'#29282b',style:'short',trip:'12/16 ' + flights.rs267.code + ' · 12/20 ' + flights.rs248.code}
-    ];
-    const ink='#292936', skin='#efb38b', shade='#c78269';
-    const outfits = {base:'A',sprout:'B',suit:'C',chiikawa:'치이카와',hachiware:'하치와레',usagi:'우사기'};
-    const mascotColors = {
-      chiikawa:{fur:'#fff6ef', shade:'#f2d7d6', backdrop:'#8d4c62'},
-      hachiware:{fur:'#f9f6f0', shade:'#629bc2', backdrop:'#3d617c'},
-      usagi:{fur:'#ffe69c', shade:'#e2ac53', backdrop:'#885329'}
-    };
-    const travelerKey = 'tokyo-yokohama-dec26-outfits-v2';
-    const readLocal = key => { try { return JSON.parse(localStorage.getItem(key)) || {}; } catch { return {}; } };
-    const localOutfits = readLocal(travelerKey);
-    const previousOutfits = readLocal('tokyo-yokohama-dec26-traveler-v1');
-    function dress(person) {
-      const outfit = localOutfits[person.id] || previousOutfits[person.id]?.outfit;
-      return Object.hasOwn(outfits, outfit) ? outfit : 'base';
     }
-    function drawMascot(r, outfit, step) {
-      const {fur, shade} = mascotColors[outfit];
-      const rabbit = outfit === 'usagi';
-      const earY = rabbit ? 1 : 3;
-      const earHeight = rabbit ? 9 : 5;
-      r(ink,5,earY+1,5,earHeight);
-      r(ink,14,earY+1,5,earHeight);
-      r(ink,6,earY,3,2);
-      r(ink,15,earY,3,2);
-      r(shade,6,earY+2,3,earHeight-2);
-      r(shade,15,earY+2,3,earHeight-2);
-      r(ink,5,9,14,12);
-      r(ink,4,11,16,7);
-      r(fur,6,8,12,12);
-      r(fur,5,11,14,6);
-      r(fur,7,19,10,2);
-      if (outfit === 'hachiware') {
-        r(shade,6,8,5,3);
-        r(shade,13,8,5,3);
-        r(shade,6,11,2,1);
-        r(shade,16,11,2,1);
-      }
-      r(ink,8,13,2,2);
-      r(ink,14,13,2,2);
-      r('#ed9e9f',6,15,3,1);
-      r('#ed9e9f',15,15,3,1);
-      r(ink,11,15,2,2);
-      r(ink,7,20,3,3-step);
-      r(ink,14,20,3,2+step);
-      r(shade,8,20,2,2-step);
-      r(shade,14,20,2,1+step);
-    }
-    function sprite(canvas, person, outfit, step=0) {
-      const g = canvas.getContext('2d');
-      if (!g) return;
-      const r = (color,x,y,w,h) => { g.fillStyle=color; g.fillRect(x,y,w,h); };
-      g.clearRect(0,0,24,24);
-      if (mascotColors[outfit]) {
-        drawMascot(r, outfit, step);
+    $('open-share').addEventListener('click', () => {
+      const visit = currentDay.visits.find(entry => entry.id === activeVisit);
+      if (window.tripSync) {
+        window.tripSync.share(currentDay,visit);
         return;
       }
-      if (outfit==='sprout') {
-        r('#22473a',11,0,2,5); r('#2e673b',6,0,5,2); r('#64a04c',7,1,5,2);
-        r('#2e673b',13,0,5,2); r('#80b655',12,1,5,2);
-        r('#284b36',6,5,12,15); r('#284b36',5,7,14,11); r('#5b984d',6,7,12,12);
-        r('#a9cb70',8,6,8,12); r('#a9cb70',7,8,10,8); r(ink,8,7,8,7);
-        r(skin,9,8,6,5); r(ink,10,9,1,2); r(ink,13,9,1,2); r(shade,11,12,2,1);
-        r('#466e39',8,18,3,3+step); r('#466e39',13,18,3,4-step);
-        r(ink,8,21+step,3,1); r(ink,13,22-step,3,1); return;
-      }
-      const tall=person.style==='short';
-      const hairY=tall?2:3;
-      const pants=outfit==='suit'?'#242a3c':person.style==='long'?'#25374a':'#364b5b';
-      r(ink,8,18,3,5-step); r(ink,13,18,3,4+step);
-      r(pants,9,18,2,4-step); r(pants,13,18,2,3+step);
-      r(outfit==='suit'?'#152127':'#f0ead7',7,22-step,4,1); r(outfit==='suit'?'#152127':'#f0ead7',13,21+step,4,1);
-      if (person.style==='long') { r(person.hair,6,5,12,11); r('#211f2b',6,10,2,7); r('#211f2b',16,10,2,7); }
-      r(ink,8,13,8,6); r(ink,7,14,10,4); r(ink,6,14,2,4); r(ink,16,14,2,4);
-      const jersey=outfit==='suit'?'#283145':person.color;
-      r(jersey,8,13,8,5); r(jersey,7,14,2,2); r(jersey,15,14,2,2);
-      r(skin,6,16-step,2,2); r(skin,16,16+step,2,2);
-      if(outfit==='suit') {
-        r('#e8e5d8',10,13,4,3); r('#a24c45',11,14,2,3); r('#43506b',8,14,2,3); r('#43506b',14,14,2,3);
+      const options = $('share-options');
+      options.replaceChildren();
+      $('share-url').hidden = true;
+      if (location.protocol === 'file:') {
+        $('share-status').textContent = '로컬 파일로 열려 있어요. HTML 파일을 전달하거나 웹에 게시한 주소로 열어 링크를 공유할 수 있어요.';
       } else {
-        const stripe='#fff5df';
-        r(stripe,7,14,2,1); r(stripe,15,14,2,1); r(stripe,10,14,1,4);
-        if(person.mark==='H'){r(stripe,12,14,1,3);r(stripe,14,14,1,3);r(stripe,13,15,1,1);}
-        else {r(stripe,12,14,3,1);r(stripe,12,15,2,1);r(stripe,13,16,2,1);}
+        $('share-status').textContent = '';
+        options.append(button(currentDay.date + ' 날짜 링크','action',() => shareLink()));
+        if (visit) options.append(button(visit.label + ' 장소 링크','action secondary',() => shareLink(visit)));
       }
-      r(ink,7,hairY+1,10,9); r(ink,8,hairY,8,2); r(person.hair,8,hairY+1,8,5);
-      r('#504049',9,hairY+1,5,1); r(skin,8,hairY+4,8,5); r(skin,9,hairY+9,6,1);
-      r(person.hair,8,hairY+3,7,2);
-      if(person.style==='fringe'){r(person.hair,9,hairY+5,2,1);r(person.hair,13,hairY+5,2,1);}
-      if(person.style==='long'){r(person.hair,8,hairY+4,1,4);r(person.hair,15,hairY+4,1,4);}
-      r(ink,10,hairY+6,1,1); r(ink,14,hairY+6,1,1); r(shade,11,hairY+8,2,1);
-    }
-    const mapFrame = document.getElementById('trip-map');
-    const mapCanvas = document.getElementById('map-art');
-    const profile = document.getElementById('profile');
-    const portrait = document.getElementById('profile-portrait');
-    function outfitBackground(person, outfit) {
-      if (mascotColors[outfit]) return mascotColors[outfit].backdrop;
-      return outfit === 'base' ? person.backdrop : outfit === 'sprout' ? '#476d3b' : '#344057';
-    }
-    function showOutfit(canvas, person, outfit) {
-      canvas.style.backgroundColor = outfitBackground(person, outfit);
-      sprite(canvas, person, outfit);
-    }
-    function fillOutfits(person) {
-      const row = document.getElementById('outfits');
-      row.replaceChildren();
-      for (const [id,label] of Object.entries(outfits)) {
-        const button=el('button');
-        button.type='button';
-        const example=el('canvas','portrait');
-        example.width=24;
-        example.height=24;
-        example.setAttribute('aria-hidden','true');
-        showOutfit(example,person,id);
-        button.append(example,el('span','',label));
-        button.setAttribute('aria-pressed',String(dress(person)===id));
-        button.addEventListener('click',() => {
-          localOutfits[person.id] = id;
-          try { localStorage.setItem(travelerKey, JSON.stringify(localOutfits)); } catch {}
-          for(const item of row.children) item.setAttribute('aria-pressed',String(item===button));
-          showOutfit(portrait,person,id);
-          redrawActor(actors.find(item=>item.person===person));
-        });
-        row.append(button);
-      }
-    }
-    function openProfile(person) {
-      document.getElementById('profile-name').textContent=person.name;
-      document.getElementById('profile-trip').textContent=person.trip;
-      showOutfit(portrait,person,dress(person));
-      fillOutfits(person);
-      profile.showModal();
-    }
-    document.getElementById('profile-close').addEventListener('click',()=>profile.close());
-    const actors = travelers.map((person,index)=>{
-      const button=el('button','actor');
-      button.type='button';
-      button.setAttribute('aria-label',`${person.name} 캐릭터 선택 열기`);
-      const canvas=el('canvas'); canvas.width=24; canvas.height=24; canvas.setAttribute('aria-hidden','true');
-      button.style.setProperty('--hop-delay',`${index * -0.28}s`);
-      const name=el('span','',person.name);
-      button.append(canvas,name);
-      button.addEventListener('click',()=>openProfile(person));
-      mapFrame.append(button);
-      return {person,button,canvas,name};
+      $('share-dialog').showModal();
     });
-    function redrawActor(actor) {
-      const outfit=dress(actor.person);
-      sprite(actor.canvas,actor.person,outfit);
-      actor.name.style.backgroundColor=outfitBackground(actor.person,outfit);
-      actor.name.style.color='#fff9ec';
+    // Longitude and latitude are simplified for the pixel map.
+    const coasts = [
+      // Korean peninsula
+      [[124.22,39.85],[124.63,40.15],[125.34,40.27],[126.25,41.62],[127.18,41.5],[128.17,41.4],[128.3,42.03],
+        [129.08,42.35],[130.62,42.53],[130.43,42.05],[129.7,41.58],[129.8,40.88],[128.32,40.07],[127.51,39.83],
+        [127.51,39.21],[128.34,38.56],[128.64,37.83],[129.14,37.43],[129.5,36.53],[129.43,35.83],[129.39,35.46],
+        [129.07,35.08],[128.59,34.9],[128.41,35.19],[128.18,34.84],[127.68,34.9],[127.47,34.54],[127.14,34.69],
+        [126.79,34.32],[126.38,34.46],[126.27,34.84],[126.55,35.14],[126.45,35.55],[126.63,36.05],[126.2,36.47],
+        [126.07,36.78],[126.72,36.99],[126.68,37.48],[126.01,37.72],[125.19,37.98],[125.53,38.32],[124.77,38.54],
+        [125.35,38.72],[125.43,39.1],[124.71,39.55]],
+      // Honshu
+      [[140.19,41.31],[140.44,41.03],[140.74,41.03],[141.01,41.45],[141.47,41.41],[141.4,40.79],[141.78,40.42],
+        [141.98,39.7],[141.75,38.98],[141.53,38.46],[141.16,38.28],[141.05,37.76],[141.04,36.87],[140.77,36.14],
+        [140.91,35.72],[140.75,35.32],[140.29,34.89],[139.76,34.87],[139.9,35.47],[139.63,35.28],[139.14,35.09],
+        [138.9,34.61],[138.6,34.74],[138.72,35.08],[138.23,34.72],[137.69,34.62],[137.2,34.58],[136.87,34.71],
+        [136.68,34.35],[136.23,33.91],[135.93,33.45],[135.54,33.56],[135.08,33.89],[135.13,34.27],[135.37,34.56],
+        [134.55,34.76],[133.26,34.49],[132.32,34.18],[132.14,33.84],[131.2,33.93],[130.91,33.94],[131.06,34.32],
+        [131.79,34.76],[132.56,35.32],[133.04,35.54],[133.3,35.74],[134.19,35.56],[135.28,35.61],[135.72,35.48],
+        [136.06,35.78],[136.52,36.23],[136.8,36.77],[136.78,37.26],[137.37,37.5],[137.29,37.11],[137.0,36.82],
+        [137.58,36.91],[138.14,37.14],[138.49,37.55],[139.1,37.95],[139.5,38.62],[139.8,39.3],[140.02,39.68],
+        [139.98,40.25],[140.02,40.76]],
+      // Hokkaido
+      [[139.76,41.46],[140.2,41.59],[140.57,41.78],[141.0,41.78],[140.66,42.17],[140.02,42.27],[139.81,42.61],
+        [140.32,42.74],[140.52,43.19],[141.12,43.24],[141.36,43.71],[141.62,44.32],[141.71,45.02],[141.93,45.51],
+        [142.55,45.13],[143.23,44.65],[143.92,44.22],[144.59,44.0],[145.34,44.34],[145.13,43.55],[145.75,43.36],
+        [145.29,42.98],[144.61,43.0],[143.98,42.93],[143.55,42.49],[143.23,41.92],[142.67,42.2],[141.83,42.58],
+        [141.17,42.46],[140.59,42.31],[140.36,41.97],[139.97,41.82]],
+      // Shikoku and Kyushu
+      [[132.02,33.3],[132.47,33.52],[132.7,33.87],[133.16,34.0],[133.46,33.92],[133.68,34.24],[134.41,34.39],
+        [134.61,33.98],[134.36,33.63],[134.17,33.24],[133.63,33.53],[133.15,33.33],[132.81,32.73],[132.45,32.91]],
+      [[129.55,33.17],[129.66,33.56],[130.15,33.72],[130.46,33.86],[130.93,33.94],[131.0,33.59],[131.6,33.64],
+        [131.72,33.24],[132.05,32.92],[131.71,32.47],[131.5,31.88],[131.33,31.43],[130.91,31.03],[130.56,31.17],
+        [130.66,31.59],[130.35,31.22],[130.16,31.53],[130.16,31.98],[130.55,32.44],[130.33,32.88],[130.05,32.56],
+        [129.77,32.57],[129.73,32.85]],
+      [[126.11,33.36],[126.36,33.51],[126.95,33.52],[126.88,33.32],[126.44,33.22]],
+      [[129.15,34.17],[129.3,34.36],[129.46,34.72],[129.51,34.56],[129.3,34.19]],
+      [[138.2,38.15],[138.49,38.36],[138.56,38.18],[138.34,37.9],[138.17,37.86]],
+      [[130.84,30.83],[131.08,30.89],[130.98,30.53],[130.83,30.41]]
+    ];
+    const worldCanvas = $('world');
+    const mapWidth = worldCanvas.width;
+    const mapHeight = worldCanvas.height;
+    const mapScreen = $('map-screen');
+    const geography = worldCanvas.getContext('2d');
+    const actors = $('map-actors').getContext('2d');
+    actors.imageSmoothingEnabled = false;
+    const projectPoint = ([lon,lat]) => [
+      Math.round((lon - 123.7) * 13.9) + 2,
+      Math.round((45.92 - lat) * 16.1) + 6
+    ];
+    const airports = {
+      incheon:projectPoint([126.45,37.47]), gimpo:projectPoint([126.80,37.56]),
+      narita:projectPoint([140.39,35.77]), haneda:projectPoint([139.78,35.55])
+    };
+    const tokyo = projectPoint([139.73,35.70]);
+    const cityPins = [
+      ['인천', airports.incheon,[23,126]], ['김포', airports.gimpo,[75,126]], ['부산',projectPoint([129.08,35.18]),[77,194]],
+      ['나리타', airports.narita,[273,152]], ['도쿄',tokyo,[210,168]],
+      ['하네다', airports.haneda,[286,186]], ['요코하마',projectPoint([139.64,35.44]),[221,201]]
+    ];
+    const zoom = {x:97,y:20,width:122,height:96};
+    const metroPoints = {
+      ueno:[170,56], tabata:[152,42], kirin:[143,86], yoko:[136,99],
+      asakusa:[191,62], akiba:[169,66], ginza:[177,79], tower:[157,88],
+      shibuya:[136,81], harajuku:[129,71], shinjuku:[125,60]
+    };
+    const arrivalFlights = [flights.rs267, flights.ke2105];
+    const arrivalTimes = arrivalFlights.map(flight => flight.time.split('–').map(timeMinutes));
+    const arrivalStart = arrivalTimes[0][0] - 20;
+    const arrivalEnd = arrivalTimes[1][1] + 85;
+    for (const flight of arrivalFlights) {
+      const row = el('p');
+      row.append(el('strong','',flight.who), ' · ' + flight.schedule);
+      $('map-flights').append(row);
     }
-    actors.forEach(redrawActor);
-    const korea=[[0,14],[39,14],[39,20],[52,20],[52,29],[64,29],[64,38],[56,38],[56,45],[66,45],[66,56],[59,56],[59,69],[48,69],[48,79],[30,79],[30,90],[15,90],[15,82],[0,82]];
-    const japan=[[320,5],[303,5],[303,18],[291,18],[291,27],[278,27],[278,36],[272,36],[272,48],[261,48],[261,61],[248,61],[248,72],[236,72],[236,79],[223,79],[223,85],[204,85],[204,98],[193,98],[193,108],[175,108],[175,116],[157,116],[157,128],[146,128],[146,139],[190,139],[190,131],[207,131],[207,123],[224,123],[224,114],[239,114],[239,109],[249,109],[249,99],[242,99],[242,91],[251,91],[251,86],[261,86],[261,98],[270,98],[270,103],[283,103],[283,91],[291,91],[291,76],[302,76],[302,66],[311,66],[311,54],[320,54]];
-    const points={
-      icn:[41,52],gmp:[48,63],nrt:[261,53],hnd:[222,98],tabata:[226,78],
-      kirin:[208,101],yoko:[188,113],ueno:[236,88],asakusa:[253,81],
-      ginza:[228,98],tower:[218,106],shibuya:[202,96],harajuku:[207,89],shinjuku:[195,78]
-    };
-    const stages={
-      '16':{text:'12/16 · 인천·김포 → 나리타·하네다 → 우에노',route:['icn','nrt','ueno'],flight:0,
-        alternate:{route:['gmp','hnd','ueno'],flight:0}},
-      '17':{text:'12/17 · 우에노 → 기린 → 요코하마',route:['ueno','kirin','yoko']},
-      '18':{text:'12/18 · 아사쿠사 → 긴자 → 도쿄타워',route:['asakusa','ginza','tower']},
-      '19':{text:'12/19 · 시부야 → 하라주쿠 → 신주쿠',route:['shibuya','harajuku','shinjuku']},
-      '20':{text:'12/20 · 도쿄 → 나리타 → 인천',route:['tabata','nrt','icn'],flight:1}
-    };
-    const g=mapCanvas.getContext('2d');
-    const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-    const mapPins=[...document.querySelectorAll('[data-pin]')];
-    const areaLink=document.getElementById('google-area');
-    let stage, start, frame=0;
-    function drawWorld(current,progress) {
-      if(!g) return;
-      const rect=(color,x,y,w,h)=>{g.fillStyle=color;g.fillRect(x,y,w,h);};
-      const polygon=(shape,color)=>{g.beginPath();shape.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.fillStyle=color;g.fill();g.strokeStyle='#568a70';g.lineWidth=1;g.stroke();};
-      rect('#a7d9da',0,0,320,139);
-      for(let i=0;i<85;i++){const x=(i*47)%320,y=(i*29)%139;rect(i%3?'#8fc9cc':'#c4e7df',x,y,3+i%5,1);}
-      polygon(korea,'#91b974');polygon(japan,'#91b974');
-      polygon([[20,98],[26,98],[26,103],[20,103]],'#91b974');polygon([[120,128],[130,128],[130,134],[120,134]],'#91b974');
-      const trees=[[12,28],[23,30],[47,35],[12,65],[30,71],[275,49],[296,46],[281,69],[209,103],[171,124],[232,94],[277,82],[308,33],[233,117],[56,61]];
-      for(const [x,y] of trees){rect('#547d4d',x+1,y,2,5);rect('#547d4d',x,y+2,4,2);rect('#c9c982',x+1,y,1,2);}
-      const routes = current.alternate ? [current, current.alternate] : [current];
-      for (const route of routes) {
-        const coords=route.route.map(key=>points[key]);
-        g.strokeStyle=route.flight===undefined?'#5b523b':'#3d766b';
-        g.lineWidth=2;g.setLineDash([3,3]);g.beginPath();g.moveTo(...coords[0]);
-        for(const [index,point] of coords.slice(1).entries()) {
-          if(index===route.flight) g.quadraticCurveTo(151,4,...point);
-          else g.lineTo(...point);
+    const stages = [
+      {summary:'인천·김포 → 나리타·하네다 → 우에노', arrival:true, duration:14500, paths:[
+        [airports.incheon, airports.narita, tokyo], [airports.gimpo, airports.haneda, tokyo]
+      ], flightLeg:0},
+      {summary:'우에노 → 기린 → 요코하마 → 다바타', paths:[
+        [metroPoints.ueno, metroPoints.kirin, metroPoints.yoko, metroPoints.ueno, metroPoints.tabata]
+      ], zoom:true},
+      {summary:'다바타 → 아사쿠사 → 아키하바라 → 긴자 → 도쿄타워', paths:[
+        [metroPoints.tabata, metroPoints.asakusa, metroPoints.akiba, metroPoints.ginza, metroPoints.tower, metroPoints.tabata]
+      ], zoom:true},
+      {summary:'다바타 → 시부야 → 하라주쿠 → 신주쿠', paths:[
+        [metroPoints.tabata, metroPoints.shibuya, metroPoints.harajuku, metroPoints.shinjuku, metroPoints.tabata]
+      ], zoom:true},
+      {summary:'다바타 → 나리타 → 인천', paths:[[tokyo, airports.narita, airports.incheon]], flightLeg:1}
+    ];
+    const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+    const stageDuration = 6900;
+    const mapLabelLayer = $('map-labels');
+    const labels = cityPins.map(([name,, [x,y]]) => {
+      const label = el('span','map-label',name);
+      label.style.left = x / mapWidth * 100 + '%';
+      label.style.top = y / mapHeight * 100 + '%';
+      return label;
+    });
+    const zoomLabel = el('span','map-label','도쿄권 확대');
+    zoomLabel.style.left = (zoom.x + zoom.width / 2) / mapWidth * 100 + '%';
+    zoomLabel.style.top = (zoom.y + zoom.height - 11) / mapHeight * 100 + '%';
+    mapLabelLayer.append(...labels, zoomLabel);
+
+    // Small islands are drawn a few pixels wide so they are visible at the overview scale.
+    const offshoreIslands = [
+      {point:[130.90,37.49], shape:['..##.','.###.','#####','.###.','..#..'], interior:['.##.','###.','.##.']},
+      {point:[131.87,37.24], shape:['##...','##.##','...#.']}
+    ];
+    const baseMap = canvas(mapWidth,mapHeight);
+    const base = baseMap.getContext('2d');
+    const stamp = painter(baseMap);
+    stamp('#c9e5ed',0,0,mapWidth,mapHeight);
+    for (let i = 0; i < 100; i++) {
+      stamp(i % 4 === 0 ? '#e5f3ed' : '#b9dbe6', (i * 67 + 9) % mapWidth, (i * 37 + 1) % mapHeight, 4 + i % 8, 1);
+    }
+    for (const coast of coasts) {
+      base.beginPath();
+      const points = coast.map(projectPoint);
+      base.moveTo(...points[0]);
+      points.slice(1).forEach(point => base.lineTo(...point));
+      base.closePath();
+      base.fillStyle = '#a6c092';
+      base.fill();
+      base.strokeStyle = '#73977d';
+      base.lineWidth = 1.5;
+      base.stroke();
+    }
+    for (const island of offshoreIslands) {
+      const [x,y] = projectPoint(island.point);
+      drawGrid(stamp,'#63866f',x - 2,y - 2,island.shape);
+      if (island.interior) drawGrid(stamp,'#a6c092',x - 1,y - 1,island.interior);
+    }
+    for (const [lon,lat] of [[128.97,40.8],[127.47,37.7],[128.23,35.58],[141.94,44.4],[143.02,43.3],
+      [141.1,39.4],[139.73,38.04],[137.45,36.95],[136.28,35.45],[133.65,35.21],[130.5,32.67]]) {
+      const [x,y] = projectPoint([lon,lat]);
+      stamp('#87aa7d',x-3,y,8,2);
+      stamp('#87aa7d',x,y-2,3,2);
+    }
+    function pointOnLeg(a,b,t,flight) {
+      const arc = flight ? Math.sin(t * Math.PI) * 54 : 0;
+      return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t - arc];
+    }
+    function wayThrough(stage, path, t) {
+      const legs = path.length - 1;
+      const split = stage.flightLeg === 0 ? .81 : .21;
+      const legProgress = stage.flightLeg == null ? t * legs : t <= split ? t / split : 1 + (t - split) / (1 - split);
+      const index = Math.min(legs - 1, Math.floor(legProgress));
+      return pointOnLeg(path[index],path[index + 1],legProgress - index,stage.flightLeg === index);
+    }
+    function drawTrips(stage) {
+      geography.drawImage(baseMap,0,0);
+      if (stage.zoom) {
+        geography.strokeStyle = '#789aa7';
+        geography.setLineDash([2,3]);
+        geography.beginPath();
+        geography.moveTo(zoom.x + zoom.width,zoom.y + zoom.height - 12);
+        geography.lineTo(...tokyo);
+        geography.stroke();
+        geography.setLineDash([]);
+        geography.fillStyle = '#e6f3e9';
+        geography.fillRect(zoom.x,zoom.y,zoom.width,zoom.height);
+        geography.strokeRect(zoom.x + .5,zoom.y + .5,zoom.width - 1,zoom.height - 1);
+      }
+      stage.paths.forEach((path,index) => {
+        geography.beginPath();
+        geography.moveTo(...path[0]);
+        for (let leg = 0; leg < path.length - 1; leg++) {
+          const steps = stage.flightLeg === leg ? 25 : 1;
+          for (let step = 1; step <= steps; step++) {
+            geography.lineTo(...pointOnLeg(path[leg],path[leg + 1],step / steps,steps > 1));
+          }
         }
-        g.stroke();g.setLineDash([]);
-        for(const id of route.route){
-          const [x,y]=points[id];
-          rect('#29483d',x-3,y-3,7,7);rect(id==='kirin'?'#efae5c':'#fef0c7',x-2,y-2,5,5);
+        geography.strokeStyle = index ? '#896289' : '#436599';
+        geography.lineWidth = 2.5;
+        geography.setLineDash(stage.zoom ? [2,3] : [5,4]);
+        geography.stroke();
+        geography.setLineDash([]);
+        if (stage.zoom) {
+          geography.fillStyle = '#436599';
+          path.forEach(([x,y]) => geography.fillRect(x-2,y-2,4,4));
         }
-        const {x,y,segment}=pathPoint(route,progress);
-        if(segment===route.flight && progress<1 && !reduced.matches){
-          rect('#466b69',x-7,y-2,12,3);rect('#fff4db',x-7,y-3,11,2);rect('#fff4db',x+3,y-2,4,2);
-          rect('#fff4db',x-2,y-7,2,8);rect('#f0b260',x-7,y-4,2,3);
-        }
+      });
+      for (const [, [x,y], [lx,ly]] of cityPins) {
+        geography.strokeStyle = '#586e82';
+        geography.lineWidth = 1;
+        geography.beginPath();
+        geography.moveTo(x,y);
+        geography.lineTo(lx,ly);
+        geography.stroke();
+        geography.fillStyle = '#263f75';
+        geography.fillRect(x-2,y-2,5,5);
+        geography.fillStyle = '#fff3c0';
+        geography.fillRect(x-1,y-1,3,3);
       }
     }
-    function pathPoint(current,progress) {
-      const split=current.flight===0?.72:current.flight===1?.28:.52;
-      const segment=progress<split?0:1;
-      const a=points[current.route[segment]];
-      const b=points[current.route[segment+1]];
-      const t=segment===0?progress/split:(progress-split)/(1-split);
-      if(segment!==current.flight) return {x:a[0]+(b[0]-a[0])*t,y:a[1]+(b[1]-a[1])*t,segment};
-      const u=1-t;
-      return {x:u*u*a[0]+2*u*t*151+t*t*b[0],y:u*u*a[1]+2*u*t*4+t*t*b[1],segment};
+
+    let stageIndex = 0;
+    let elapsed = 0;
+    let mapFrame = 0;
+    let previousFrame = null;
+    let mapOnScreen = false;
+    let paused = false;
+    let drag = null;
+    const mapSprites = new Map();
+
+    function arrivalPosition(path, pathIndex, minute) {
+      const [takeoff, landing] = arrivalTimes[pathIndex];
+      if (minute <= takeoff) return path[0];
+      if (minute < landing) return pointOnLeg(path[0], path[1], (minute - takeoff) / (landing - takeoff), true);
+      // Ground legs show sequence at an illustrative pace after the scheduled flight.
+      const transfer = Math.max(0, Math.min(1, (minute - landing - 25) / 50));
+      return pointOnLeg(path[1], path[2], transfer, false);
     }
-    function paint(timestamp) {
-      if(start===undefined) start=timestamp;
-      const elapsed=timestamp-start;
-      const current=stages[stage];
-      const progress=reduced.matches?1:Math.min(1,elapsed/4800);
-      drawWorld(current,progress);
-      const position=pathPoint(current,progress);
-      const spacing=46;
-      const mapWidth=mapFrame.clientWidth || 320;
-      actors.forEach((actor,index)=>{
-        const {x,y} = current.alternate && actor.person.id === 'inhye' ? pathPoint(current.alternate,progress) : position;
-        const center=Math.max(70,Math.min(mapWidth-70,x*mapWidth/320));
-        actor.button.style.left=`${(center+(index-1)*spacing)*100/mapWidth}%`;
-        actor.button.style.top=`${(y-3)/1.39}%`;
-        sprite(actor.canvas,actor.person,dress(actor.person),reduced.matches?0:Math.floor(elapsed/235+index)%2);
+    function renderActors() {
+      const stage = stages[stageIndex];
+      actors.clearRect(0,0,mapWidth,mapHeight);
+      const duration = stage.duration || stageDuration;
+      const t = motionPreference.matches ? .48 : Math.min(1, elapsed / (duration - 750));
+      const minute = arrivalStart + (arrivalEnd - arrivalStart) * t;
+      if (stage.arrival) {
+        const minutes = Math.floor(minute / 5) * 5;
+        const label = '재생 ' + String(Math.floor(minutes / 60)).padStart(2,'0') + ':' + String(minutes % 60).padStart(2,'0');
+        if ($('map-clock').textContent !== label) $('map-clock').textContent = label;
+      }
+      people.forEach((person,index) => {
+        const pathIndex = stage.arrival && person.flight === flights.ke2105 ? 1 : 0;
+        const path = stage.paths[pathIndex];
+        const sharedPosition = !stage.arrival || minute >= arrivalTimes[1][1] + 75;
+        const crowd = sharedPosition ? (index - 1) * (stage.zoom ? 17 : 23) : pathIndex ? -4 : (index ? 12 : -10);
+        const waiting = stage.arrival && minute < arrivalTimes[pathIndex][0];
+        const bob = paused || waiting || motionPreference.matches ? 0 : Math.abs(Math.sin(elapsed / 170 + index * 1.4)) * 5;
+        const [x,y] = stage.arrival ? arrivalPosition(path,pathIndex,minute) : wayThrough(stage,path,t);
+        const worn = outfit(person);
+        const mascot = Object.hasOwn(mascots,worn);
+        const size = stage.zoom ? (mascot ? 23 : 26) : (mascot ? 30 : 34);
+        const key = person.id + ':' + worn;
+        if (!mapSprites.has(key)) mapSprites.set(key,portrait(person,worn,false,true));
+
+        const left = Math.max(1,Math.min(mapWidth - size - 1,x + crowd - size / 2 + (drag?.x || 0)));
+        const top = Math.max(1,y - size - 2 - bob + (drag?.y || 0));
+        actors.drawImage(mapSprites.get(key),Math.round(left),Math.round(top),size,size);
       });
-      if(!reduced.matches && progress<1) frame=requestAnimationFrame(paint);
     }
-    function showDayOnMap(id) {
-      stage=id;
-      const current=stages[id];
-      cancelAnimationFrame(frame);
-      start=undefined;
-      const visiblePins = [...current.route, ...(current.alternate?.route || [])];
-      mapPins.forEach(pin=>{pin.hidden=!visiblePins.includes(pin.dataset.pin);});
-      document.getElementById('map-caption').textContent=current.text;
-      areaLink.href=mapUrl(dayList.find(day=>day.id===id).area);
-      frame=requestAnimationFrame(paint);
+    function selectMapStage(index, announce = false) {
+      stageIndex = (index + stages.length) % stages.length;
+      elapsed = 0;
+      const day = dayList[stageIndex];
+      const stage = stages[stageIndex];
+      const title = day.date + ' ' + day.weekday + ' · ' + day.title;
+      $('map-day').textContent = title;
+      $('map-route').textContent = stage.summary;
+      $('map-flights').hidden = !stage.arrival;
+      $('map-clock').hidden = !stage.arrival || motionPreference.matches;
+      if (announce) $('map-announcement').textContent = title;
+      zoomLabel.hidden = !stage.zoom;
+      drawTrips(stage);
+      renderActors();
     }
-    days.addEventListener('daychange',()=>showDayOnMap(selectedDay));
-    document.getElementById('replay-map').addEventListener('click',()=>showDayOnMap(selectedDay));
-    reduced.addEventListener('change',()=>showDayOnMap(selectedDay));
-    if(typeof ResizeObserver!=='undefined') new ResizeObserver(()=>{
-      if(frame) cancelAnimationFrame(frame);
-      frame=requestAnimationFrame(paint);
-    }).observe(mapFrame);
-    selectDay('16');
-    openLinkedPanel();
+    function advanceMap(now) {
+      mapFrame = 0;
+      if (previousFrame !== null && !drag) elapsed += Math.min(100, now - previousFrame);
+      previousFrame = now;
+      if (elapsed >= (stages[stageIndex].duration || stageDuration)) selectMapStage(stageIndex + 1);
+      else renderActors();
+      mapFrame = requestAnimationFrame(advanceMap);
+    }
+    function syncMapPlayback() {
+      const available = currentView === 'info' && $('overview').open && mapOnScreen && !document.hidden;
+      if (available && !motionPreference.matches && !paused) {
+        if (!mapFrame) mapFrame = requestAnimationFrame(advanceMap);
+      } else {
+        if (mapFrame) cancelAnimationFrame(mapFrame);
+        mapFrame = 0;
+        previousFrame = null;
+      }
+    }
+    const mapObserver = new IntersectionObserver(entries => {
+      mapOnScreen = entries[0].isIntersecting;
+      syncMapPlayback();
+    }, {threshold:.1});
+    mapObserver.observe(mapScreen);
+    $('overview').addEventListener('toggle',syncMapPlayback);
+    document.addEventListener('visibilitychange',syncMapPlayback);
+    function updateMotionPreference() {
+      $('map-pause').hidden = motionPreference.matches;
+      $('map-clock').hidden = !stages[stageIndex].arrival || motionPreference.matches;
+      syncMapPlayback();
+      renderActors();
+    }
+    motionPreference.addEventListener('change',updateMotionPreference);
+    $('map-prev').addEventListener('click',() => selectMapStage(stageIndex - 1,true));
+    $('map-next').addEventListener('click',() => selectMapStage(stageIndex + 1,true));
+    $('map-pause').addEventListener('click',() => {
+      paused = !paused;
+      $('map-pause').textContent = paused ? '재생' : '일시정지';
+      syncMapPlayback();
+      renderActors();
+    });
+    mapScreen.addEventListener('pointerdown',event => {
+      if (!event.isPrimary || event.button !== 0) return;
+      drag = {id:event.pointerId, startX:event.clientX, startY:event.clientY, x:0, y:0};
+      mapScreen.setPointerCapture(event.pointerId);
+    });
+    mapScreen.addEventListener('pointermove',event => {
+      if (drag?.id !== event.pointerId) return;
+      const limit = distance => Math.sign(distance) * Math.min(15, Math.abs(distance) * .19);
+      drag.x = limit(event.clientX - drag.startX);
+      drag.y = limit(event.clientY - drag.startY);
+      renderActors();
+    });
+    function endDrag(event) {
+      if (drag?.id !== event.pointerId) return;
+      const dx = event.clientX - drag.startX;
+      const dy = event.clientY - drag.startY;
+      drag = null;
+      if (event.type === 'pointerup' && Math.abs(dx) >= 33 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+        selectMapStage(stageIndex + (dx < 0 ? 1 : -1),true);
+      } else {
+        renderActors();
+      }
+    }
+    ['pointerup','pointercancel','lostpointercapture'].forEach(type => mapScreen.addEventListener(type,endDrag));
+    selectMapStage(0);
+    updateMotionPreference();
+
+    openLocation();
+    window.addEventListener('focus', updateDayContext);
+    setInterval(updateDayContext, 60_000);
   </script>
 </body>
 </html>
