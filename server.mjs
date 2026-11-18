@@ -134,12 +134,14 @@ export function createStore(path) {
   function state(auth) {
     const version = statements.version.get().value;
     const notes = list('note');
+    const guides = list('guide');
     if (auth.role === 'viewer') {
       const visible = notes.filter(note => auth.visit ? note.place === auth.visit.split('.')[0] && (!note.visit || note.visit === auth.visit.split('.')[1])
         : note.days.includes(auth.day) && (!note.visit || note.visit.startsWith(auth.day + '/')));
-      return {version, auth, notes:visible, people:members};
+      const visibleGuides = guides.filter(guide => auth.visit ? guide.id === auth.visit.split('.')[1] : guide.id.startsWith(auth.day + '/'));
+      return {version, auth, notes:visible, guides:visibleGuides, people:members};
     }
-    return {version,auth,seeded:!!statements.seeded.get(),people:members,notes,items:list('item'),checks:list('check'),links:list('link'),outfits:list('outfit'),
+    return {version,auth,seeded:!!statements.seeded.get(),people:members,notes,guides,items:list('item'),checks:list('check'),links:list('link'),outfits:list('outfit'),
       invitations:auth.isOwner ? statements.pending.all(Date.now()) : []};
   }
   function mutate(auth, payload) {
@@ -205,6 +207,16 @@ export function createStore(path) {
           write('check',key,checked);
           return checked;
         }
+        if (op === 'guide') {
+          const visit = visitId(payload.visit);
+          if (!visit) invalid();
+          const previous = read('guide',visit);
+          if (payload.rev !== (previous?.rev || 0)) conflict();
+          // Keep an empty override so a removed itinerary note stays removed on future visits.
+          const guide = {id:visit, text:line(payload.text,800),rev:payload.rev + 1,by:member,updated:now};
+          write('guide',visit,guide);
+          return guide;
+        }
         if (op === 'note') {
           const old = payload.id ? revision('note',payload.id) : null;
           if (old && old.author !== member) deny('작성자만 메모를 수정할 수 있어요.');
@@ -255,7 +267,7 @@ export function createStore(path) {
       }
     });
   }
-  return {issue,joinInvite,authenticate,state,mutate,logout:raw=>statements.logout.run(digest(raw || '')),db};
+  return {issue,joinInvite,authenticate,state,mutate,profileOutfits:() => list('outfit').map(({id,outfit}) => ({id,outfit})),logout:raw=>statements.logout.run(digest(raw || '')),db};
 }
 
 export function createTripServer({database, origin = '', pagesUrl = '', roomKey = ''}) {
@@ -286,7 +298,7 @@ export function createTripServer({database, origin = '', pagesUrl = '', roomKey 
     res.setHeader('Referrer-Policy','no-referrer');
     res.setHeader('X-Frame-Options','DENY');
     const url = new URL(req.url,localOrigin);
-    const roomRoute = url.pathname === '/api/state' || url.pathname === '/api/action';
+    const roomRoute = ['/api/state','/api/action','/api/profiles'].includes(url.pathname);
     const requestOrigin = req.headers.origin;
     const pagesRequest = Boolean(pagesOrigin && roomRoute && requestOrigin === pagesOrigin);
     if (pagesOrigin && roomRoute) res.setHeader('Vary', 'Origin');
@@ -323,6 +335,11 @@ export function createTripServer({database, origin = '', pagesUrl = '', roomKey 
         if (assets.has(url.pathname)) {
           const [data,type] = assets.get(url.pathname);
           return send(200,data,type);
+        }
+        if (url.pathname === '/api/profiles') {
+          const key = req.headers.authorization?.match(/^Bearer ([A-Za-z0-9_-]{43})$/)?.[1];
+          if (!pagesRequest || !key || !timingSafeEqual(Buffer.from(digest(key),'hex'),roomDigest)) deny();
+          return send(200,store.profileOutfits());
         }
         if (url.pathname === '/api/state') {
           if (!auth) return send(401,{error:pagesRequest ? '일행에게 받은 공동 편집 링크를 다시 열어 주세요.' : '초대 링크로 들어와 주세요.'});
