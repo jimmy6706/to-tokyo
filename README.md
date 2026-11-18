@@ -4,6 +4,8 @@
 
 GitHub Pages는 저장소 루트의 `index.html`, `stage2.js`, `stage2.css`를 제공한다. 공동 저장 서버는 Node.js 24 이상을 지원하는 HTTPS 호스트에서 `node server.mjs`로 실행한다. 두 배포에 같은 버전의 코드를 사용한다.
 
+Railway에서 이 저장소를 선택하면 `package.json`에 지정한 Node.js 24와 `npm start`로 서버를 실행한다. 서비스에 공개 도메인을 만들고 `/data`에 볼륨을 연결한 뒤 아래 환경 변수를 설정한다.
+
 | 서버 환경 변수 | 값 |
 | --- | --- |
 | `TRIP_ORIGIN` | 공동 저장 서버의 HTTPS 주소. 경로와 마지막 슬래시 없이 입력한다. |

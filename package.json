@@ -1,0 +1,10 @@
+{
+  "name": "tokyo-trip",
+  "private": true,
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}
